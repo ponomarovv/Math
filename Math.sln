@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathCLI", "MathCLI\MathCLI.csproj", "{C593CF91-D99E-4371-AC94-4E3A77B4103D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.DAL", "Math.DAL\Math.DAL.csproj", "{AB316887-B751-4D61-816C-48C45BE6F26E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.BLL", "Math.BLL\Math.BLL.csproj", "{73C125A5-12AB-4B38-97CF-AE7A2048CC64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{C593CF91-D99E-4371-AC94-4E3A77B4103D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C593CF91-D99E-4371-AC94-4E3A77B4103D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C593CF91-D99E-4371-AC94-4E3A77B4103D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB316887-B751-4D61-816C-48C45BE6F26E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB316887-B751-4D61-816C-48C45BE6F26E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB316887-B751-4D61-816C-48C45BE6F26E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB316887-B751-4D61-816C-48C45BE6F26E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73C125A5-12AB-4B38-97CF-AE7A2048CC64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73C125A5-12AB-4B38-97CF-AE7A2048CC64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73C125A5-12AB-4B38-97CF-AE7A2048CC64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73C125A5-12AB-4B38-97CF-AE7A2048CC64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
