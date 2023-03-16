@@ -7,4 +7,9 @@
         <RootNamespace>Math.BLL</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Math.DAL.Abstract\Math.DAL.Abstract.csproj" />
+      <ProjectReference Include="..\Math.DAL.Impl\Math.DAL.Impl.csproj" />
+    </ItemGroup>
+
 </Project>

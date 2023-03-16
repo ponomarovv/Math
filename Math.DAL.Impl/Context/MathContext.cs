@@ -7,6 +7,7 @@ public class MathContext : DbContext
 {
     public MathContext(DbContextOptions<MathContext> options) : base(options)
     {
+        //Database.EnsureCreated();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)

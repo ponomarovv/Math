@@ -7,7 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Math.BLL.Abstract\Math.BLL.Abstract.csproj" />
+      <ProjectReference Include="..\Math.BLL.Impl\Math.BLL.Impl.csproj" />
+      <ProjectReference Include="..\Math.DAL.Abstract\Math.DAL.Abstract.csproj" />
+      <ProjectReference Include="..\Math.DAL.Impl\Math.DAL.Impl.csproj" />
     </ItemGroup>
 
 </Project>
