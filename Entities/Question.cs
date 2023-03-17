@@ -1,4 +1,4 @@
-﻿namespace Math.DAL.Models;
+﻿namespace Entities;
 
 public class Question
 {

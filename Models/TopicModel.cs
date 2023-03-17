@@ -1,6 +1,6 @@
-﻿namespace Math.DAL.Models;
+﻿namespace Models;
 
-public class Topic
+public class TopicModel
 {
     public int Id { get; set; }
     public string? Text { get; set; }

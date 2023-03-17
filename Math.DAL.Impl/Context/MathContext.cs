@@ -1,4 +1,4 @@
-﻿using Math.DAL.Models;
+﻿using Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Math.DAL.Context;

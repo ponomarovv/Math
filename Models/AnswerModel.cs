@@ -1,11 +1,11 @@
-﻿namespace Math.DAL.Models;
+﻿namespace Models;
 
-public class Answer
+public class AnswerModel
 {
     public int Id { get; set; }
     public string? Text { get; set; }
     public bool IsCorrect { get; set; }
     
 
-    public Question? Question { get; set; }
+    public QuestionModel? QuestionModel { get; set; }
 }

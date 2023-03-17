@@ -1,5 +1,7 @@
 using Math.DAL.Context;
 
+namespace Math.WEB;
+
 internal class Program
 {
     public static void Main(string[] args)
