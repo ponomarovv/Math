@@ -18,8 +18,6 @@
     <ItemGroup>
       <ProjectReference Include="..\Math.BLL.Abstract\Math.BLL.Abstract.csproj" />
       <ProjectReference Include="..\Math.BLL.Impl\Math.BLL.Impl.csproj" />
-      <ProjectReference Include="..\Math.DAL.Abstract\Math.DAL.Abstract.csproj" />
-      <ProjectReference Include="..\Math.DAL.Impl\Math.DAL.Impl.csproj" />
     </ItemGroup>
 
 </Project>
