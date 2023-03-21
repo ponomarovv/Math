@@ -12,11 +12,9 @@ internal class Program
 
 // Add services to the container.
 
-
-
         builder.Services.InstallRepositories();
-        builder.Services.InstallServices();
         builder.Services.InstallMappers();
+        builder.Services.InstallServices();
 
         builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
