@@ -6,5 +6,5 @@ public class QuestionModel
     public string? Text { get; set; }
     
     
-    public TopicModel? TopicModelic { get; set; }
+    public TopicModel? TopicModel { get; set; }
 }
