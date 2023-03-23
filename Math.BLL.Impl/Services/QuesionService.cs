@@ -35,7 +35,7 @@ public class QuesionService : IQuestionService
                 var key = rand.Next(1, allQuestions.Count + 1);
                 if (quizQuestions.ContainsKey(key))
                 {
-                    continue;
+                    // continue;
                 }
                 else
                 {

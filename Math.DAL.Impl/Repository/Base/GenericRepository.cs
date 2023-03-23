@@ -50,7 +50,7 @@ public abstract class GenericRepository<TKey, TEntity> : IGenericRepository<TKey
         return true;
     }
 
-    public List<TEntity> GetAll(Func<TEntity, bool> predicate)
+    public virtual List<TEntity> GetAll(Func<TEntity, bool> predicate)
     {
         List<TEntity> items = DbSet.Where(predicate).ToList();
         return items;

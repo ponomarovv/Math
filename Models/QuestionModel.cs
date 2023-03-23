@@ -7,4 +7,5 @@ public class QuestionModel
     
     
     public TopicModel? TopicModel { get; set; }
+    public AnswerModel[] AnswerModels { get; set; }
 }

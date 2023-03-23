@@ -7,4 +7,5 @@ public class Question
     
     
     public Topic? Topic { get; set; }
+    public Answer[] Answers { get; set; }
 }

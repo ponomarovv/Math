@@ -1,12 +1,6 @@
 
-A
-Entities/Topic.cs,8\0\80ec92efc191fd5a1e317816ed5ec9be4988725c
-D
-Entities/Question.cs,0\5\055307a43865deb1e7fff73596bf73432ad98a80
 B
 Entities/Answer.cs,2\1\212a3831a68e800762b51c0a447fcb2eb9b1a1fd
-D
-Models/TopicModel.cs,8\0\80b536ba73a3bb33744415b6eb8d1211609f013f
 \
 ,Math.DAL.Impl/Repository/AnswerRepository.cs,d\0\d07d85f75ae4ed00ab2958e213b170c4d8a3e677
 [
