@@ -7,5 +7,5 @@ public class Question
 
 
     public Topic Topic { get; set; } = new Topic();
-    public ICollection<Answer> Answers { get; set; } = new List<Answer>();
+    public virtual ICollection<Answer> Answers { get; set; }
 }

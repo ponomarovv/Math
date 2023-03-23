@@ -25,8 +25,8 @@ public class Program
         var serviceCollection = new ServiceCollection();
 
         serviceCollection.InstallRepositories();
-        serviceCollection.InstallMappers();
         serviceCollection.InstallServices();
+        serviceCollection.InstallMappers();
 
 
         serviceCollection.AddDbContext<MathContext>

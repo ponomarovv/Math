@@ -63,12 +63,14 @@ public class QuesionService : IQuestionService
         Console.WriteLine(q.TopicModel.Text);
         //
         // // TODO I don't get answers with the question. I have to use Include somewhere. but where
-        // foreach (var item in q.AnswerModels)
-        // {
-        //     Console.WriteLine(item.Text);
-        //     Console.WriteLine(item.IsCorrect);
-        //     Console.WriteLine();
-        // }
+
+        Console.WriteLine("Options: ");
+        foreach (var item in q.AnswerModels)
+        {
+            Console.WriteLine(item.Text);
+            Console.WriteLine(item.IsCorrect);
+            Console.WriteLine();
+        }
 
         // var answers = _unitOfWork.AnswerRepository.GetAll(x => x.Question.Id == 1).Select(_mapper.Map<AnswerModel>).ToList();
         //

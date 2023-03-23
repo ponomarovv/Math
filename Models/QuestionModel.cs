@@ -8,5 +8,5 @@ public class QuestionModel
     
     public TopicModel? TopicModel { get; set; }
     
-    public ICollection<AnswerModel> AnswerModels { get; set; }
+    public virtual ICollection<AnswerModel> AnswerModels { get; set; }
 }
