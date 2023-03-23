@@ -41,28 +41,10 @@ public class Program
         // var dishService = serviceProvider.GetService<IDishService>();
         ITopicService? topicService = serviceProvider.GetService<ITopicService>();
 
-        TopicModel topicModel = new TopicModel() { Text = "Dummy2" };
-        var newModel = topicService?.Delete(4);
-        // Console.WriteLine(topicModel.Id);
-        Console.WriteLine(topicModel.Text);
-        Console.WriteLine();
-
-
-
-        var all = topicService.GetAll();
-
-        foreach (var item in all)
-        {
-            Console.WriteLine(item.Id);
-            Console.WriteLine(item.Text);
-            Console.WriteLine();
-        }
-
-        Console.WriteLine();
-
-
-        // Console.WriteLine(topicModel.Text);
-        Console.WriteLine();
+        
+        IQuestionService questionService = serviceProvider.GetService<IQuestionService>();
+        questionService?.StartGame();
+        
 
 
         //questions

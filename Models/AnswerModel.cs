@@ -6,5 +6,6 @@ public class AnswerModel
     public string? Text { get; set; }
     public bool IsCorrect { get; set; }
 
-    public QuestionModel? QuestionModel { get; set; }
+    public int QuestionId { get; set; }
+    public QuestionModel QuestionModel { get; set; }
 }

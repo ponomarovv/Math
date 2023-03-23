@@ -56,7 +56,7 @@ public abstract class GenericRepository<TKey, TEntity> : IGenericRepository<TKey
         return items;
     }
 
-    public TEntity GetById(TKey key)
+    public virtual TEntity GetById(TKey key)
     {
         TEntity item = DbSet.Find(key);
         return item;

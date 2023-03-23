@@ -18,12 +18,12 @@ public static class BllDependencyInstaller
 
     public static void InstallMappers(this IServiceCollection services)
     {
-        var mapperConfig = new MapperConfiguration(mc =>
+        var config = new MapperConfiguration(mc =>
         {
             mc.AddProfile(new MappersProfile());
         });
 
-        IMapper mapper = mapperConfig.CreateMapper();
+        IMapper mapper = config.CreateMapper();
         services.AddSingleton(mapper);
     }
 }

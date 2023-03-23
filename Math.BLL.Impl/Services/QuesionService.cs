@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Xml;
+using AutoMapper;
 using Entities;
 using Math.BLL.Abstract.Services;
 using Math.DAL.Abstract.Repository.Base;
@@ -52,13 +53,32 @@ public class QuesionService : IQuestionService
     public void StartGame()
     {
         // var questions = Get20RandomQuestions();
-        
-        QuestionModel? q = _mapper.Map<QuestionModel>(_unitOfWork.QuestionRepository.GetById(1));
 
-        Console.WriteLine(q.Text);
+        var fromRepo = _unitOfWork.QuestionRepository.GetById(1);
         
-        // TODO I don't get answers with the question. I have to use Include somewhere. but where
-        Console.WriteLine();
+        QuestionModel? q = _mapper.Map<QuestionModel>(fromRepo);
+        
+        Console.WriteLine(q.Text);
+
+        Console.WriteLine(q.TopicModel.Text);
+        //
+        // // TODO I don't get answers with the question. I have to use Include somewhere. but where
+        // foreach (var item in q.AnswerModels)
+        // {
+        //     Console.WriteLine(item.Text);
+        //     Console.WriteLine(item.IsCorrect);
+        //     Console.WriteLine();
+        // }
+
+        // var answers = _unitOfWork.AnswerRepository.GetAll(x => x.Question.Id == 1).Select(_mapper.Map<AnswerModel>).ToList();
+        //
+        // foreach (var item in answers)
+        // {
+        //     Console.WriteLine(item.Id);
+        //     Console.WriteLine(item.Text);
+        //     Console.WriteLine(item.IsCorrect);
+        //     Console.WriteLine();
+        // }
     }
 
     public QuestionModel Create(QuestionModel model)
