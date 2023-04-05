@@ -12,9 +12,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.DAL.Abstract", "Math.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.BLL.Abstract", "Math.BLL.Abstract\Math.BLL.Abstract.csproj", "{90ECE544-68F6-481B-B7EA-553F11C5C07C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{4DE2B20B-CD0C-4956-A796-BBB8E143D69B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.Entities", "Math.Entities\Math.Entities.csproj", "{4DE2B20B-CD0C-4956-A796-BBB8E143D69B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{9574C16A-B79D-44AA-8F4E-0C7FA1A11DBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.Models", "Math.Models\Math.Models.csproj", "{9574C16A-B79D-44AA-8F4E-0C7FA1A11DBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -25,7 +25,7 @@ namespace Math.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Entities.Answer", b =>
+            modelBuilder.Entity("Math.Entities.Answer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace Math.DAL.Migrations
                     b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("Entities.Question", b =>
+            modelBuilder.Entity("Math.Entities.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,7 +70,7 @@ namespace Math.DAL.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("Entities.Topic", b =>
+            modelBuilder.Entity("Math.Entities.Topic", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -86,30 +86,30 @@ namespace Math.DAL.Migrations
                     b.ToTable("Topics");
                 });
 
-            modelBuilder.Entity("Entities.Answer", b =>
+            modelBuilder.Entity("Math.Entities.Answer", b =>
                 {
-                    b.HasOne("Entities.Question", "Question")
+                    b.HasOne("Math.Entities.Question", "Question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId");
 
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("Entities.Question", b =>
+            modelBuilder.Entity("Math.Entities.Question", b =>
                 {
-                    b.HasOne("Entities.Topic", "Topic")
+                    b.HasOne("Math.Entities.Topic", "Topic")
                         .WithMany("Questions")
                         .HasForeignKey("TopicId");
 
                     b.Navigation("Topic");
                 });
 
-            modelBuilder.Entity("Entities.Question", b =>
+            modelBuilder.Entity("Math.Entities.Question", b =>
                 {
                     b.Navigation("Answers");
                 });
 
-            modelBuilder.Entity("Entities.Topic", b =>
+            modelBuilder.Entity("Math.Entities.Topic", b =>
                 {
                     b.Navigation("Questions");
                 });

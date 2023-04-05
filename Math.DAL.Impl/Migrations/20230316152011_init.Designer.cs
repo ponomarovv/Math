@@ -25,7 +25,7 @@ namespace Math.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Math.DAL.Models.Answer", b =>
+            modelBuilder.Entity("Math.DAL.Math.Models.Answer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace Math.DAL.Migrations
                     b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("Math.DAL.Models.Question", b =>
+            modelBuilder.Entity("Math.DAL.Math.Models.Question", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,7 +70,7 @@ namespace Math.DAL.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("Math.DAL.Models.Topic", b =>
+            modelBuilder.Entity("Math.DAL.Math.Models.Topic", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -86,18 +86,18 @@ namespace Math.DAL.Migrations
                     b.ToTable("Topics");
                 });
 
-            modelBuilder.Entity("Math.DAL.Models.Answer", b =>
+            modelBuilder.Entity("Math.DAL.Math.Models.Answer", b =>
                 {
-                    b.HasOne("Math.DAL.Models.Question", "Question")
+                    b.HasOne("Math.DAL.Math.Models.Question", "Question")
                         .WithMany()
                         .HasForeignKey("QuestionId");
 
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("Math.DAL.Models.Question", b =>
+            modelBuilder.Entity("Math.DAL.Math.Models.Question", b =>
                 {
-                    b.HasOne("Math.DAL.Models.Topic", "Topic")
+                    b.HasOne("Math.DAL.Math.Models.Topic", "Topic")
                         .WithMany()
                         .HasForeignKey("TopicId");
 
