@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathCLI", "MathCLI\MathCLI.csproj", "{C593CF91-D99E-4371-AC94-4E3A77B4103D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.CLI", "Math.CLI\Math.CLI.csproj", "{C593CF91-D99E-4371-AC94-4E3A77B4103D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.DAL.Impl", "Math.DAL.Impl\Math.DAL.Impl.csproj", "{AB316887-B751-4D61-816C-48C45BE6F26E}"
 EndProject

@@ -5,6 +5,8 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>MathCLI</RootNamespace>
+        <UserSecretsId>b59c4d0e-91dc-4220-9538-c0f8abc00f2a</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +14,8 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+      <PackageReference Include="Microsoft.VisualStudio.VsixColorCompiler" Version="17.0.31709.430" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,19 +1,39 @@
 ﻿using Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Math.DAL.Context;
 
 public class MathContext : DbContext
 {
-    public MathContext(DbContextOptions<MathContext> options) : base(options)
+    private readonly IConfiguration _config;
+
+    public MathContext(IConfiguration config)
     {
-        //Database.EnsureCreated();
+        _config = config;
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=MathDB;Trusted_Connection=True;");
 
-    
+    // public MathContext(DbContextOptions<MathContext> options) : base(options)
+    // {
+    //     //Database.EnsureCreated();
+    // }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // Retrieve the connection string secret from IConfiguration
+        string connectionString = _config.GetConnectionString("DefaultConnection");
+
+        // Use the retrieved connection string for configuring DbContext
+        optionsBuilder.UseSqlServer(connectionString);
+    }
+
+
     public DbSet<Topic> Topics { get; set; }
     public DbSet<Question> Questions { get; set; }
     public DbSet<Answer> Answers { get; set; }
