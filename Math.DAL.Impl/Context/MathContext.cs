@@ -27,7 +27,7 @@ public class MathContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // Retrieve the connection string secret from IConfiguration
-        string connectionString = _config.GetConnectionString("DefaultConnection");
+        string? connectionString = _config.GetConnectionString("DefaultConnection");
 
         // Use the retrieved connection string for configuring DbContext
         optionsBuilder.UseSqlServer(connectionString);
