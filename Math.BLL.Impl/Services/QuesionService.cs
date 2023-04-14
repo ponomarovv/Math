@@ -18,12 +18,15 @@ public class QuesionService : IQuestionService
         _mapper = mapper;
     }
 
-    public Dictionary<int, QuestionModel> Get20RandomQuestions()
+    public async  Task<Dictionary<int, QuestionModel>> Get20RandomQuestions()
     {
         // TODO how to get 20 random questions in ONE query? 
 
         // TODO Do I need to use Include and where?
-        var allQuestions = _unitOfWork.QuestionRepository.GetAllAsync(x => true).Result.Select(_mapper.Map<QuestionModel>).ToList();
+        var allQuestions = await _unitOfWork.QuestionRepository.GetAllAsync(x => true);
+        var questionModels = allQuestions.Select(_mapper.Map<QuestionModel>).ToList();
+
+
 
         var quizQuestions = new Dictionary<int, QuestionModel>();
 
@@ -33,14 +36,14 @@ public class QuesionService : IQuestionService
         {
             while (true)
             {
-                var key = rand.Next(1, allQuestions.Count + 1);
+                var key = rand.Next(1, questionModels.Count + 1);
                 if (quizQuestions.ContainsKey(key))
                 {
                     // continue;
                 }
                 else
                 {
-                    quizQuestions.Add(key, allQuestions[key]);
+                    quizQuestions.Add(key, questionModels[key]);
                     break;
                 }
             }
