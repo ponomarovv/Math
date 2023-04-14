@@ -6,5 +6,5 @@ public interface IUnitOfWork : IDisposable
     IQuestionRepository QuestionRepository { get; }
     ITopicRepository TopicRepository { get; }
 
-    void SaveChanges();
+    Task SaveChangesAsync();
 }

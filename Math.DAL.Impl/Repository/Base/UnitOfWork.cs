@@ -6,7 +6,7 @@ namespace Math.DAL.Repository.Base;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private MathContext _context;
+    private readonly MathContext _context;
 
     public IAnswerRepository AnswerRepository { get; }
     public IQuestionRepository QuestionRepository { get; }
@@ -22,23 +22,23 @@ public class UnitOfWork : IUnitOfWork
         TopicRepository = new TopicRepository(_context);
     }
 
-    public void SaveChanges()
+    public async Task SaveChangesAsync()
     {
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    private bool disposed = false;
+    private bool _disposed = false;
 
-    public void Dispose(bool disposing)
+    protected virtual void Dispose(bool disposing)
     {
-        if (!this.disposed)
+        if (!this._disposed)
         {
             if (disposing)
             {
                 _context.Dispose();
             }
 
-            this.disposed = true;
+            this._disposed = true;
         }
     }
 

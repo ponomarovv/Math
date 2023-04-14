@@ -21,9 +21,9 @@ public class QuesionService : IQuestionService
     public Dictionary<int, QuestionModel> Get20RandomQuestions()
     {
         // TODO how to get 20 random questions in ONE query? 
-        
+
         // TODO Do I need to use Include and where?
-        var allQuestions = _unitOfWork.QuestionRepository.GetAll(x => true).Select(_mapper.Map<QuestionModel>).ToList();
+        var allQuestions = _unitOfWork.QuestionRepository.GetAllAsync(x => true).Result.Select(_mapper.Map<QuestionModel>).ToList();
 
         var quizQuestions = new Dictionary<int, QuestionModel>();
 
@@ -47,17 +47,17 @@ public class QuesionService : IQuestionService
         }
 
         return quizQuestions;
-        
+
     }
-    
+
     public void StartGame()
     {
         // var questions = Get20RandomQuestions();
 
-        var fromRepo = _unitOfWork.QuestionRepository.GetById(1);
-        
+        var fromRepo = _unitOfWork.QuestionRepository.GetByIdAsync(1);
+
         QuestionModel? q = _mapper.Map<QuestionModel>(fromRepo);
-        
+
         Console.WriteLine(q.Text);
 
         Console.WriteLine(q.TopicModel.Text);
@@ -83,32 +83,32 @@ public class QuesionService : IQuestionService
         // }
     }
 
-    public QuestionModel Create(QuestionModel model)
+    public async Task<QuestionModel> CreateAsync(QuestionModel model)
     {
-        Question? entity = _mapper.Map<Question>(model);
-        Question newEntity = _unitOfWork.QuestionRepository.Add(entity);
-        _unitOfWork.SaveChanges();
+        Question entity = _mapper.Map<Question>(model);
+        var newEntity = await _unitOfWork.QuestionRepository.AddAsync(entity);
+        await _unitOfWork.SaveChangesAsync();
 
         return _mapper.Map<QuestionModel>(newEntity);
     }
 
-    public List<QuestionModel> GetAll()
+    public async Task<List<QuestionModel>> GetAllAsync()
     {
-        var result = _unitOfWork.QuestionRepository.GetAll(x => true).Select(_mapper.Map<QuestionModel>).ToList();
+        var result = await _unitOfWork.QuestionRepository.GetAllAsync(x => true);
+        var resultMapped = result.Select(_mapper.Map<QuestionModel>).ToList();
 
-        // _unitOfWork.Dispose();
-        return result;
+        return resultMapped;
     }
 
-    public QuestionModel GetById(int id)
+    public async Task<QuestionModel> GetByIdAsync(int id)
     {
-        var result = _mapper.Map<QuestionModel>(_unitOfWork.QuestionRepository.GetById(id));
+        var result = await _unitOfWork.QuestionRepository.GetByIdAsync(id);
+        var resultMapped = _mapper.Map<QuestionModel>(result);
 
-        // _unitOfWork.Dispose();
-        return result;
+        return resultMapped;
     }
 
-    public bool Update(QuestionModel model)
+    public async Task<bool> UpdateAsync(QuestionModel model)
     {
         if (model == null)
         {
@@ -117,22 +117,18 @@ public class QuesionService : IQuestionService
 
         var entity = _mapper.Map<Question>(model);
 
-        var result = _unitOfWork.QuestionRepository.Update(entity);
-        _unitOfWork.SaveChanges();
-
-        // _unitOfWork.Dispose();
+        var result = await _unitOfWork.QuestionRepository.UpdateAsync(entity);
+        await _unitOfWork.SaveChangesAsync();
 
         return result;
     }
 
-    public bool Delete(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        var result = _unitOfWork.QuestionRepository.Delete(id);
-        _unitOfWork.SaveChanges();
-
-
-        // _unitOfWork.Dispose();
+        var result = await _unitOfWork.QuestionRepository.DeleteAsync(id);
+        await _unitOfWork.SaveChangesAsync();
 
         return result;
     }
 }
+

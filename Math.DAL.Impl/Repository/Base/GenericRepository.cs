@@ -1,4 +1,5 @@
-﻿using Math.DAL.Abstract.Repository.Base;
+﻿using Entities;
+using Math.DAL.Abstract.Repository.Base;
 using Math.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,50 +16,48 @@ public abstract class GenericRepository<TKey, TEntity> : IGenericRepository<TKey
         _context = dbContext;
     }
 
-    public TEntity Add(TEntity entity)
+    public async Task<TEntity> AddAsync(TEntity entity)
     {
-        var item = DbSet.Add(entity).Entity;
-        // _context.SaveChanges();
-        return item;
+        var item = await DbSet.AddAsync(entity);
+        await _context.SaveChangesAsync();
+        return item.Entity;
     }
 
-    public bool Delete(TKey key)
+    public async Task<bool> DeleteAsync(TKey key)
     {
-        TEntity item = DbSet.Find(key);
+        TEntity item = await DbSet.FindAsync(key);
         if (item == null)
         {
             return false;
         }
 
         DbSet.Remove(item);
-        // _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return true;
     }
 
-    public virtual bool Update(TEntity entity)
+    public virtual async Task<bool> UpdateAsync(TEntity entity)
     {
         if (entity == null)
         {
             return false;
         }
 
-        // DbSet.Find(entity.)
-
         DbSet.Attach(entity);
         _context.Entry(entity).State = EntityState.Modified;
-        // _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return true;
     }
 
-    public virtual List<TEntity> GetAll(Func<TEntity, bool> predicate)
+    public virtual async Task<List<TEntity>> GetAllAsync(Func<TEntity, bool> predicate)
     {
-        List<TEntity> items = DbSet.Where(predicate).ToList();
+        List<TEntity> items = await Task.FromResult(DbSet.Where(predicate).ToList());
         return items;
     }
 
-    public virtual TEntity GetById(TKey key)
+    public virtual async Task<TEntity> GetByIdAsync(TKey key)
     {
-        TEntity item = DbSet.Find(key);
+        TEntity item = await DbSet.FindAsync(key);
         return item;
     }
 }

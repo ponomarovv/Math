@@ -17,32 +17,32 @@ public class AnswerService : IAnswerService
         _mapper = mapper;
     }
 
-    public AnswerModel Create(AnswerModel model)
+    public async Task<AnswerModel> CreateAsync(AnswerModel model)
     {
-        Answer? entity = _mapper.Map<Answer>(model);
-        Answer newEntity = _unitOfWork.AnswerRepository.Add(entity);
-        _unitOfWork.SaveChanges();
+        var entity = _mapper.Map<Answer>(model);
+        var newEntity =  _unitOfWork.AnswerRepository.AddAsync(entity);
+        await _unitOfWork.SaveChangesAsync();
 
         return _mapper.Map<AnswerModel>(newEntity);
     }
 
-    public List<AnswerModel> GetAll()
+    public async Task<List<AnswerModel>> GetAllAsync()
     {
-        var result = _unitOfWork.AnswerRepository.GetAll(x => true).Select(_mapper.Map<AnswerModel>).ToList();
+        var entities = await _unitOfWork.AnswerRepository.GetAllAsync(x => true);
+        var result = entities.Select(_mapper.Map<AnswerModel>).ToList();
 
-        // _unitOfWork.Dispose();
         return result;
     }
 
-    public AnswerModel GetById(int id)
+    public async Task<AnswerModel> GetByIdAsync(int id)
     {
-        var result = _mapper.Map<AnswerModel>(_unitOfWork.AnswerRepository.GetById(id));
+        var entity = await _unitOfWork.AnswerRepository.GetByIdAsync(id);
+        var result = _mapper.Map<AnswerModel>(entity);
 
-        // _unitOfWork.Dispose();
         return result;
     }
 
-    public bool Update(AnswerModel model)
+    public async Task<bool> UpdateAsync(AnswerModel model)
     {
         if (model == null)
         {
@@ -51,21 +51,16 @@ public class AnswerService : IAnswerService
 
         var entity = _mapper.Map<Answer>(model);
 
-        var result = _unitOfWork.AnswerRepository.Update(entity);
-        _unitOfWork.SaveChanges();
-
-        // _unitOfWork.Dispose();
+        var result = await _unitOfWork.AnswerRepository.UpdateAsync(entity);
+        await _unitOfWork.SaveChangesAsync();
 
         return result;
     }
 
-    public bool Delete(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        var result = _unitOfWork.AnswerRepository.Delete(id);
-        _unitOfWork.SaveChanges();
-
-
-        // _unitOfWork.Dispose();
+        var result = await _unitOfWork.AnswerRepository.DeleteAsync(id);
+        await _unitOfWork.SaveChangesAsync();
 
         return result;
     }

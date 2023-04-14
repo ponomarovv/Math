@@ -2,16 +2,16 @@
 
 public interface IService<TModel> where TModel : class
 {
-    //  Create
-    TModel Create(TModel model);
+    // Create
+    Task<TModel> CreateAsync(TModel model);
 
     // Read
-    List<TModel> GetAll();
-    TModel GetById(int id);
+    Task<List<TModel>> GetAllAsync();
+    Task<TModel> GetByIdAsync(int id);
 
     // Update
-    bool Update(TModel model);
+    Task<bool> UpdateAsync(TModel model);
 
-    // delete
-    bool Delete(int id);
+    // Delete
+    Task<bool> DeleteAsync(int id);
 }

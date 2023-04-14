@@ -15,15 +15,15 @@ public class QuestionRepository : GenericRepository<int, Question>, IQuestionRep
         _dbContext = dbContext;
     }
 
-    public List<Question> GetAll(Func<Question, bool> predicate)
+    public override async Task<List<Question>> GetAllAsync(Func<Question, bool> predicate)
     {
-        List<Question> items = _dbContext.Questions.Include(x => x.Answers).Where(predicate).ToList();
+        List<Question> items = await _dbContext.Questions.Include(x => x.Answers).Where(predicate).AsQueryable().ToListAsync();
         return items;
     }
-    
-    public Question GetById(int key)
+
+    public override async Task<Question> GetByIdAsync(int key)
     {
-        var item = _dbContext.Questions.Where(x => x.Id == key).Include(x => x.Answers).Include(x => x.Topic).FirstOrDefault();
+        var item = await _dbContext.Questions.Where(x => x.Id == key).Include(x => x.Answers).Include(x => x.Topic).FirstOrDefaultAsync();
         return item;
     }
 }

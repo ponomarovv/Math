@@ -17,32 +17,30 @@ public class TopicService  : ITopicService
         _mapper = mapper;
     }
 
-    public TopicModel Create(TopicModel model)
+    public async Task<TopicModel> CreateAsync(TopicModel model)
     {
-        Topic? entity = _mapper.Map<Topic>(model);
-        Topic newEntity = _unitOfWork.TopicRepository.Add(entity);
-        _unitOfWork.SaveChanges();
+        Topic entity = _mapper.Map<Topic>(model);
+        Topic newEntity = await _unitOfWork.TopicRepository.AddAsync(entity);
+        await _unitOfWork.SaveChangesAsync();
 
         return _mapper.Map<TopicModel>(newEntity);
     }
 
-    public List<TopicModel> GetAll()
+    public async Task<List<TopicModel>> GetAllAsync()
     {
-        var result = _unitOfWork.TopicRepository.GetAll(x => true).Select(_mapper.Map<TopicModel>).ToList();
+        var result = (await _unitOfWork.TopicRepository.GetAllAsync(x => true)).Select(_mapper.Map<TopicModel>).ToList();
 
-        // _unitOfWork.Dispose();
         return result;
     }
 
-    public TopicModel GetById(int id)
+    public async Task<TopicModel> GetByIdAsync(int id)
     {
-        var result = _mapper.Map<TopicModel>(_unitOfWork.TopicRepository.GetById(id));
+        var result = _mapper.Map<TopicModel>(await _unitOfWork.TopicRepository.GetByIdAsync(id));
 
-        // _unitOfWork.Dispose();
         return result;
     }
 
-    public bool Update(TopicModel model)
+    public async Task<bool> UpdateAsync(TopicModel model)
     {
         if (model == null)
         {
@@ -51,22 +49,17 @@ public class TopicService  : ITopicService
 
         var entity = _mapper.Map<Topic>(model);
 
-        var result = _unitOfWork.TopicRepository.Update(entity);
-        _unitOfWork.SaveChanges();
-
-        // _unitOfWork.Dispose();
+        var result = await _unitOfWork.TopicRepository.UpdateAsync(entity);
+        await _unitOfWork.SaveChangesAsync();
 
         return result;
     }
 
-    public bool Delete(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        var result = _unitOfWork.TopicRepository.Delete(id);
-        _unitOfWork.SaveChanges();
+        var result = await _unitOfWork.TopicRepository.DeleteAsync(id);
+        await _unitOfWork.SaveChangesAsync();
 
-
-        // _unitOfWork.Dispose();
-
-        return result;
+        return  result;
     }
 }
