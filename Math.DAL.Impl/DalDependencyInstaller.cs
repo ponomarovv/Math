@@ -10,10 +10,11 @@ public static class DalDependencyInstaller
 {
     public static void InstallRepositories(this IServiceCollection services)
     {
-        services.AddTransient<IAnswerRepository, AnswerRepository>();
-        services.AddTransient<IQuestionRepository, QuestionRepository>();
-        services.AddTransient<ITopicRepository, TopicRepository>();
+        services.AddScoped<IAnswerRepository, AnswerRepository>();
+        services.AddScoped<IQuestionRepository, QuestionRepository>();
+        services.AddScoped<ITopicRepository, TopicRepository>();
         
-        services.AddTransient<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
     }
 }

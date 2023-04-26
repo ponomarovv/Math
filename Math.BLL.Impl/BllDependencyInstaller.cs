@@ -10,9 +10,9 @@ public static class BllDependencyInstaller
 {
     public static void InstallServices(this IServiceCollection services)
     {
-        services.AddTransient<IAnswerService, AnswerService>();
-        services.AddTransient<IQuestionService, QuesionService>();
-        services.AddTransient<ITopicService, TopicService>();
+        services.AddScoped<IAnswerService, AnswerService>();
+        services.AddScoped<IQuestionService, QuesionService>();
+        services.AddScoped<ITopicService, TopicService>();
         
     }
 
