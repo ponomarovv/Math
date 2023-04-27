@@ -8,6 +8,9 @@ riderModule.iml
 # Visual Studio 2015
 .vs/
 
+.idea/
+\.idea\sonarlint\issue store\index.pb
+
 *.idea/*
 *.vs/*
 

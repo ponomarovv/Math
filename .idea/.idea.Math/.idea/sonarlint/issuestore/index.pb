@@ -1,6 +1,4 @@
 
-[
-+Math.DAL.Impl/Repository/TopicRepository.cs,6\8\6830e1aa16d1e46001988060d92aeba2802068b8
 `
 0Math.DAL.Abstract/Repository/ITopicRepository.cs,c\b\cbf2b5dfd8d7fc4ed74a018ef57d7979ea55494a
 c
@@ -11,19 +9,11 @@ a
 1Math.DAL.Abstract/Repository/IAnswerRepository.cs,6\3\63db51ff2c9417680c861316ea68ef85c9728250
 ^
 .Math.BLL.Abstract/Services/IQuestionService.cs,7\f\7f2ea2dc328fb0eaf83fc3622975a2a009732cb1
-W
-'Math.BLL.Impl/Mappers/MappersProfile.cs,6\a\6a74a13c67fc39974cee32be7d4806a40d958177
 T
 $Math.DAL.Impl/Context/MathContext.cs,9\d\9d39c3ee654f9402801b7a39caceedd0a04f2dc9
-X
-(Math.BLL.Impl/Services/QuesionService.cs,d\7\d75b7fb5b4b387fcfe36108c541cf9002780c77d
 C
 Math.CLI/Program.cs,e\f\ef139716cce6ae0ec4cc611cc44d4cbe3500c818
 C
 Math.WEB/Program.cs,b\8\b85c6e8409bc4ca3e9248d5fd18adc9dfa580678
-^
-.Math.DAL.Impl/Repository/QuestionRepository.cs,e\3\e3ad5b0a321fcf78a944f6b2b7a571a923220eee
-\
-,Math.DAL.Impl/Repository/AnswerRepository.cs,d\0\d07d85f75ae4ed00ab2958e213b170c4d8a3e677
 b
 2Math.DAL.Impl/Repository/Base/GenericRepository.cs,6\4\6478671cbe08bd439415115c3103aadf188a4d61
