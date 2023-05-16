@@ -6,4 +6,6 @@ public class Topic
     public string? Text { get; set; }
     
     public virtual ICollection<Question> Questions { get; set; }
+
+    public virtual ICollection<Quiz> Quizzes { get; set; }
 }

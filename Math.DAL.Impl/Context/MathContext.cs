@@ -1,10 +1,11 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace Math.DAL.Context;
 
-public class MathContext : DbContext
+public class MathContext : IdentityDbContext 
 {
     private readonly IConfiguration _config;
 
@@ -12,8 +13,7 @@ public class MathContext : DbContext
     {
         _config = config;
     }
-
-
+    
     // public MathContext(DbContextOptions<MathContext> options) : base(options)
     // {
     //     //Database.EnsureCreated();
@@ -26,10 +26,8 @@ public class MathContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // Retrieve the connection string secret from IConfiguration
-        string? connectionString = _config.GetConnectionString("DefaultConnection");
+       string? connectionString = _config.GetConnectionString("DefaultConnection");
 
-        // Use the retrieved connection string for configuring DbContext
         optionsBuilder.UseSqlServer(connectionString);
     }
 
@@ -38,5 +36,6 @@ public class MathContext : DbContext
     public DbSet<Question> Questions { get; set; }
     public DbSet<Answer> Answers { get; set; }
     
-    public DbSet<ApplicationUser> AppUsers { get; set; }
+    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+    public DbSet<Quiz> Quizzes { get; set; }
 }

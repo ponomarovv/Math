@@ -10,4 +10,5 @@ public class Question
 
     public Topic Topic { get; set; } = new Topic();
     public virtual ICollection<Answer> Answers { get; set; }
+    
 }
