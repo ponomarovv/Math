@@ -12,14 +12,17 @@ public class UnitOfWork : IUnitOfWork
     public IQuestionRepository QuestionRepository { get; }
     public ITopicRepository TopicRepository { get; }
 
+    public IQuizRepository QuizRepository { get; }
 
-    public UnitOfWork(MathContext context)
+    public UnitOfWork(MathContext context, IQuizRepository quizRepository)
     {
         _context = context;
+        
 
         AnswerRepository = new AnswerRepository(_context);
         QuestionRepository = new QuestionRepository(_context);
         TopicRepository = new TopicRepository(_context);
+        QuizRepository = new QuizRepository(_context);
     }
 
     public async Task SaveChangesAsync()

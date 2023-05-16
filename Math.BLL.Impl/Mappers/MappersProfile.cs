@@ -19,5 +19,10 @@ public class MappersProfile : AutoMapper.Profile
         CreateMap<Topic, TopicModel>()
             .ForMember(dest => dest.QuestionModels, opt => opt.MapFrom(src => src.Questions))
             .ReverseMap();
+
+        CreateMap<Quiz, QuizModel>()
+            .ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics))
+            .ForMember(dest => dest.ApplicationUser, opt => opt.MapFrom(src => src.ApplicationUser))
+            .ReverseMap();
     }
 }

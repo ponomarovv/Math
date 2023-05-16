@@ -7,4 +7,8 @@
         <RootNamespace>Models</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Math.Entities\Math.Entities.csproj" />
+    </ItemGroup>
+
 </Project>

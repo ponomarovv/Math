@@ -28,7 +28,8 @@ public class TopicService  : ITopicService
 
     public async Task<List<TopicModel>> GetAllAsync()
     {
-        var result = (await _unitOfWork.TopicRepository.GetAllAsync(x => true)).Select(_mapper.Map<TopicModel>).ToList();
+        var entities = await _unitOfWork.TopicRepository.GetAllAsync(x => true);
+        var result = entities.Select(_mapper.Map<TopicModel>).ToList();
 
         return result;
     }
