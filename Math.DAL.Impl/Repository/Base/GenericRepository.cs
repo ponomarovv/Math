@@ -9,7 +9,7 @@ public abstract class GenericRepository<TKey, TEntity> : IGenericRepository<TKey
 {
     private readonly MathContext _context;
 
-    public DbSet<TEntity> DbSet => _context.Set<TEntity>();
+    private DbSet<TEntity> DbSet => _context.Set<TEntity>();
 
     protected GenericRepository(MathContext dbContext)
     {

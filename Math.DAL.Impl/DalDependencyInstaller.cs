@@ -13,6 +13,7 @@ public static class DalDependencyInstaller
         services.AddScoped<IAnswerRepository, AnswerRepository>();
         services.AddScoped<IQuestionRepository, QuestionRepository>();
         services.AddScoped<ITopicRepository, TopicRepository>();
+        services.AddScoped<IQuizRepository, QuizRepository>();
         
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
