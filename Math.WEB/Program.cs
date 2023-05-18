@@ -45,7 +45,7 @@ internal class Program
             options.Password.RequiredLength = 4;
         });
 
-        var key = Encoding.UTF8.GetBytes(builder.Configuration["ApplicationSettings:JWT_Secret"].ToString());
+        var key = Encoding.UTF8.GetBytes(builder.Configuration["ApplicationSettings:JWT_Secret"]);
 
         builder.Services.AddAuthentication(x =>
         {
@@ -76,6 +76,7 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddDbContext<MathContext>();
+        
 
         var app = builder.Build();
 
@@ -86,7 +87,9 @@ internal class Program
             app.UseSwaggerUI();
         }
 
-        app.UseCors(builder => builder.WithOrigins("https://localhost:4200")
+        var client_url = builder.Configuration["ApplicationSettings:Client_URL"];
+        
+        app.UseCors(b => b.WithOrigins(client_url)
             .AllowAnyHeader()
             .AllowAnyMethod());
 
