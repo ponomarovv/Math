@@ -9,7 +9,7 @@ public class MathContext : IdentityDbContext
 {
     private readonly IConfiguration _config;
 
-    public MathContext(IConfiguration config)
+    public MathContext(IConfiguration config, DbContextOptions options) : base(options)
     {
         _config = config;
     }

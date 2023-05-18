@@ -86,7 +86,9 @@ internal class Program
             app.UseSwaggerUI();
         }
 
-        app.UseCors(builder => builder.WithOrigins("https://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+        app.UseCors(builder => builder.WithOrigins("https://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 
         app.UseHttpsRedirection();
 

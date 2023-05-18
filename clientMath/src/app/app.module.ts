@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 import {NavComponent} from './nav/nav.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomeComponent} from './home/home.component';
@@ -23,6 +23,8 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { QuestionComponent } from './q/question/question.component';
 import { QuestionsListComponent } from './q/questions-list/questions-list.component';
 import { DummyComponent } from './dummy/dummy.component';
+import { UserComponent } from './user/user/user.component';
+import { RegistrationComponent } from './user/registration/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { DummyComponent } from './dummy/dummy.component';
     MemberCardComponent,
     QuestionComponent,
     QuestionsListComponent,
-    DummyComponent
+    DummyComponent,
+    UserComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -46,7 +50,8 @@ import { DummyComponent } from './dummy/dummy.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
