@@ -13,8 +13,7 @@ import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './register/register.component';
 import {MemberListComponent} from './members/member-list/member-list.component';
 import {MemberDetailComponent} from './members/member-detail/member-detail.component';
-import {ListsComponent} from './lists/lists.component';
-import {MessagesComponent} from './messages/messages.component';
+
 import {SharedModule} from "./_modules/shared.module";
 import {TestErrorComponent} from './errors/test-error/test-error.component';
 import {ErrorInterceptor} from "./_interceptors/error.interceptor";
@@ -23,6 +22,7 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { QuestionComponent } from './q/question/question.component';
 import { QuestionsListComponent } from './q/questions-list/questions-list.component';
+import { DummyComponent } from './dummy/dummy.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +32,13 @@ import { QuestionsListComponent } from './q/questions-list/questions-list.compon
     RegisterComponent,
     MemberListComponent,
     MemberDetailComponent,
-    ListsComponent,
-    MessagesComponent,
     TestErrorComponent,
     NotFoundComponent,
     ServerErrorComponent,
     MemberCardComponent,
     QuestionComponent,
-    QuestionsListComponent
+    QuestionsListComponent,
+    DummyComponent
   ],
   imports: [
     BrowserAnimationsModule,

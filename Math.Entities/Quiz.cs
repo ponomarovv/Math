@@ -1,5 +1,8 @@
-﻿namespace Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace Entities;
+
+[Table("Quizzes")]
 public class Quiz
 {
     public int Id { get; set; }
