@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using Entities;
+using Entities.Auth.Login;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -15,12 +16,15 @@ public class ApplicationUserController : ControllerBase
 {
     private UserManager<ApplicationUser> _userManager;
     private SignInManager<ApplicationUser> _singInManager;
+    private readonly IConfiguration _configuration;
     private readonly ApplicationSettings _appSettings;
 
-    public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings)
+    public ApplicationUserController(UserManager<ApplicationUser> userManager,
+        SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appSettings, IConfiguration configuration)
     {
         _userManager = userManager;
         _singInManager = signInManager;
+        _configuration = configuration;
         _appSettings = appSettings.Value;
     }
 
@@ -29,7 +33,8 @@ public class ApplicationUserController : ControllerBase
     //POST : /api/ApplicationUser/Register
     public async Task<Object> PostApplicationUser(ApplicationUserModel model)
     {
-        var applicationUser = new ApplicationUser() {
+        var applicationUser = new ApplicationUser()
+        {
             UserName = model.UserName,
             Email = model.Email,
             FullName = model.FullName
@@ -45,33 +50,37 @@ public class ApplicationUserController : ControllerBase
             throw ex;
         }
     }
-        
+
     [HttpPost]
     [Route("Login")]
     //POST : /api/ApplicationUser/Login
     public async Task<IActionResult> Login(LoginModel model)
     {
+        var key = Encoding.UTF8.GetBytes(_configuration["ApplicationSettings:JWT_Secret"]);
+
         var user = await _userManager.FindByNameAsync(model.UserName);
         if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
         {
-            var tokenDescriptor = new SecurityTokenDescriptor
+            var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim("UserID",user.Id.ToString())
+                    new Claim("UserID", user.Id)
                 }),
                 Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature)
             };
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var securityToken = tokenHandler.CreateToken(tokenDescriptor);
             var token = tokenHandler.WriteToken(securityToken);
             return Ok(new { token });
         }
         else
-            return BadRequest(new { message = "Username or password is incorrect." });
+            return BadRequest(new {message = "Username or password is incorrect."});
     }
-    
+
     [HttpDelete]
     [Route("Delete/{userId}")]
     // DELETE : /api/ApplicationUser/Delete/{userId}
@@ -92,5 +101,4 @@ public class ApplicationUserController : ControllerBase
 
         return BadRequest(result.Errors);
     }
-
 }

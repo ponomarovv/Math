@@ -1,5 +1,7 @@
+using System.Configuration;
 using System.Text;
 using Entities;
+using Entities.Auth.Login;
 using Math.BLL;
 using Math.DAL;
 using Math.DAL.Context;
@@ -15,12 +17,18 @@ internal class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
+        
+        builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+        
         // Add secrets configuration
         builder.Configuration.AddUserSecrets<Program>();
 
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         // Configure DbContext with the retrieved connection string
+
+        
+        
+        builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection("ApplicationSettings"));
 
         builder.Services.AddDbContext<MathContext>(
             options => options.UseSqlServer(connectionString));
@@ -29,7 +37,6 @@ internal class Program
         builder.Services.InstallMappers();
         builder.Services.InstallServices();
 
-        
         builder.Services.AddAuthentication();
         builder.Services.AddIdentityCore<ApplicationUser>()
             .AddEntityFrameworkStores<MathContext>()
@@ -44,7 +51,11 @@ internal class Program
             options.Password.RequireUppercase = false;
             options.Password.RequiredLength = 4;
         });
+        
+        builder.Services.AddCors();
 
+        // jwt authentication
+        
         var key = Encoding.UTF8.GetBytes(builder.Configuration["ApplicationSettings:JWT_Secret"]);
 
         builder.Services.AddAuthentication(x =>
@@ -67,16 +78,19 @@ internal class Program
         });
 
 
-        builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+        
 
-        builder.Services.AddCors();
+       
+
+      
+
 
         builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-        builder.Services.AddDbContext<MathContext>();
-        
+        // builder.Services.AddDbContext<MathContext>();
+
 
         var app = builder.Build();
 
@@ -88,13 +102,14 @@ internal class Program
         }
 
         var client_url = builder.Configuration["ApplicationSettings:Client_URL"];
-        
+
         app.UseCors(b => b.WithOrigins(client_url)
             .AllowAnyHeader()
             .AllowAnyMethod());
 
         app.UseHttpsRedirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();

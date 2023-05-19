@@ -1,4 +1,4 @@
-﻿namespace Entities;
+﻿namespace Entities.Auth.Login;
 
 public class ApplicationSettings
 {
