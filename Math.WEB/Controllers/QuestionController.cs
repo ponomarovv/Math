@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Text.Json;
+// using System.Text.Json;
 using System.Text.Json.Serialization;
+using Models;
+using Newtonsoft.Json.Linq;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Math.WEB.Controllers
@@ -14,11 +16,17 @@ namespace Math.WEB.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly IQuestionService _questionService;
+        private readonly ITopicService _topicService;
+        private readonly IAnswerService _answerService;
 
-        public QuestionController(IConfiguration configuration, IQuestionService questionService)
+
+        public QuestionController(IConfiguration configuration, 
+            IQuestionService questionService, ITopicService topicService, IAnswerService answerService)
         {
             _configuration = configuration;
             _questionService = questionService;
+            _topicService = topicService;
+            _answerService = answerService;
         }
         [HttpGet]
         [Route("GetQuestion")]
@@ -26,16 +34,21 @@ namespace Math.WEB.Controllers
         {
             using var client = new HttpClient();
 
-            var question = _questionService.GetByIdAsync(1).Result;
+            QuestionModel question = _questionService.GetByIdAsync(1).Result;
 
-            // Create JsonSerializerOptions with ReferenceHandler set to ReferenceHandler.Preserve
-            var jsonSerializerOptions = new JsonSerializerOptions
+            // Serialize the object using JsonConvert with the PreserveReferencesHandling setting
+            var serializedQuestion = JsonConvert.SerializeObject(question, new JsonSerializerSettings
             {
-                ReferenceHandler = ReferenceHandler.Preserve
-            };
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
 
             // Serialize the object using JsonSerializer with the specified JsonSerializerOptions
-            var serializedQuestion = JsonSerializer.Serialize(question, jsonSerializerOptions);
+            var parsedJson = JToken.Parse(serializedQuestion);
+
+            // Format the parsed JSON with indented formatting
+            var prettierJson = parsedJson.ToString(Formatting.Indented);
+
+            return Ok(prettierJson);
 
             return Ok(serializedQuestion);
 

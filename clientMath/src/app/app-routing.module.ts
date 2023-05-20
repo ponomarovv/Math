@@ -10,15 +10,18 @@ import {NotFoundComponent} from "./errors/not-found/not-found.component";
 import {ServerErrorComponent} from "./errors/server-error/server-error.component";
 import {UserComponent} from "./user/user/user.component";
 import {RegistrationComponent} from "./user/registration/registration/registration.component";
+import {LoginComponent} from "./user/login/login.component";
 
-const routes: Routes =[
-    {path: '', redirectTo: "/user/registration", pathMatch: 'full'},
+const routes: Routes = [
+  {path: '', redirectTo: "/user/login", pathMatch: 'full'},
   {
     path: "user", component: UserComponent,
     children: [
-      {path: "registration", component: RegistrationComponent}
+      {path: "registration", component: RegistrationComponent},
+      {path: "login", component: LoginComponent}
     ]
-  }
+  },
+  {path:'home', component:HomeComponent, canActivate:[AuthGuard]}
 ];
 
 //  [

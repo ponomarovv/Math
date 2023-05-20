@@ -51,6 +51,7 @@ public class ApplicationUserController : ControllerBase
         }
     }
 
+   
     [HttpPost]
     [Route("Login")]
     //POST : /api/ApplicationUser/Login
@@ -80,6 +81,8 @@ public class ApplicationUserController : ControllerBase
         else
             return BadRequest(new {message = "Username or password is incorrect."});
     }
+
+
 
     [HttpDelete]
     [Route("Delete/{userId}")]

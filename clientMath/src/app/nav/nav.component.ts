@@ -32,4 +32,9 @@ export class NavComponent implements OnInit {
     this.router.navigateByUrl("/");
   }
 
+  SignOut(){
+    localStorage.clear();
+    this.router.navigate(['/user/login']);
+  }
+
 }

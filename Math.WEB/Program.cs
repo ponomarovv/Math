@@ -33,6 +33,11 @@ internal class Program
         builder.Services.AddDbContext<MathContext>(
             options => options.UseSqlServer(connectionString));
 
+        builder.Services.AddControllers().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        });
+        
         builder.Services.InstallRepositories();
         builder.Services.InstallMappers();
         builder.Services.InstallServices();

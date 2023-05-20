@@ -17,14 +17,17 @@ import {MemberDetailComponent} from './members/member-detail/member-detail.compo
 import {SharedModule} from "./_modules/shared.module";
 import {TestErrorComponent} from './errors/test-error/test-error.component';
 import {ErrorInterceptor} from "./_interceptors/error.interceptor";
-import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { MemberCardComponent } from './members/member-card/member-card.component';
-import { QuestionComponent } from './q/question/question.component';
-import { QuestionsListComponent } from './q/questions-list/questions-list.component';
-import { DummyComponent } from './dummy/dummy.component';
-import { UserComponent } from './user/user/user.component';
-import { RegistrationComponent } from './user/registration/registration/registration.component';
+import {NotFoundComponent} from './errors/not-found/not-found.component';
+import {ServerErrorComponent} from './errors/server-error/server-error.component';
+import {MemberCardComponent} from './members/member-card/member-card.component';
+import {QuestionComponent} from './q/question/question.component';
+import {QuestionsListComponent} from './q/questions-list/questions-list.component';
+import {DummyComponent} from './dummy/dummy.component';
+import {UserComponent} from './user/user/user.component';
+import {RegistrationComponent} from './user/registration/registration/registration.component';
+import {LoginComponent} from './user/login/login.component';
+import {UserService} from "./_services/user.service";
+import {AuthInterceptor} from "./_guards/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { RegistrationComponent } from './user/registration/registration/registra
     QuestionsListComponent,
     DummyComponent,
     UserComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -53,7 +57,11 @@ import { RegistrationComponent } from './user/registration/registration/registra
     SharedModule,
     ReactiveFormsModule
   ],
-  providers: [
+  providers: [UserService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  },
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
