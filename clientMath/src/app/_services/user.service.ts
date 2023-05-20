@@ -2,15 +2,22 @@ import {Injectable, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService implements OnInit{
+export class UserService implements OnInit {
 
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isLoggedIn$: Observable<boolean>  = this.isLoggedInSubject.asObservable();
+  public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
+
+  private fullNameSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public fullName$: Observable<string> = this.fullNameSubject.asObservable();
+
+  private userIdSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public userId$: Observable<string> = this.userIdSubject.asObservable();
+
 
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
@@ -60,17 +67,46 @@ export class UserService implements OnInit{
   }
 
 
-  login(formData:any){
-    return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData);
+  login(formData: any) {
+    // return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData);
+    return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData).pipe(
+      tap(() => {
+        this.getUserProfile().subscribe(
+          () => {
+            // User profile retrieved successfully, userName$ will be updated automatically
+          },
+          (error: any) => {
+            console.log(error);
+          }
+        );
+      })
+    );
   }
 
-  getUserProfile(){
+  getUserProfile() {
     // let token = new HttpHeaders({'Authorization':'Bearer ' + localStorage.getItem('token')})
-    return this.http.get(this.BaseURI + '/UserProfile');
+    // return this.http.get(this.BaseURI + '/UserProfile');
+    return this.http.get(this.BaseURI + '/UserProfile').pipe(
+      tap((res: any) => {
+        this.fullNameSubject.next(res.userName);
+      })
+    );
   }
 
   setLoggedIn(isLoggedIn: boolean): void {
     this.isLoggedInSubject.next(isLoggedIn);
   }
 
+
+  deleteProfile(userId: string) {
+    return this.http.delete(`${this.BaseURI}/ApplicationUser/Delete/${userId}`);
+  }
+
+  setFullName(fullName: string): void {
+    this.fullNameSubject.next(fullName);
+  }
+
+  setUserId(userId: string): void {
+    this.userIdSubject.next(userId);
+  }
 }

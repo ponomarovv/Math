@@ -34,6 +34,7 @@ namespace Math.WEB.Controllers
             var user = _userManager.FindByIdAsync(userId).Result;
             return new
             {
+                user.Id,
                 user.FullName,
                 user.Email,
                 user.UserName,

@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Entities;
 using Entities.Auth.Login;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -104,4 +105,14 @@ public class ApplicationUserController : ControllerBase
 
         return BadRequest(result.Errors);
     }
+    
+    
+    // // [Authorize]
+    // [HttpGet("GetCurrentUserId")]
+    // // GET: /api/ApplicationUser/GetCurrentUserId
+    // public IActionResult GetCurrentUserId()
+    // {
+    //     var userId = _userManager.GetUserId(User);
+    //     return Ok(userId);
+    // }
 }

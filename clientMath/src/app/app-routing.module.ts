@@ -13,6 +13,7 @@ import {RegistrationComponent} from "./user/registration/registration/registrati
 import {LoginComponent} from "./user/login/login.component";
 import {DummyComponent} from "./dummy/dummy.component";
 import {ShowUserProfileComponent} from "./user/show-user-profile/show-user-profile.component";
+import {DeleteProfileComponent} from "./user/delete-profile/delete-profile.component";
 
 const routes: Routes = [
   {path: '', redirectTo: "/user/login", pathMatch: 'full'},
@@ -25,7 +26,8 @@ const routes: Routes = [
   },
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
   {path:'quiz', component:DummyComponent, canActivate:[AuthGuard]},
-  {path:'showUserInfo', component:ShowUserProfileComponent, canActivate:[AuthGuard]}
+  {path:'showUserInfo', component:ShowUserProfileComponent, canActivate:[AuthGuard]},
+  {path:'deleteProfile', component:DeleteProfileComponent, canActivate:[AuthGuard]}
 
 ];
 

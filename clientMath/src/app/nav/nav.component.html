@@ -20,14 +20,18 @@
     <div class="nav-wrapper">
 
 
-      <button type="button" class="btn btn-danger nav-wrapper" routerLink="showUserInfo" *ngIf="isLoggedIn">Show Profile</button>
+      <span *ngIf="fullName">Welcome, {{ fullName }}</span>
+      <button type="button" class="btn btn-danger nav-wrapper" routerLink="showUserInfo" *ngIf="isLoggedIn">Show
+        Profile
+      </button>
 
       <span class="spacer"></span>
 
-      <button type="button" class="btn btn-danger nav-wrapper" (click)="EditProfile()" *ngIf="isLoggedIn">Edit Profile</button>
+      <button type="button" class="btn btn-danger nav-wrapper" (click)="EditProfile()" *ngIf="isLoggedIn">Edit Profile
+      </button>
 
       <span class="spacer"></span>
-      <button type="button" class="btn btn-danger" (click)="DeleteProfile()" *ngIf="isLoggedIn">Delete Profile</button>
+      <button type="button" class="btn btn-danger" routerLink="deleteProfile" *ngIf="isLoggedIn">Delete Profile</button>
       <span class="spacer"></span>
       <button type="button" class="btn btn-danger" (click)="SignOut()" *ngIf="isLoggedIn">Logout</button>
     </div>

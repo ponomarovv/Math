@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {UserService} from "../_services/user.service";
+import {SharedService} from "../_services/shared.service";
 
 @Component({
   selector: 'app-nav',
@@ -12,16 +13,41 @@ import {UserService} from "../_services/user.service";
 export class NavComponent implements OnInit {
 
   isLoggedIn: any;
+  fullName: any = '';
+  guestUserName: any = 'Guest';
 
-  constructor(private router: Router, private toastr: ToastrService, private userService: UserService) {
+  userId: string='';
+
+  constructor(private router: Router, private toastr: ToastrService, private userService: UserService, private sharedService: SharedService) {
   }
 
+
   ngOnInit(): void {
-    // this.showLogout = localStorage.getItem('token');
+    this.sharedService.fullName$.subscribe(fullName => {
+      this.fullName = fullName;
+    });
+
+    this.sharedService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    });
+
+
+
     this.userService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });
+
+    this.userService.fullName$.subscribe(fullName => {
+      this.fullName = fullName});
+
+    this.userService.userId$.subscribe(userId => {
+      this.userId = userId;
+    });
+
   }
+
+
+
 
   SignOut() {
     localStorage.clear();
@@ -32,15 +58,27 @@ export class NavComponent implements OnInit {
 
     this.userService.setLoggedIn(false)
     this.toastr.success('Logout successful', 'Logout');
+
+    this.fullName = 'Guest';
   }
 
-  ShowProfile(){
+
+  EditProfile() {
   }
 
-  EditProfile(){
-  }
+  DeleteProfile(userId: string) {
+    console.log(userId);
+    console.log(this.userId);
 
-  DeleteProfile(){
+    // this.userService.deleteProfile(userId).subscribe(
+    //   () => {
+    //     // Profile deleted successfully, handle any additional logic
+    //   },
+    //   (error) => {
+    //     // Handle error if the profile deletion fails
+    //   }
+    // );
+
   }
 
 }

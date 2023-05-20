@@ -29,6 +29,7 @@ import {LoginComponent} from './user/login/login.component';
 import {UserService} from "./_services/user.service";
 import {AuthInterceptor} from "./_guards/auth.interceptor";
 import { ShowUserProfileComponent } from './user/show-user-profile/show-user-profile.component';
+import { DeleteProfileComponent } from './user/delete-profile/delete-profile.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ShowUserProfileComponent } from './user/show-user-profile/show-user-pro
     UserComponent,
     RegistrationComponent,
     LoginComponent,
-    ShowUserProfileComponent
+    ShowUserProfileComponent,
+    DeleteProfileComponent
   ],
   imports: [
     BrowserAnimationsModule,
