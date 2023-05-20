@@ -1,3 +1,17 @@
 .dropdown-toggle, .dropdown-item{
   cursor: pointer;
 }
+.spacer {
+  margin-left: 10px; /* Пример значения отступа */
+}
+@media (max-width: 767px) {
+  .navbar-nav,
+  .nav-wrapper {
+    flex-direction: column;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+  }
+}

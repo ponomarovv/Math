@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AccountService} from "../_services/account.service";
-import {Observable, of} from "rxjs";
-import {User} from "../_models/user";
+
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-nav',
@@ -12,29 +11,36 @@ import {ToastrService} from "ngx-toastr";
 })
 export class NavComponent implements OnInit {
 
-  model: any = {};
+  isLoggedIn: any;
 
-  constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) {
+  constructor(private router: Router, private toastr: ToastrService, private userService: UserService) {
   }
-
 
   ngOnInit(): void {
+    // this.showLogout = localStorage.getItem('token');
+    this.userService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
 
-  login() {
-    this.accountService.login(this.model).subscribe({
-      next: _ => this.router.navigateByUrl('/members')
-    })
-  }
-
-  logout() {
-    this.accountService.logout();
-    this.router.navigateByUrl("/");
-  }
-
-  SignOut(){
+  SignOut() {
     localStorage.clear();
     this.router.navigate(['/user/login']);
+
+    this.isLoggedIn = null;
+    console.log('logged out');
+
+    this.userService.setLoggedIn(false)
+    this.toastr.success('Logout successful', 'Logout');
+  }
+
+  ShowProfile(){
+  }
+
+  EditProfile(){
+  }
+
+  DeleteProfile(){
   }
 
 }

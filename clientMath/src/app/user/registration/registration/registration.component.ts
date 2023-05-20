@@ -10,18 +10,18 @@ import {UserService} from "../../../_services/user.service";
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(public service: UserService, private toastr: ToastrService) {
+  constructor(public userService: UserService, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
-    this.service.formModel.reset();
+    this.userService.formModel.reset();
   }
 
   onSubmit() {
-    this.service.register().subscribe(
+    this.userService.register().subscribe(
       (res: any) => {
         if (res.succeeded) {
-          this.service.formModel.reset();
+          this.userService.formModel.reset();
           this.toastr.success('New user created', 'Registration successful.');
         } else {
           res.errors.forEach((element: ValidationErrors|any) => {

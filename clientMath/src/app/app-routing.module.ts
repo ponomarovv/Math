@@ -11,6 +11,8 @@ import {ServerErrorComponent} from "./errors/server-error/server-error.component
 import {UserComponent} from "./user/user/user.component";
 import {RegistrationComponent} from "./user/registration/registration/registration.component";
 import {LoginComponent} from "./user/login/login.component";
+import {DummyComponent} from "./dummy/dummy.component";
+import {ShowUserProfileComponent} from "./user/show-user-profile/show-user-profile.component";
 
 const routes: Routes = [
   {path: '', redirectTo: "/user/login", pathMatch: 'full'},
@@ -21,7 +23,10 @@ const routes: Routes = [
       {path: "login", component: LoginComponent}
     ]
   },
-  {path:'home', component:HomeComponent, canActivate:[AuthGuard]}
+  {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
+  {path:'quiz', component:DummyComponent, canActivate:[AuthGuard]},
+  {path:'showUserInfo', component:ShowUserProfileComponent, canActivate:[AuthGuard]}
+
 ];
 
 //  [

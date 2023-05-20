@@ -1,14 +1,24 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService implements OnInit{
+
+  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isLoggedIn$: Observable<boolean>  = this.isLoggedInSubject.asObservable();
+
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
+    const isLoggedIn = !!localStorage.getItem('token');
+    this.isLoggedInSubject.next(isLoggedIn);
+  }
+
+  ngOnInit(): void {
   }
 
   readonly BaseURI = environment.apiUrl;
@@ -58,4 +68,9 @@ export class UserService {
     // let token = new HttpHeaders({'Authorization':'Bearer ' + localStorage.getItem('token')})
     return this.http.get(this.BaseURI + '/UserProfile');
   }
+
+  setLoggedIn(isLoggedIn: boolean): void {
+    this.isLoggedInSubject.next(isLoggedIn);
+  }
+
 }

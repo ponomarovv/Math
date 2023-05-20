@@ -28,6 +28,7 @@ import {RegistrationComponent} from './user/registration/registration/registrati
 import {LoginComponent} from './user/login/login.component';
 import {UserService} from "./_services/user.service";
 import {AuthInterceptor} from "./_guards/auth.interceptor";
+import { ShowUserProfileComponent } from './user/show-user-profile/show-user-profile.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {AuthInterceptor} from "./_guards/auth.interceptor";
     DummyComponent,
     UserComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ShowUserProfileComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -62,7 +64,7 @@ import {AuthInterceptor} from "./_guards/auth.interceptor";
     useClass: AuthInterceptor,
     multi: true
   },
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

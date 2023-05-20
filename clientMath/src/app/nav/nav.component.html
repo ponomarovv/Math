@@ -7,68 +7,29 @@
         Pick Quiz
       </button>
       <ul class="dropdown-menu" *dropdownMenu>
-        <li><a class="dropdown-item" href="#">Quiz1</a></li>
-        <li><a class="dropdown-item" href="#" (click)="logout()">Quiz2</a></li>
-        <li><a class="dropdown-item" href="#" (click)="logout()">Quiz3</a></li>
+        <li><a class="dropdown-item" routerLink="quiz">Quiz1</a></li>
+        <li><a class="dropdown-item" href="#">Quiz2</a></li>
+        <li><a class="dropdown-item" href="#">Quiz3</a></li>
       </ul>
     </div>
 
-    <ul class="navbar-nav me-auto mb-2 mb-md-0" >
-<!--      <ng-container *ngIf="accountService.currentUser$  | async">-->
+    <div class="navbar-nav me-auto mb-2 mb-md-0 flex-wrap">
 
-        <li class="nav-item">
-          <a class="nav-link " routerLink="/quiz" routerLinkActive="active">Start Quiz</a>
-        </li>
-      <li class="nav-item">
-        <a class="nav-link " routerLink="/quiz" routerLinkActive="active">Start Quiz2</a>
-
-      </li>
-
-
-<!--      </ng-container>-->
-
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>-->
-<!--      </li>-->
-    </ul>
-
-
-
-    <div class="dropdown" *ngIf="(accountService.currentUser$  | async) as user" dropdown>
-      <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome {{user.username | titlecase}}</a>
-      <div class="dropdown-menu mt-3" *dropdownMenu>
-        <a class="dropdown-item">Edit Profile</a>
-        <a class="dropdown-item" (click)="logout()">Logout</a>
-      </div>
     </div>
-
-<!--    <form *ngIf="!(accountService.currentUser$  |async)" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">-->
-<!--      <input-->
-<!--        name="username"-->
-<!--        [(ngModel)]="model.username"-->
-<!--        class="form-control me-2"-->
-<!--        type="text"-->
-<!--        placeholder="Username">-->
-
-<!--      <input-->
-<!--        name="password"-->
-<!--        [(ngModel)]="model.password"-->
-<!--        class="form-control me-2"-->
-<!--        type="password"-->
-<!--        placeholder="Password">-->
-
-<!--      <button class="btn btn-success" type="submit">Login</button>-->
-<!--    </form>-->
-
 
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">Quiz</a>
-
-      <button type="button" class="btn btn-danger"(click)="SignOut()">Logout</button>
 
 
+      <button type="button" class="btn btn-danger nav-wrapper" routerLink="showUserInfo" *ngIf="isLoggedIn">Show Profile</button>
 
+      <span class="spacer"></span>
+
+      <button type="button" class="btn btn-danger nav-wrapper" (click)="EditProfile()" *ngIf="isLoggedIn">Edit Profile</button>
+
+      <span class="spacer"></span>
+      <button type="button" class="btn btn-danger" (click)="DeleteProfile()" *ngIf="isLoggedIn">Delete Profile</button>
+      <span class="spacer"></span>
+      <button type="button" class="btn btn-danger" (click)="SignOut()" *ngIf="isLoggedIn">Logout</button>
     </div>
   </div>
-
 </nav>
