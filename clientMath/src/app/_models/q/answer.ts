@@ -4,5 +4,5 @@ export class AnswerModel {
   id: number | null = null;
   text: string | null = null;
   isCorrect: boolean | null = null;
-  question: QuestionModel | null = null;
+  questionModel: QuestionModel | null = null;
 }

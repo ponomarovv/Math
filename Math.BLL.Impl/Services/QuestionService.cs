@@ -7,12 +7,13 @@ using Models;
 
 namespace Math.BLL.Services;
 
-public class QuesionService : IQuestionService
+
+public class QuestionService : IQuestionService
 {
     private readonly IUnitOfWork _unitOfWork;
     protected readonly IMapper _mapper;
 
-    public QuesionService(IUnitOfWork unitOfWork, IMapper mapper)
+    public QuestionService(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;

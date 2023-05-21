@@ -10,7 +10,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomeComponent} from './home/home.component';
-import {RegisterComponent} from './register/register.component';
 
 import {SharedModule} from "./_modules/shared.module";
 import {TestErrorComponent} from './errors/test-error/test-error.component';
@@ -34,12 +33,9 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
     AppComponent,
     NavComponent,
     HomeComponent,
-    RegisterComponent,
-
     TestErrorComponent,
     NotFoundComponent,
     ServerErrorComponent,
-
     QuestionComponent,
     QuestionsListComponent,
     DummyComponent,

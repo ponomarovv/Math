@@ -11,7 +11,7 @@ public static class BllDependencyInstaller
     public static void InstallServices(this IServiceCollection services)
     {
         services.AddScoped<IAnswerService, AnswerService>();
-        services.AddScoped<IQuestionService, QuesionService>();
+        services.AddScoped<IQuestionService, QuestionService>();
         services.AddScoped<ITopicService, TopicService>();
         
     }
