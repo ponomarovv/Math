@@ -67,9 +67,11 @@ export class UserService implements OnInit {
 
 
   login(formData: any) {
-    // return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData);
     return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData).pipe(
-      tap(() => {
+      tap((res: any) => {
+        // Save the token to local storage
+        localStorage.setItem('token', res.token);
+
         this.getUserProfile().subscribe(
           () => {
             // User profile retrieved successfully, userName$ will be updated automatically
@@ -83,9 +85,11 @@ export class UserService implements OnInit {
   }
 
   getUserProfile() {
-    // let token = new HttpHeaders({'Authorization':'Bearer ' + localStorage.getItem('token')})
-    // return this.http.get(this.BaseURI + '/UserProfile');
-    return this.http.get(this.BaseURI + '/UserProfile').pipe(
+    // Include the authorization token in the request headers
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    const options = { headers: headers };
+
+    return this.http.get(this.BaseURI + '/UserProfile', options).pipe(
       tap((res: any) => {
         this.fullNameSubject.next(res.userName);
       })
