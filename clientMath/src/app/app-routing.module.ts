@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
-import {MemberListComponent} from "./members/member-list/member-list.component";
-import {MemberDetailComponent} from "./members/member-detail/member-detail.component";
 
 import {AuthGuard} from "./_guards/auth.guard";
 import {TestErrorComponent} from "./errors/test-error/test-error.component";
