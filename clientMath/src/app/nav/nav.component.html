@@ -2,38 +2,39 @@
   <div class="container">
     <a class="navbar-brand" routerLink="/" routerLinkActive="active">Math App</a>
 
-    <div class="dropdown" dropdown>
-      <button class="btn btn-secondary dropdown-toggle" dropdownToggle>
-        Pick Quiz
-      </button>
-      <ul class="dropdown-menu" *dropdownMenu>
-        <li><a class="dropdown-item" routerLink="quiz">Quiz1</a></li>
-        <li><a class="dropdown-item" href="#">Quiz2</a></li>
-        <li><a class="dropdown-item" href="#">Quiz3</a></li>
-      </ul>
+    <div class="navbar-nav me-auto">
+      <div class="dropdown" dropdown>
+        <button class="btn btn-secondary dropdown-toggle" dropdownToggle>
+          Pick Quiz
+        </button>
+        <ul class="dropdown-menu" *dropdownMenu>
+          <li><a class="dropdown-item" routerLink="quiz">Quiz1</a></li>
+          <li><a class="dropdown-item" href="#">Quiz2</a></li>
+          <li><a class="dropdown-item" href="#">Quiz3</a></li>
+        </ul>
+      </div>
     </div>
 
-    <div class="navbar-nav me-auto mb-2 mb-md-0 flex-wrap">
+    <div class="navbar-nav ms-auto">
+      <span class="navbar-text me-3 welcome-message" *ngIf="fullName">
+        Welcome, {{ fullName }}
+      </span>
 
-    </div>
-
-    <div class="nav-wrapper">
-
-
-      <span *ngIf="fullName">Welcome, {{ fullName }}</span>
-      <button type="button" class="btn btn-danger nav-wrapper" routerLink="showUserInfo" *ngIf="isLoggedIn">Show
-        Profile
+      <button type="button" class="btn btn-danger me-2" routerLink="showUserInfo" *ngIf="isLoggedIn">
+        Show Profile
       </button>
 
-      <span class="spacer"></span>
-
-      <button type="button" class="btn btn-danger nav-wrapper" routerLink="editUser" *ngIf="isLoggedIn">Edit Profile
+      <button type="button" class="btn btn-danger me-2" routerLink="editUser" *ngIf="isLoggedIn">
+        Edit Profile
       </button>
 
-      <span class="spacer"></span>
-      <button type="button" class="btn btn-danger" routerLink="deleteProfile" *ngIf="isLoggedIn">Delete Profile</button>
-      <span class="spacer"></span>
-      <button type="button" class="btn btn-danger" (click)="SignOut()" *ngIf="isLoggedIn">Logout</button>
+      <button type="button" class="btn  btn-warning me-2" routerLink="deleteProfile" *ngIf="isLoggedIn">
+        Delete Profile
+      </button>
+
+      <button type="button" class="btn btn-success" (click)="SignOut()" *ngIf="isLoggedIn">
+        Logout
+      </button>
     </div>
   </div>
 </nav>

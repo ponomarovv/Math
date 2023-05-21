@@ -15,3 +15,34 @@
     flex-direction: column;
   }
 }
+
+
+.welcome-message {
+  color: white;
+}
+
+@media (max-width: 767px) {
+  .navbar-nav {
+    flex-wrap: wrap;
+  }
+
+  .navbar-collapse {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dropdown {
+    order: 1;
+    margin-right: auto;
+  }
+
+  .navbar-nav .welcome-message {
+    order: 2;
+  }
+
+  .navbar-nav .btn {
+    order: 3;
+    margin-top: 5px;
+  }
+}
