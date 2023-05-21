@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Models;
 
 namespace Math.WEB.Controllers;
 
@@ -107,12 +108,25 @@ public class ApplicationUserController : ControllerBase
     }
     
     
-    // // [Authorize]
-    // [HttpGet("GetCurrentUserId")]
-    // // GET: /api/ApplicationUser/GetCurrentUserId
-    // public IActionResult GetCurrentUserId()
-    // {
-    //     var userId = _userManager.GetUserId(User);
-    //     return Ok(userId);
-    // }
+    [HttpPatch]
+    [Route("Update/{Id}")]
+    public async Task<IActionResult> UpdateUser(string id, [FromBody] UserUpdateModel model)
+    {
+        // Find the user by ID in the database
+        var user =  await _userManager.FindByIdAsync(id);
+
+        if (user == null)
+        {
+            return NotFound(); // User not found
+        }
+
+        // Update the user's properties
+        user.FullName = model.FullName;
+        user.Email = model.Email;
+
+        // Save the changes to the database
+        await _userManager.UpdateAsync(user);
+
+        return Ok();
+    }
 }

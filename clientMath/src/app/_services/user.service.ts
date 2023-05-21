@@ -19,7 +19,6 @@ export class UserService implements OnInit {
   public userId$: Observable<string> = this.userIdSubject.asObservable();
 
 
-
   constructor(private fb: FormBuilder, private http: HttpClient) {
     const isLoggedIn = !!localStorage.getItem('token');
     this.isLoggedInSubject.next(isLoggedIn);
@@ -108,5 +107,9 @@ export class UserService implements OnInit {
 
   setUserId(userId: string): void {
     this.userIdSubject.next(userId);
+  }
+
+  updateUser(user: any) {
+    return this.http.patch(`${this.BaseURI}/ApplicationUser/Update/${user.id}`, user);
   }
 }

@@ -1,0 +1,13 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="fullName">Full Name</label>
+    <input type="text" class="form-control" id="fullName" [(ngModel)]="user.fullName" name="fullName">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>

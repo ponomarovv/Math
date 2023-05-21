@@ -20,7 +20,9 @@ export class DeleteProfileComponent {
       (res: any) => {
         this.userProfile = res;
         console.log('ready to delete');
-        this.deleteProfile(this.userProfile.id); // Call deleteProfile after fetching the user profile
+
+        // uncomment to really delete a user
+        // this.deleteProfile(this.userProfile.id); // Call deleteProfile after fetching the user profile
 
       },
       (error: any) => {

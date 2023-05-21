@@ -30,6 +30,7 @@ import {UserService} from "./_services/user.service";
 import {AuthInterceptor} from "./_guards/auth.interceptor";
 import { ShowUserProfileComponent } from './user/show-user-profile/show-user-profile.component';
 import { DeleteProfileComponent } from './user/delete-profile/delete-profile.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { DeleteProfileComponent } from './user/delete-profile/delete-profile.com
     RegistrationComponent,
     LoginComponent,
     ShowUserProfileComponent,
-    DeleteProfileComponent
+    DeleteProfileComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserAnimationsModule,

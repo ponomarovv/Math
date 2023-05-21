@@ -14,6 +14,7 @@ import {LoginComponent} from "./user/login/login.component";
 import {DummyComponent} from "./dummy/dummy.component";
 import {ShowUserProfileComponent} from "./user/show-user-profile/show-user-profile.component";
 import {DeleteProfileComponent} from "./user/delete-profile/delete-profile.component";
+import {EditUserComponent} from "./user/edit-user/edit-user.component";
 
 const routes: Routes = [
   {path: '', redirectTo: "/user/login", pathMatch: 'full'},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
   {path:'quiz', component:DummyComponent, canActivate:[AuthGuard]},
   {path:'showUserInfo', component:ShowUserProfileComponent, canActivate:[AuthGuard]},
-  {path:'deleteProfile', component:DeleteProfileComponent, canActivate:[AuthGuard]}
+  {path:'deleteProfile', component:DeleteProfileComponent, canActivate:[AuthGuard]},
+  {path:'editUser', component:EditUserComponent, canActivate:[AuthGuard]}
 
 ];
 
