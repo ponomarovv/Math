@@ -23,6 +23,7 @@ export class QuestionComponent implements OnInit {
     this.questionService.getQuestionById(id)
       .subscribe(
         (question: QuestionModel) => {
+          console.log()
           this.question = question;
         },
         (error: any) => {

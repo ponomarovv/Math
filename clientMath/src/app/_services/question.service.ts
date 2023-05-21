@@ -10,7 +10,7 @@ import {environment} from "../../environments/environment";
 export class QuestionService {
 
   // private readonly baseUrl = 'api/questions';
-  private readonly baseUrl = environment.apiUrl + 'questions';
+  private readonly baseUrl = environment.apiUrl + '/Question';
 
   constructor(private http: HttpClient) {
   }

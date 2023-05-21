@@ -27,6 +27,7 @@ import {AuthInterceptor} from "./_guards/auth.interceptor";
 import { ShowUserProfileComponent } from './user/show-user-profile/show-user-profile.component';
 import { DeleteProfileComponent } from './user/delete-profile/delete-profile.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { QuizComponent } from './q/quiz/quiz.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
     LoginComponent,
     ShowUserProfileComponent,
     DeleteProfileComponent,
-    EditUserComponent
+    EditUserComponent,
+    QuizComponent
   ],
   imports: [
     BrowserAnimationsModule,
