@@ -62,7 +62,7 @@ export class UserService implements OnInit {
       FullName: this.formModel.value.FullName,
       Password: this.formModel.value.Passwords.Password
     };
-    return this.http.post(this.BaseURI + 'ApplicationUser/Register', body);
+    return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
   }
 
 
@@ -99,6 +99,11 @@ export class UserService implements OnInit {
 
   deleteProfile(userId: string) {
     return this.http.delete(`${this.BaseURI}/ApplicationUser/Delete/${userId}`);
+  }
+
+
+  doNothing(userId: string) {
+    return new Observable<object>;
   }
 
   setFullName(fullName: string): void {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {UserService} from "../../_services/user.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
@@ -21,8 +21,7 @@ export class DeleteProfileComponent {
         this.userProfile = res;
         console.log('ready to delete');
 
-        // uncomment to really delete a user
-        // this.deleteProfile(this.userProfile.id); // Call deleteProfile after fetching the user profile
+        this.deleteProfile(this.userProfile.id); // Call deleteProfile after fetching the user profile
 
       },
       (error: any) => {
@@ -35,27 +34,26 @@ export class DeleteProfileComponent {
     console.log(userId);
     console.log(this.userProfile.id);
 
-    this.userService.deleteProfile(userId).subscribe(
+    // uncomment to really delete a user
+    // this.userService.deleteProfile(userId).subscribe(
+    this.userService.doNothing(userId).subscribe(
       () => {
-        this.sharedService.setFullName('Guest');
-        this.sharedService.setIsLoggedIn('');
 
-        this.toastr.success('Delete Successful', 'Delete');
-
-        localStorage.clear();
-        console.log('really was killed');
-
-        this.router.navigate(['/user/login']);
         // Profile deleted successfully, handle any additional logic
       },
-      (error) => {
+      (error: any) => {
         // Handle error if the profile deletion fails
       }
     );
 
+    this.sharedService.setFullName('Guest');
+    this.sharedService.setIsLoggedIn('');
 
+    this.toastr.success('Delete Successful', 'Delete');
 
+    localStorage.clear();
+    console.log('really was killed');
 
-
+    this.router.navigate(['/user/login']);
   }
 }

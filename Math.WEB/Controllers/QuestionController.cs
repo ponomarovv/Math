@@ -49,12 +49,6 @@ namespace Math.WEB.Controllers
             var prettierJson = parsedJson.ToString(Formatting.Indented);
 
             return Ok(prettierJson);
-
-            return Ok(serializedQuestion);
-
-
-            return Ok(question);
         }
-
     }
 }
