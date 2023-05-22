@@ -11,7 +11,6 @@ import {Router} from "@angular/router";
 })
 export class QuizComponent {
 
-
   questions: QuestionModel[] | null = null;
   correctAnswersCount: number = 0;
 
@@ -27,11 +26,7 @@ export class QuizComponent {
       .subscribe(
         (questions: QuestionModel[]) => {
           this.questions = questions;
-          // Initialize the answered properties for each question
-          this.questions.forEach(question => {
-            question.answered = false;
-            question.answeredAnswer = null;
-          });
+          this.resetAnswersCount();
         },
         (error: any) => {
           console.error(error);
@@ -43,5 +38,17 @@ export class QuizComponent {
     // Mark the question as answered
     question.answered = true;
     question.answeredAnswer = selectedAnswer;
+    // Increment the correct answers count if the selected answer is correct
+    if (selectedAnswer.isCorrect) {
+      this.correctAnswersCount++;
+    }
+  }
+
+  showResults() {
+    this.router.navigateByUrl('/result', { state: { correctAnswersCount: this.correctAnswersCount } });
+  }
+
+  resetAnswersCount() {
+    this.correctAnswersCount = 0;
   }
 }
