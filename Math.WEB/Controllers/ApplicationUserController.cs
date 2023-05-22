@@ -87,11 +87,11 @@ public class ApplicationUserController : ControllerBase
 
 
     [HttpDelete]
-    [Route("Delete/{userId}")]
+    [Route("Delete/{id}")]
     // DELETE : /api/ApplicationUser/Delete/{userId}
-    public async Task<IActionResult> DeleteUser(string userId)
+    public async Task<IActionResult> DeleteUser(string id)
     {
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await _userManager.FindByIdAsync(id);
         if (user == null)
         {
             return NotFound();
@@ -109,7 +109,7 @@ public class ApplicationUserController : ControllerBase
     
     
     [HttpPatch]
-    [Route("Update/{Id}")]
+    [Route("Update/{id}")]
     public async Task<IActionResult> UpdateUser(string id, [FromBody] UserUpdateModel model)
     {
         // Find the user by ID in the database

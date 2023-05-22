@@ -6,7 +6,9 @@ public interface IQuestionService : IService<QuestionModel>
 {
     void StartGame();
     
-    Task<Dictionary<int, QuestionModel>> Get20RandomQuestions();
+    Task<ICollection<QuestionModel>> Get10RandomQuestions();
+    Task<ICollection<QuestionModel>> Get10RandomArithmeticQuestions();
+    Task<ICollection<QuestionModel>> Get10RandomGeometryQuestions();
 
     Task<QuestionModel> CreateAsync(QuestionModel model);
     Task<List<QuestionModel>> GetAllAsync();

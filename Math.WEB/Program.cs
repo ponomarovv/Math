@@ -41,6 +41,8 @@ internal class Program
         builder.Services.InstallRepositories();
         builder.Services.InstallMappers();
         builder.Services.InstallServices();
+        
+    
 
         builder.Services.AddAuthentication();
         builder.Services.AddIdentityCore<ApplicationUser>()

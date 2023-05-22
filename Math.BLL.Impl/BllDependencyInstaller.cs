@@ -13,7 +13,6 @@ public static class BllDependencyInstaller
         services.AddScoped<IAnswerService, AnswerService>();
         services.AddScoped<IQuestionService, QuestionService>();
         services.AddScoped<ITopicService, TopicService>();
-        
     }
 
     public static void InstallMappers(this IServiceCollection services)
@@ -21,7 +20,9 @@ public static class BllDependencyInstaller
         var config = new MapperConfiguration(mc =>
         {
             mc.AddProfile(new MappersProfile());
+   
         });
+     
 
         IMapper mapper = config.CreateMapper();
         services.AddSingleton(mapper);

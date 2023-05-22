@@ -30,11 +30,11 @@ public class QuestionController : ControllerBase
     }
         
     [HttpGet("random")]
-    public async Task<ActionResult<Dictionary<int, QuestionModel>>> Get20RandomQuestions()
+    public async Task<ActionResult<ICollection<QuestionModel>>> Get10RandomQuestions()
     {
         try
         {
-            var randomQuestions = await _questionService.Get20RandomQuestions();
+            ICollection<QuestionModel> randomQuestions = await _questionService.Get10RandomQuestions();
             return Ok(randomQuestions);
         }
         catch (Exception ex)

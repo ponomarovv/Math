@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {QuestionModel} from "../../_models/q/question";
+import {QuestionService} from "../../_services/question.service";
 
 @Component({
   selector: 'app-quiz',
@@ -7,4 +9,25 @@ import { Component } from '@angular/core';
 })
 export class QuizComponent {
 
+
+  questions: QuestionModel[] | null = null;
+
+  constructor(private questionService: QuestionService) {
+  }
+
+  ngOnInit(): void {
+    this.getQuestions();
+  }
+
+  getQuestions() {
+    this.questionService.getQuestions()
+      .subscribe(
+        (questions: QuestionModel[]) => {
+          this.questions = questions;
+        },
+        (error: any) => {
+          console.error(error);
+        }
+      );
+  }
 }

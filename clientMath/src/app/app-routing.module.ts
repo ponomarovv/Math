@@ -27,7 +27,6 @@ const routes: Routes = [
   },
   {path:'dummy', component:DummyComponent},
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
-  {path:'quiz', component:DummyComponent, canActivate:[AuthGuard]},
   {path:'showUserInfo', component:ShowUserProfileComponent, canActivate:[AuthGuard]},
   {path:'deleteProfile', component:DeleteProfileComponent, canActivate:[AuthGuard]},
   {path:'editUser', component:EditUserComponent, canActivate:[AuthGuard]},

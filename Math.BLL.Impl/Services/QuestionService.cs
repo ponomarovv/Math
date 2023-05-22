@@ -19,39 +19,24 @@ public class QuestionService : IQuestionService
         _mapper = mapper;
     }
 
-    public async  Task<Dictionary<int, QuestionModel>> Get20RandomQuestions()
+    public async  Task<ICollection<QuestionModel>> Get10RandomQuestions()
     {
-        // TODO how to get 20 random questions in ONE query? 
-
-        // TODO Do I need to use Include and where?
         var allQuestions = await _unitOfWork.QuestionRepository.GetAllAsync(x => true);
-        var questionModels = allQuestions.Select(_mapper.Map<QuestionModel>).ToList();
+        var tenQuestions = allQuestions.OrderBy(y => Guid.NewGuid()).Take(10);
+        var questionModels = tenQuestions.Select(_mapper.Map<QuestionModel>).ToList();
 
+        return questionModels;
 
+    }
 
-        var quizQuestions = new Dictionary<int, QuestionModel>();
+    public Task<ICollection<QuestionModel>> Get10RandomArithmeticQuestions()
+    {
+        throw new NotImplementedException();
+    }
 
-        var rand = new Random();
-
-        for (int i = 0; i < 20; i++)
-        {
-            while (true)
-            {
-                var key = rand.Next(1, questionModels.Count + 1);
-                if (quizQuestions.ContainsKey(key))
-                {
-                    // continue;
-                }
-                else
-                {
-                    quizQuestions.Add(key, questionModels[key]);
-                    break;
-                }
-            }
-        }
-
-        return quizQuestions;
-
+    public Task<ICollection<QuestionModel>> Get10RandomGeometryQuestions()
+    {
+        throw new NotImplementedException();
     }
 
     public void StartGame()
