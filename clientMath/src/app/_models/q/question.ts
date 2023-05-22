@@ -6,4 +6,7 @@ export class QuestionModel {
   text: string | null = null;
   topicModel: TopicModel | null = null;
   answerModels: AnswerModel[] | null = null;
+  answered:any=null;
+  answeredAnswer :any=null;
+
 }

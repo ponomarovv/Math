@@ -28,6 +28,7 @@ import { ShowUserProfileComponent } from './user/show-user-profile/show-user-pro
 import { DeleteProfileComponent } from './user/delete-profile/delete-profile.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { QuizComponent } from './q/quiz/quiz.component';
+import { ResultComponent } from './q/result/result.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { QuizComponent } from './q/quiz/quiz.component';
     ShowUserProfileComponent,
     DeleteProfileComponent,
     EditUserComponent,
-    QuizComponent
+    QuizComponent,
+    ResultComponent
   ],
   imports: [
     BrowserAnimationsModule,
