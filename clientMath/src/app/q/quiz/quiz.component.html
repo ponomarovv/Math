@@ -22,7 +22,10 @@
       </div>
     </li>
   </ul>
-  <button class="btn btn-primary" (click)="showResults()">Show Results</button>
+  <div class="text-end mb-4">
+    <button class="btn btn-primary" (click)="showResults()" [disabled]="hasUnansweredQuestions()">Show Results</button>
+    <p>Correct Answers: {{ correctAnswersCount }}</p>
+  </div>
 </div>
 
 <div *ngIf="!questions">

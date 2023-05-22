@@ -51,4 +51,11 @@ export class QuizComponent {
   resetAnswersCount() {
     this.correctAnswersCount = 0;
   }
+
+  hasUnansweredQuestions(): boolean {
+    if (this.questions) {
+      return this.questions.some(question => !question.answered);
+    }
+    return false;
+  }
 }
