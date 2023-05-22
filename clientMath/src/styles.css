@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-  background-color: #04c582;
+  /*background-color: #04c582;*/
+  background-image: url("src/assets/img/math_background_image.jpg");
 }
 
 input.form-control,input.form-control:focus{
@@ -14,11 +15,11 @@ input.form-control:focus{
   box-shadow: none;
 }
 
-button[type=submit].btn{
-  border-radius: 20px;
-  background-color: #04c582;
-  color: #fff;
-}
+/*button[type=submit].btn{*/
+/*  border-radius: 20px;*/
+/*  background-color: #04c582;*/
+/*  color: #fff;*/
+/*}*/
 
 div.form-group label:not(.text-danger){
   color: #545d6a;
