@@ -21,7 +21,7 @@ export class DeleteProfileComponent {
         this.userProfile = res;
         console.log('ready to delete');
 
-        this.deleteProfile(this.userProfile.id); // Call deleteProfile after fetching the user profile
+
 
       },
       (error: any) => {
@@ -34,9 +34,7 @@ export class DeleteProfileComponent {
     console.log(userId);
     console.log(this.userProfile.id);
 
-    // uncomment to really delete a user
-    // this.userService.deleteProfile(userId).subscribe(
-    this.userService.doNothing(userId).subscribe(
+    this.userService.deleteProfile(userId).subscribe(
       () => {
 
         // Profile deleted successfully, handle any additional logic
@@ -54,6 +52,14 @@ export class DeleteProfileComponent {
     localStorage.clear();
     console.log('really was killed');
 
-    this.router.navigate(['/user/login']);
+    this.router.navigate(['user/login']);
+  }
+
+  yes(){
+    this.deleteProfile(this.userProfile.id); // Call deleteProfile after fetching the user profile
+  }
+
+  no(){
+    this.router.navigate(['home']);
   }
 }

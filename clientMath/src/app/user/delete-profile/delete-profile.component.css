@@ -1,0 +1,18 @@
+.button-margin {
+  margin-right: 10px;
+}
+/*.container {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  height: 100vh; !* Adjust this if necessary *!*/
+/*}*/
+.red-button {
+  background-color: red;
+  color: white;
+}
+
+.green-button {
+  background-color: green;
+  color: white;
+}
