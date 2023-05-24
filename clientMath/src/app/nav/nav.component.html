@@ -2,7 +2,8 @@
   <div class="container">
     <a class="navbar-brand" routerLink="/" routerLinkActive="active">Math App</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            (click)="toggleBurgerMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -21,23 +22,27 @@
       </div>
 
       <div class="navbar-nav ms-auto">
-        <span class="navbar-text me-3 welcome-message" >
+        <span class="navbar-text me-3 welcome-message">
           Welcome, {{ fullName }}
         </span>
 
-        <button type="button" class="btn btn-danger me-2" routerLink="showUserInfo" *ngIf="isLoggedIn">
+        <button type="button" class="btn btn-danger me-2" routerLink="showUserInfo"
+                *ngIf="isLoggedIn
+&& isProfileButtonsVisible">
           Show Profile
         </button>
-
-        <button type="button" class="btn btn-danger me-2" routerLink="editUser" *ngIf="isLoggedIn">
+        <button type="button" class="btn btn-danger me-2" routerLink="editUser"
+                *ngIf="isLoggedIn && isProfileButtonsVisible">
           Edit Profile
         </button>
 
-        <button type="button" class="btn  btn-warning me-2" routerLink="deleteProfile" *ngIf="isLoggedIn">
+        <button type="button" class="btn btn-warning me-2" routerLink="deleteProfile"
+                *ngIf="isLoggedIn && isProfileButtonsVisible">
           Delete Profile
         </button>
 
-        <button type="button" class="btn btn-success me-2" (click)="SignOut()" *ngIf="isLoggedIn">
+        <button type="button" class="btn btn-success me-2" (click)="SignOut()"
+                *ngIf="isLoggedIn && isProfileButtonsVisible">
           Logout
         </button>
       </div>
