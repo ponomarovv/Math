@@ -16,7 +16,7 @@ export class QuestionService {
   }
 
   getQuestions(): Observable<QuestionModel[]> {
-    return this.http.get<QuestionModel[]>(this.baseUrl+'/random');
+    return this.http.get<QuestionModel[]>(this.baseUrl+'/Random');
   }
 
   getQuestionById(id: number): Observable<QuestionModel> {

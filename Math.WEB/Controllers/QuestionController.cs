@@ -29,7 +29,7 @@ public class QuestionController : ControllerBase
         _answerService = answerService;
     }
         
-    [HttpGet("random")]
+    [HttpGet("Random")]
     public async Task<ActionResult<ICollection<QuestionModel>>> Get10RandomQuestions()
     {
         try
@@ -43,28 +43,28 @@ public class QuestionController : ControllerBase
         }
     }
         
-    [HttpGet]
-    [Route("GetQuestion")]
-    public async Task<IActionResult> GetQuestion()
-    {
-        using var client = new HttpClient();
-
-        QuestionModel question = _questionService.GetByIdAsync(1).Result;
-
-        // Serialize the object using JsonConvert with the PreserveReferencesHandling setting
-        var serializedQuestion = JsonConvert.SerializeObject(question, new JsonSerializerSettings
-        {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        });
-
-        // Serialize the object using JsonSerializer with the specified JsonSerializerOptions
-        var parsedJson = JToken.Parse(serializedQuestion);
-
-        // Format the parsed JSON with indented formatting
-        var prettierJson = parsedJson.ToString(Formatting.Indented);
-
-        return Ok(prettierJson);
-    }
+    // [HttpGet]
+    // [Route("GetQuestion")]
+    // public async Task<IActionResult> GetQuestion()
+    // {
+    //     using var client = new HttpClient();
+    //
+    //     QuestionModel question = _questionService.GetByIdAsync(1).Result;
+    //
+    //     // Serialize the object using JsonConvert with the PreserveReferencesHandling setting
+    //     var serializedQuestion = JsonConvert.SerializeObject(question, new JsonSerializerSettings
+    //     {
+    //         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+    //     });
+    //
+    //     // Serialize the object using JsonSerializer with the specified JsonSerializerOptions
+    //     var parsedJson = JToken.Parse(serializedQuestion);
+    //
+    //     // Format the parsed JSON with indented formatting
+    //     var prettierJson = parsedJson.ToString(Formatting.Indented);
+    //
+    //     return Ok(prettierJson);
+    // }
     
     [HttpGet("{id}")]
     public async Task<ActionResult<QuestionModel>> GetById(int id)
@@ -98,7 +98,7 @@ public class QuestionController : ControllerBase
         }
     }
     
-    [HttpPut("{id}")]
+    [HttpPatch("{id}")]
     public async Task<IActionResult> Update(int id, QuestionModel model)
     {
         try

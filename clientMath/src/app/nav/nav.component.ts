@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, HostListener} from '@angular/core';
 
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
@@ -14,7 +14,6 @@ export class NavComponent implements OnInit {
 
   isLoggedIn: any;
   fullName: any = '';
-  guestUserName: any = 'Guest';
 
   userId: string='';
 
@@ -31,8 +30,6 @@ export class NavComponent implements OnInit {
       this.isLoggedIn = isLoggedIn;
     });
 
-
-
     this.userService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });
@@ -47,8 +44,6 @@ export class NavComponent implements OnInit {
   }
 
 
-
-
   SignOut() {
     localStorage.clear();
     this.router.navigate(['/user/login']);
@@ -60,25 +55,6 @@ export class NavComponent implements OnInit {
     this.toastr.success('Logout successful', 'Logout');
 
     this.fullName = 'Guest';
-  }
-
-
-  EditProfile() {
-  }
-
-  DeleteProfile(userId: string) {
-    console.log(userId);
-    console.log(this.userId);
-
-    // this.userService.deleteProfile(userId).subscribe(
-    //   () => {
-    //     // Profile deleted successfully, handle any additional logic
-    //   },
-    //   (error) => {
-    //     // Handle error if the profile deletion fails
-    //   }
-    // );
-
   }
 
 }

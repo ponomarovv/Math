@@ -3,12 +3,13 @@
     <div class="card mb-2">
       <h2>Quiz Questions</h2>
     </div>
+    <div class="card card-body">
     <ol>
       <li *ngFor="let question of questions">
         <div class="card mb-2">
           <!--        <h3>{{ question?.topicModel?.text }}</h3>-->
           <h2>{{ question?.text }}</h2>
-          <ul>
+          <ul style="list-style-type: none;">
             <li *ngFor="let answer of question?.answerModels">
               <label>
                 <input type="radio" [name]="question?.id" [value]="answer?.id" (change)="checkAnswer(question, answer)">
@@ -23,7 +24,7 @@
         </div>
       </li>
     </ol>
-
+    </div>
   </div>
 
   <div *ngIf="!questions">

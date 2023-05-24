@@ -16,3 +16,14 @@
   background-color: green;
   color: white;
 }
+
+.center {
+align-content: center;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+
+}

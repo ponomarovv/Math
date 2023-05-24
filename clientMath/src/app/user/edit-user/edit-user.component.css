@@ -1,0 +1,9 @@
+.btn-success {
+  float: left;
+  /*font-size: smaller;*/
+  /* Additional styles if needed */
+}
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+}
