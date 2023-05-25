@@ -78,13 +78,13 @@ export class NavComponent implements OnInit {
     this.fullName = 'Guest';
   }
 
-  updateData(topic: string): void {
-    this.sharedService.updateData(topic);
-  }
+  // updateData(topic: string): void {
+  //   this.sharedService.updateData(topic);
+  // }
 
   getValue(topic: string) {
-    this.pickedTopic = topic;
+    // this.pickedTopic = topic;
     this.sharedService.updateData(topic);
-    console.log(topic);
+    // console.log(topic);
   }
 }

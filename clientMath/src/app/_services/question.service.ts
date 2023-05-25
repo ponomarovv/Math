@@ -29,8 +29,11 @@ export class QuestionService implements OnInit{
   }
 
   getQuestionsByTopic(topic: string): Observable<QuestionModel[]> {
-    console.log(topic);
-    return this.http.get<QuestionModel[]>(this.baseUrl + '/' + 'Random');
+    // console.log(topic);
+    if (topic == 'global') topic='random';
+    let route: string = this.baseUrl + '/' + topic;
+    console.log(route)
+    return this.http.get<QuestionModel[]>(route);
   }
 
   getQuestionById(id: number): Observable<QuestionModel> {

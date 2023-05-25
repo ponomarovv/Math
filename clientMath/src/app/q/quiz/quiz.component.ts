@@ -28,30 +28,31 @@ export class QuizComponent {
   }
 
   ngOnInit(): void {
+    console.log('quiz component on init')
+
     this.sharedService.pickedTopic$.subscribe((topic: string) => {
       this.pickedTopic = topic;
-      this.getQuestions();
       this.dictionary = {};
+
+
     });
+
+    this.getQuiz();
   }
 
-  getQuestions() {
-    this.sharedService.pickedTopic$.subscribe(topic => {
-      console.log('getQuestions in quiz component, topic:', this.pickedTopic);
-      console.log('getQuestions in quiz component, topic:', topic);
-      console.log(this.pickedTopic);
-      this.questionService.getQuestionsByTopic(topic)
-        .subscribe(
-          (questions: QuestionModel[]) => {
-            this.questions = questions;
-            this.resetAnswersCount();
-          },
-          (error: any) => {
-            console.error(error);
-          }
-        );
-    });
-  }
+  getQuiz() {
+    console.log('getQuiz');
+    this.questionService.getQuestionsByTopic(this.pickedTopic)
+      .subscribe(
+        (questions: QuestionModel[]) => {
+          this.questions = questions;
+          this.resetAnswersCount();
+        },
+        (error: any) => {
+          console.error(error);
+        }
+      );
+  };
 
   checkAnswer(question: QuestionModel, selectedAnswer: AnswerModel) {
     // Mark the question as answered
