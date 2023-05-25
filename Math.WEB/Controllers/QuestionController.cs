@@ -20,7 +20,7 @@ public class QuestionController : ControllerBase
     private readonly IAnswerService _answerService;
 
 
-    public QuestionController(IConfiguration configuration, 
+    public QuestionController(IConfiguration configuration,
         IQuestionService questionService, ITopicService topicService, IAnswerService answerService)
     {
         _configuration = configuration;
@@ -28,21 +28,49 @@ public class QuestionController : ControllerBase
         _topicService = topicService;
         _answerService = answerService;
     }
-        
-    [HttpGet("Random")]
-    public async Task<ActionResult<ICollection<QuestionModel>>> Get10RandomQuestions()
+
+    // [HttpGet("Random")]
+    // public async Task<ActionResult<ICollection<QuestionModel>>> Get10RandomQuestions()
+    // {
+    //     try
+    //     {
+    //         ICollection<QuestionModel> randomQuestions = await _questionService.Get10RandomQuestions();
+    //         return Ok(randomQuestions);
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         return StatusCode(500, ex.Message);
+    //     }
+    // }
+
+    [HttpGet("{word}")]
+    public async Task<ActionResult<ICollection<QuestionModel>>> GetQuestionsByWord(string word)
     {
         try
         {
-            ICollection<QuestionModel> randomQuestions = await _questionService.Get10RandomQuestions();
-            return Ok(randomQuestions);
+            ICollection<QuestionModel> questions;
+            // var word = "Arithmetic";
+            // Call a service method based on the specified word
+            if (word == "random") questions = await _questionService.Get10RandomQuestions();
+            else
+            {
+                questions = await _questionService.GetQuestionsByTopic(word);
+            }
+
+            if (questions == null || questions.Count == 0)
+            {
+                return NotFound(); // Return 404 Not Found if no questions are found for the word
+            }
+
+            return Ok(questions);
         }
         catch (Exception ex)
         {
             return StatusCode(500, ex.Message);
         }
     }
-        
+
+
     // [HttpGet]
     // [Route("GetQuestion")]
     // public async Task<IActionResult> GetQuestion()
@@ -65,8 +93,8 @@ public class QuestionController : ControllerBase
     //
     //     return Ok(prettierJson);
     // }
-    
-    [HttpGet("{id}")]
+
+    [HttpGet("{id:int}")]
     public async Task<ActionResult<QuestionModel>> GetById(int id)
     {
         try
@@ -76,6 +104,7 @@ public class QuestionController : ControllerBase
             {
                 return NotFound();
             }
+
             return Ok(question);
         }
         catch (Exception ex)
@@ -83,7 +112,7 @@ public class QuestionController : ControllerBase
             return StatusCode(500, ex.Message);
         }
     }
-    
+
     [HttpPost]
     public async Task<ActionResult<QuestionModel>> Create(QuestionModel model)
     {
@@ -97,7 +126,7 @@ public class QuestionController : ControllerBase
             return StatusCode(500, ex.Message);
         }
     }
-    
+
     [HttpPatch("{id}")]
     public async Task<IActionResult> Update(int id, QuestionModel model)
     {
@@ -113,6 +142,7 @@ public class QuestionController : ControllerBase
             {
                 return NoContent();
             }
+
             return NotFound();
         }
         catch (Exception ex)
@@ -131,6 +161,7 @@ public class QuestionController : ControllerBase
             {
                 return NoContent();
             }
+
             return NotFound();
         }
         catch (Exception ex)

@@ -7,7 +7,6 @@ using Models;
 
 namespace Math.BLL.Services;
 
-
 public class QuestionService : IQuestionService
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -19,14 +18,22 @@ public class QuestionService : IQuestionService
         _mapper = mapper;
     }
 
-    public async  Task<ICollection<QuestionModel>> Get10RandomQuestions()
+    public async Task<ICollection<QuestionModel>> Get10RandomQuestions()
     {
         var allQuestions = await _unitOfWork.QuestionRepository.GetAllAsync(x => true);
         var tenQuestions = allQuestions.OrderBy(y => Guid.NewGuid()).Take(10);
         var questionModels = tenQuestions.Select(_mapper.Map<QuestionModel>).ToList();
 
         return questionModels;
+    }
 
+    public async Task<ICollection<QuestionModel>> GetQuestionsByTopic(string topic)
+    {
+        var allQuestions = _unitOfWork.QuestionRepository.GetAllAsync(x => x.Topic.Text == topic).Result;
+        var tenQuestions =  allQuestions.OrderBy(y => Guid.NewGuid()).Take(10);
+        var questionModels =  tenQuestions.Select(_mapper.Map<QuestionModel>).ToList();
+
+        return questionModels;
     }
 
     public Task<ICollection<QuestionModel>> Get10RandomArithmeticQuestions()
@@ -120,4 +127,3 @@ public class QuestionService : IQuestionService
         return result;
     }
 }
-

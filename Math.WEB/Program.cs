@@ -59,7 +59,17 @@ internal class Program
             options.Password.RequiredLength = 4;
         });
         
-        builder.Services.AddCors();
+        var client_url = builder.Configuration["ApplicationSettings:Client_URL"];
+        
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowSpecificOrigin", builder =>
+            {
+                builder.WithOrigins(client_url)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
 
         // jwt authentication
         
@@ -108,11 +118,13 @@ internal class Program
             app.UseSwaggerUI();
         }
 
-        var client_url = builder.Configuration["ApplicationSettings:Client_URL"];
-
-        app.UseCors(b => b.WithOrigins(client_url)
-            .AllowAnyHeader()
-            .AllowAnyMethod());
+        
+        //
+        // app.UseCors(b => b.WithOrigins(client_url)
+        //     .AllowAnyHeader()
+        //     .AllowAnyMethod());
+        //
+        app.UseCors("AllowSpecificOrigin");
 
         app.UseHttpsRedirection();
 
