@@ -63,10 +63,7 @@ export class QuizComponent {
       // Mark the question as answered
       question.answered = true;
       question.answeredAnswer = selectedAnswer;
-      console.log(question);
-      console.log(selectedAnswer);
-      console.log(this.questions)
-      console.log(' ')
+
       // Increment the correct or wrong answers count based on the selected answer
 
       // if (selectedAnswer.isCorrect) {
