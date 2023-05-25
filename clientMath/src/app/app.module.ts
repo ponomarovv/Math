@@ -16,8 +16,7 @@ import {TestErrorComponent} from './errors/test-error/test-error.component';
 import {ErrorInterceptor} from "./_interceptors/error.interceptor";
 import {NotFoundComponent} from './errors/not-found/not-found.component';
 import {ServerErrorComponent} from './errors/server-error/server-error.component';
-import {QuestionComponent} from './q/question/question.component';
-import {QuestionsListComponent} from './q/questions-list/questions-list.component';
+
 import {DummyComponent} from './dummy/dummy.component';
 import {UserComponent} from './user/user/user.component';
 import {RegistrationComponent} from './user/registration/registration/registration.component';
@@ -42,8 +41,6 @@ import { FourComponent } from './_tests/four/four.component';
     TestErrorComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    QuestionComponent,
-    QuestionsListComponent,
     DummyComponent,
     UserComponent,
     RegistrationComponent,
