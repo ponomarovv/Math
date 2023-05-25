@@ -72,7 +72,6 @@ export class QuizComponent {
     }
   }
 
-
   showResults() {
     this.showQuestions = false;
 

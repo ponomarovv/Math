@@ -51,7 +51,10 @@ public class QuestionController : ControllerBase
             ICollection<QuestionModel> questions;
             // var word = "Arithmetic";
             // Call a service method based on the specified word
-            if (word == "random") questions = await _questionService.Get10RandomQuestions();
+            if (word == "random")
+            {
+                questions = await _questionService.Get10RandomQuestions();
+            }
             else
             {
                 questions = await _questionService.GetQuestionsByTopic(word);

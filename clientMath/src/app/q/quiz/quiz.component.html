@@ -31,9 +31,10 @@
     <p>Loading questions...</p>
   </div>
 
-  <div class="text-end mb-4">
+  <div class="text-end mb-4" *ngIf="showQuestions">
     <!--  [disabled]="hasUnansweredQuestions()"-->
-    <button class="btn btn-primary" (click)="showResults()">Show Results</button>
+<!--    <button class="btn btn-primary" (click)="showResults()" [disabled]="hasUnansweredQuestions()">Show Results</button>-->
+    <button class="btn btn-primary" (click)="showResults()" >Show Results</button>
 
   </div>
 </div>
