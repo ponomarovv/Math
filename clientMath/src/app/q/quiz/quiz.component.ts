@@ -25,6 +25,8 @@ export class QuizComponent {
 
   showingResults: boolean = false;
 
+
+
   constructor(private questionService: QuestionService,
               private router: Router,
               private sharedService: SharedService) {
@@ -60,6 +62,10 @@ export class QuizComponent {
       // Mark the question as answered
       question.answered = true;
       question.answeredAnswer = selectedAnswer;
+      console.log(question);
+      console.log(selectedAnswer);
+      console.log(this.questions)
+      console.log(' ')
       // Increment the correct or wrong answers count based on the selected answer
 
       // if (selectedAnswer.isCorrect) {
@@ -83,9 +89,11 @@ export class QuizComponent {
   showResults() {
     this.showQuestions = false;
     this.showingResults = true;
+    this.resetAnswersCount();
 
     if (this.questions) {
       for (const question of this.questions) {
+        if(!question.answered) continue;
         const selectedAnswer = question.answeredAnswer;
         if (selectedAnswer?.isCorrect) {
           this.correctAnswersCount++;
@@ -101,9 +109,11 @@ export class QuizComponent {
             }
           }
         }
-
       }
     }
+
+    console.log(this.correctAnswersCount);
+    console.log(this.wrongAnswersCount);
 
 
     let maxCount = 0;
@@ -125,6 +135,7 @@ export class QuizComponent {
   resetAnswersCount() {
     this.correctAnswersCount = 0;
     this.wrongAnswersCount = 0;
+    this.maxKeys = [];
   }
 
   hasUnansweredQuestions(): boolean {
