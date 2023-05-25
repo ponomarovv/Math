@@ -32,11 +32,9 @@ export class QuizComponent {
 
     this.sharedService.pickedTopic$.subscribe((topic: string) => {
       this.pickedTopic = topic;
-      this.dictionary = {};
-
-
     });
 
+    this.dictionary = {};
     this.getQuiz();
   }
 

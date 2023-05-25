@@ -29,7 +29,6 @@ export class QuestionService implements OnInit{
   }
 
   getQuestionsByTopic(topic: string): Observable<QuestionModel[]> {
-    // console.log(topic);
     if (topic == 'global') topic='random';
     let route: string = this.baseUrl + '/' + topic;
     console.log(route)
