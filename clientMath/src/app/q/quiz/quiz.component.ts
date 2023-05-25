@@ -3,6 +3,7 @@ import {QuestionModel} from "../../_models/q/question";
 import {QuestionService} from "../../_services/question.service";
 import {AnswerModel} from "../../_models/q/answer";
 import {Router} from "@angular/router";
+import {SharedService} from "../../_services/shared.service";
 
 @Component({
   selector: 'app-quiz',
@@ -19,27 +20,37 @@ export class QuizComponent {
 
   maxKeys: string[] = [];
 
-  constructor(private questionService: QuestionService, private router: Router) {
+  pickedTopic: string = '';
+
+  constructor(private questionService: QuestionService,
+              private router: Router,
+              private sharedService: SharedService) {
   }
 
   ngOnInit(): void {
-    this.showQuestions = true;
-    this.getQuestions();
-    this.dictionary = {};
-
+    this.sharedService.pickedTopic$.subscribe((topic: string) => {
+      this.pickedTopic = topic;
+      this.getQuestions();
+      this.dictionary = {};
+    });
   }
 
   getQuestions() {
-    this.questionService.getQuestions()
-      .subscribe(
-        (questions: QuestionModel[]) => {
-          this.questions = questions;
-          this.resetAnswersCount();
-        },
-        (error: any) => {
-          console.error(error);
-        }
-      );
+    this.sharedService.pickedTopic$.subscribe(topic => {
+      console.log('getQuestions in quiz component, topic:', this.pickedTopic);
+      console.log('getQuestions in quiz component, topic:', topic);
+      console.log(this.pickedTopic);
+      this.questionService.getQuestionsByTopic(topic)
+        .subscribe(
+          (questions: QuestionModel[]) => {
+            this.questions = questions;
+            this.resetAnswersCount();
+          },
+          (error: any) => {
+            console.error(error);
+          }
+        );
+    });
   }
 
   checkAnswer(question: QuestionModel, selectedAnswer: AnswerModel) {

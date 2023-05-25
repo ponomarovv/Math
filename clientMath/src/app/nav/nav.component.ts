@@ -1,8 +1,8 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { UserService } from '../_services/user.service';
-import { SharedService } from '../_services/shared.service';
+import {Component, OnInit, HostListener} from '@angular/core';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {UserService} from '../_services/user.service';
+import {SharedService} from '../_services/shared.service';
 
 @Component({
   selector: 'app-nav',
@@ -23,7 +23,8 @@ export class NavComponent implements OnInit {
     private toastr: ToastrService,
     private userService: UserService,
     private sharedService: SharedService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.userService.fullName$.subscribe(fullName => {
@@ -77,8 +78,13 @@ export class NavComponent implements OnInit {
     this.fullName = 'Guest';
   }
 
-  onQuizSelected(topicName: string) {
-    this.pickedTopic = topicName;
-    // console.log(this.pickedTopic);
+  updateData(topic: string): void {
+    this.sharedService.updateData(topic);
+  }
+
+  getValue(topic: string) {
+    this.pickedTopic = topic;
+    this.sharedService.updateData(topic);
+    console.log(topic);
   }
 }

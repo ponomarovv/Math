@@ -29,6 +29,10 @@ import { DeleteProfileComponent } from './user/delete-profile/delete-profile.com
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { QuizComponent } from './q/quiz/quiz.component';
 import { ResultComponent } from './q/result/result.component';
+import { OneComponent } from './_tests/one/one.component';
+import { TwoComponent } from './_tests/two/two.component';
+import { ThreeComponent } from './_tests/three/three.component';
+import { FourComponent } from './_tests/four/four.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,11 @@ import { ResultComponent } from './q/result/result.component';
     DeleteProfileComponent,
     EditUserComponent,
     QuizComponent,
-    ResultComponent
+    ResultComponent,
+    OneComponent,
+    TwoComponent,
+    ThreeComponent,
+    FourComponent
   ],
   imports: [
     BrowserAnimationsModule,
