@@ -40,8 +40,9 @@
 </div>
 
 <div *ngIf="!showQuestions" class="card-body card">
-  <p>Correct Answers: {{ correctAnswersCount }}/{{questions?.length}}</p>
-  <p>Recommended quiz/quizzes:</p>
+  <p>Correct Answers: {{ correctAnswersCount }}/{{questions?.length ? questions?.length : 0}}</p>
+  <p>Recommended quiz/quizzes: <span *ngIf="maxKeys.length==0">You have no mistakes. Wanna try this quiz again?</span></p>
+
   <ul>
     <li *ngFor="let key of maxKeys">{{key}}</li>
   </ul>

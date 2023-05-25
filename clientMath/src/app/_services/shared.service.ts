@@ -10,7 +10,7 @@ export class SharedService {
   fullName$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   isLoggedIn$: BehaviorSubject<any> = new BehaviorSubject<any>('');
 
-  pickedTopic$: BehaviorSubject<string> = new BehaviorSubject<string>('init value')
+  pickedTopic$: BehaviorSubject<string> = new BehaviorSubject<string>('')
 
 
 

@@ -45,6 +45,7 @@ export class QuizComponent {
 
   getQuiz() {
     console.log('getQuiz');
+    if (this.pickedTopic=='')return;
     this.questionService.getQuestionsByTopic(this.pickedTopic)
       .subscribe(
         (questions: QuestionModel[]) => {
@@ -112,10 +113,6 @@ export class QuizComponent {
       }
     }
 
-    console.log(this.correctAnswersCount);
-    console.log(this.wrongAnswersCount);
-
-
     let maxCount = 0;
     for (const key in this.dictionary) {
       const value = this.dictionary[key];
@@ -124,12 +121,13 @@ export class QuizComponent {
       }
     }
 
+
     for (const key in this.dictionary) {
       if (this.dictionary[key] == maxCount) {
-        this.maxKeys.push(key);
+        this.maxKeys?.push(key);
       }
     }
-    this.maxKeys.sort();
+    this.maxKeys?.sort();
   }
 
   resetAnswersCount() {
