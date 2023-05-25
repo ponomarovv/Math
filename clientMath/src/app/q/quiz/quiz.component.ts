@@ -14,6 +14,7 @@ export class QuizComponent {
 
   questions: QuestionModel[] | null = null;
   correctAnswersCount: number = 0;
+  wrongAnswersCount: number = 0;
 
   showQuestions: boolean = true;
   dictionary: { [key: string]: number } = {};
@@ -21,6 +22,8 @@ export class QuizComponent {
   maxKeys: string[] = [];
 
   pickedTopic: string = '';
+
+  showingResults: boolean = false;
 
   constructor(private questionService: QuestionService,
               private router: Router,
@@ -53,37 +56,64 @@ export class QuizComponent {
   };
 
   checkAnswer(question: QuestionModel, selectedAnswer: AnswerModel) {
-    // Mark the question as answered
-    question.answered = true;
-    question.answeredAnswer = selectedAnswer;
-    // Increment the correct answers count if the selected answer is correct
-    if (selectedAnswer.isCorrect) {
-      this.correctAnswersCount++;
-    } else {
-      // Add the question topic to the wrong answer topics list
-      const topic = question.topicModel?.text;
-      if (topic !== null && topic !== undefined) {
-        if (topic && this.dictionary.hasOwnProperty(topic)) {
-          this.dictionary[topic] += 1;
-        } else {
-          this.dictionary[topic] = 1;
-        }
-      }
+    if (!this.showingResults) {
+      // Mark the question as answered
+      question.answered = true;
+      question.answeredAnswer = selectedAnswer;
+      // Increment the correct or wrong answers count based on the selected answer
+
+      // if (selectedAnswer.isCorrect) {
+      //   this.correctAnswersCount++;
+      // } else {
+      //   this.wrongAnswersCount++;
+      //   // Add the question topic to the wrong answer topics list
+      //   const topic = question.topicModel?.text;
+      //   if (topic) {
+      //     if (this.dictionary.hasOwnProperty(topic)) {
+      //       this.dictionary[topic] += 1;
+      //     } else {
+      //       this.dictionary[topic] = 1;
+      //     }
+      //   }
+      // }
+
     }
   }
 
   showResults() {
     this.showQuestions = false;
+    this.showingResults = true;
+
+    if (this.questions) {
+      for (const question of this.questions) {
+        const selectedAnswer = question.answeredAnswer;
+        if (selectedAnswer?.isCorrect) {
+          this.correctAnswersCount++;
+        } else {
+          this.wrongAnswersCount++;
+          // Add the question topic to the wrong answer topics list
+          const topic = question.topicModel?.text;
+          if (topic) {
+            if (this.dictionary.hasOwnProperty(topic)) {
+              this.dictionary[topic] += 1;
+            } else {
+              this.dictionary[topic] = 1;
+            }
+          }
+        }
+
+      }
+    }
+
 
     let maxCount = 0;
-
-
     for (const key in this.dictionary) {
       const value = this.dictionary[key];
       if (value > maxCount) {
         maxCount = value;
       }
     }
+
     for (const key in this.dictionary) {
       if (this.dictionary[key] == maxCount) {
         this.maxKeys.push(key);
@@ -94,6 +124,7 @@ export class QuizComponent {
 
   resetAnswersCount() {
     this.correctAnswersCount = 0;
+    this.wrongAnswersCount = 0;
   }
 
   hasUnansweredQuestions(): boolean {
