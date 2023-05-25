@@ -14,9 +14,9 @@
             Pick Quiz
           </button>
           <ul class="dropdown-menu" *dropdownMenu>
-            <li><a class="dropdown-item" routerLink="quiz">Quiz Global</a></li>
-            <li><a class="dropdown-item" routerLink="dummy">Quiz Arithmetic</a></li>
-            <li><a class="dropdown-item" routerLink="dummy">Quiz Geometry</a></li>
+            <li><a class="dropdown-item" routerLink="quiz" (click)="onQuizSelected('Quiz Global')">Quiz Global</a></li>
+            <li><a class="dropdown-item" routerLink="dummy" (click)="onQuizSelected('Arithmetic')">Quiz Arithmetic</a></li>
+            <li><a class="dropdown-item" routerLink="dummy" (click)="onQuizSelected('Geometry')">Quiz Geometry</a></li>
           </ul>
         </div>
       </div>

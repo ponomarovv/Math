@@ -16,6 +16,8 @@ export class NavComponent implements OnInit {
   isBurgerMenuOpen: boolean = false;
   isProfileButtonsVisible: boolean = true;
 
+  pickedTopic: string = '';
+
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -24,6 +26,11 @@ export class NavComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userService.fullName$.subscribe(fullName => {
+      this.fullName = fullName;
+    });
+
+
     this.sharedService.fullName$.subscribe(fullName => {
       this.fullName = fullName;
     });
@@ -36,8 +43,8 @@ export class NavComponent implements OnInit {
       this.isLoggedIn = isLoggedIn;
     });
 
-    this.userService.fullName$.subscribe(fullName => {
-      this.fullName = fullName;
+    this.sharedService.pickedTopic$.subscribe(topic => {
+      this.pickedTopic = topic;
     });
   }
 
@@ -68,5 +75,10 @@ export class NavComponent implements OnInit {
     this.userService.setLoggedIn(false);
     this.toastr.success('Logout successful', 'Logout');
     this.fullName = 'Guest';
+  }
+
+  onQuizSelected(topicName: string) {
+    this.pickedTopic = topicName;
+    // console.log(this.pickedTopic);
   }
 }
