@@ -16,6 +16,7 @@ export class QuizComponent {
   correctAnswersCount: number = 0;
   wrongAnswersCount: number = 0;
 
+  isLoadingQuestions :boolean = true;
   showQuestions: boolean = true;
   dictionary: { [key: string]: number } = {};
 
@@ -51,6 +52,7 @@ export class QuizComponent {
         (questions: QuestionModel[]) => {
           this.questions = questions;
           this.resetAnswersCount();
+          this.isLoadingQuestions=false;
         },
         (error: any) => {
           console.error(error);
