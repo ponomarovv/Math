@@ -20,8 +20,11 @@ public class QuestionService : IQuestionService
 
     public async Task<ICollection<QuestionModel>> Get10RandomQuestions()
     {
+        int n = 10;
         var allQuestions = await _unitOfWork.QuestionRepository.GetAllAsync(x => true);
-        var tenQuestions = allQuestions.OrderBy(y => Guid.NewGuid()).Take(10);
+        int count = allQuestions.Count;
+        if (count < n) n = count;
+        var tenQuestions = allQuestions.OrderBy(y => Guid.NewGuid()).Take(n);
         var questionModels = tenQuestions.Select(_mapper.Map<QuestionModel>).ToList();
 
         return questionModels;
@@ -29,8 +32,11 @@ public class QuestionService : IQuestionService
 
     public async Task<ICollection<QuestionModel>> GetQuestionsByTopic(string topic)
     {
+        int n = 10;
         var allQuestions = _unitOfWork.QuestionRepository.GetAllAsync(x => x.Topic.Text == topic).Result;
-        var tenQuestions =  allQuestions.OrderBy(y => Guid.NewGuid()).Take(10);
+        int count = allQuestions.Count;
+        if (count < n) n = count;
+        var tenQuestions =  allQuestions.OrderBy(y => Guid.NewGuid()).Take(n);
         var questionModels =  tenQuestions.Select(_mapper.Map<QuestionModel>).ToList();
 
         return questionModels;
