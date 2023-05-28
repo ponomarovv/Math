@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Entities;
+using Math.BLL.Mappers;
 using Math.BLL.Services;
 using Math.DAL.Abstract.Repository.Base;
 using Models;
@@ -16,14 +17,22 @@ namespace Math.BLL.Tests.Services
     {
         private QuestionService _questionService;
         private Mock<IUnitOfWork> _mockUnitOfWork;
-        private Mock<IMapper> _mockMapper;
+        private IMapper _mockMapper;
 
         [SetUp]
         public void SetUp()
         {
             _mockUnitOfWork = new Mock<IUnitOfWork>();
-            _mockMapper = new Mock<IMapper>();
-            _questionService = new QuestionService(_mockUnitOfWork.Object, _mockMapper.Object);
+            
+            
+            var config = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappersProfile());
+            });
+            _mockMapper = config.CreateMapper();
+            
+            
+            _questionService = new QuestionService(_mockUnitOfWork.Object, _mockMapper);
         }
 
         [Test]
@@ -38,7 +47,7 @@ namespace Math.BLL.Tests.Services
             };
 
             _mockUnitOfWork.Setup(uow => uow.QuestionRepository.GetAllAsync(It.IsAny<Func<Entities.Question, bool>>()))
-                .ReturnsAsync(allQuestions.Select(q => _mockMapper.Object.Map<Entities.Question>(q)).ToList());
+                .ReturnsAsync(allQuestions.Select(q => _mockMapper.Map<Entities.Question>(q)).ToList());
 
 
             // Act
@@ -62,7 +71,7 @@ namespace Math.BLL.Tests.Services
             };
 
             _mockUnitOfWork.Setup(uow => uow.QuestionRepository.GetAllAsync(It.IsAny<Func<Entities.Question, bool>>()))
-                .ReturnsAsync(allQuestions.Select(q => _mockMapper.Object.Map<Entities.Question>(q)).ToList());
+                .ReturnsAsync(allQuestions.Select(q => _mockMapper.Map<Entities.Question>(q)).ToList());
 
 
             // Act

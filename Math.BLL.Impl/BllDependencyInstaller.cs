@@ -20,9 +20,7 @@ public static class BllDependencyInstaller
         var config = new MapperConfiguration(mc =>
         {
             mc.AddProfile(new MappersProfile());
-   
         });
-     
 
         IMapper mapper = config.CreateMapper();
         services.AddSingleton(mapper);

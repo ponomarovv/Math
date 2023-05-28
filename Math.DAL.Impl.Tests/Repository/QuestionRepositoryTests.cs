@@ -4,33 +4,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entities;
-
 using Math.DAL.Abstract.Repository;
 using Math.DAL.Context;
 
 using Math.DAL.Repository;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Math.DAL.Impl.Tests.Repository
 {
     [TestFixture]
-    public class QuestionRepositoryTests
+    public class RepositoryTests
     {
-        private Mock<MathContext> mockContext;
-        private IQuestionRepository questionRepository;
+        
+        private DbContextOptions<MathContext> _options;
 
         [SetUp]
         public void Setup()
         {
-            // Создание Mock-объекта MathContext
-            mockContext = new Mock<MathContext>();
-            questionRepository = new QuestionRepository(mockContext.Object);
+            _options = new DbContextOptionsBuilder<MathContext>()
+                .UseInMemoryDatabase(databaseName: "TestDatabase")
+                .Options;
         }
 
         [Test]
-        public async Task GetAllAsync_Should_Return_All_Questions()
+        public async Task TestUpdateProduct()
         {
-            Assert.AreEqual(0,0);
+            // Arrange
+            using var context = new MathContext(_options);
+            context.Database.Migrate();
+            // await context.Database.EnsureCreatedAsync();
+            var repository = new QuestionRepository(context);
+
+            var originalProduct = new Question { Text = "TestProduct" };
+            await repository.AddAsync(originalProduct);
+
+            // Act
+            originalProduct.Text = "UpdatedProduct";
+            await repository.UpdateAsync(originalProduct);
+
+            // Assert
+            var updatedProduct = await repository.GetByIdAsync(originalProduct.Id);
+            Assert.NotNull(updatedProduct);
+            Assert.AreEqual("UpdatedProduct", updatedProduct.Text);
         }
     }
 }
