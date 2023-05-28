@@ -44,7 +44,7 @@ public class QuestionService : IQuestionService
 
     public Task<ICollection<QuestionModel>> Get10RandomArithmeticQuestions()
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException(); 
     }
 
     public Task<ICollection<QuestionModel>> Get10RandomGeometryQuestions()
