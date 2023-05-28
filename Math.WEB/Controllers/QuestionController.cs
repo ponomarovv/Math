@@ -1,12 +1,7 @@
 ﻿using Math.BLL.Abstract.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 // using System.Text.Json;
-using System.Text.Json.Serialization;
 using Models;
-using Newtonsoft.Json.Linq;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Math.WEB.Controllers;
 

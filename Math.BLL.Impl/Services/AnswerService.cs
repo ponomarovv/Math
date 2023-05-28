@@ -20,10 +20,12 @@ public class AnswerService : IAnswerService
     public async Task<AnswerModel> CreateAsync(AnswerModel model)
     {
         var entity = _mapper.Map<Answer>(model);
-        var newEntity =  _unitOfWork.AnswerRepository.AddAsync(entity);
+        var newEntity = _unitOfWork.AnswerRepository.AddAsync(entity);
         await _unitOfWork.SaveChangesAsync();
 
-        return _mapper.Map<AnswerModel>(newEntity);
+        var result = _mapper.Map<AnswerModel>(newEntity.Result);
+
+        return result;
     }
 
     public async Task<List<AnswerModel>> GetAllAsync()

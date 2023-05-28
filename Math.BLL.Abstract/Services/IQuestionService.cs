@@ -4,8 +4,6 @@ namespace Math.BLL.Abstract.Services;
 
 public interface IQuestionService : IService<QuestionModel>
 {
-    void StartGame();
-    
     Task<ICollection<QuestionModel>> Get10RandomQuestions();
     Task<ICollection<QuestionModel>> GetQuestionsByTopic(string topic);
     Task<ICollection<QuestionModel>> Get10RandomArithmeticQuestions();

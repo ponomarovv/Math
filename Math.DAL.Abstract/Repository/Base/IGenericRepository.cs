@@ -1,6 +1,4 @@
-﻿using Entities;
-
-namespace Math.DAL.Abstract.Repository.Base;
+﻿namespace Math.DAL.Abstract.Repository.Base;
 
 public interface IGenericRepository <TKey,TEntity>
 {

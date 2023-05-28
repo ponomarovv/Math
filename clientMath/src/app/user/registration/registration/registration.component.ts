@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {ValidationErrors} from "@angular/forms";
 import {UserService} from "../../../_services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +11,7 @@ import {UserService} from "../../../_services/user.service";
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(public userService: UserService, private toastr: ToastrService) {
+  constructor(public userService: UserService, private toastr: ToastrService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -23,6 +24,7 @@ export class RegistrationComponent implements OnInit {
         if (res.succeeded) {
           this.userService.formModel.reset();
           this.toastr.success('New user created', 'Registration successful.');
+          this.router.navigateByUrl('user/login');
         } else {
           res.errors.forEach((element: ValidationErrors|any) => {
             switch (element.code) {

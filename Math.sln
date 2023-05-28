@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.CLI", "Math.CLI\Math.CLI.csproj", "{C593CF91-D99E-4371-AC94-4E3A77B4103D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.DAL.Impl", "Math.DAL.Impl\Math.DAL.Impl.csproj", "{AB316887-B751-4D61-816C-48C45BE6F26E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.BLL.Impl", "Math.BLL.Impl\Math.BLL.Impl.csproj", "{73C125A5-12AB-4B38-97CF-AE7A2048CC64}"
@@ -33,10 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C593CF91-D99E-4371-AC94-4E3A77B4103D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C593CF91-D99E-4371-AC94-4E3A77B4103D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C593CF91-D99E-4371-AC94-4E3A77B4103D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C593CF91-D99E-4371-AC94-4E3A77B4103D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB316887-B751-4D61-816C-48C45BE6F26E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB316887-B751-4D61-816C-48C45BE6F26E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB316887-B751-4D61-816C-48C45BE6F26E}.Release|Any CPU.ActiveCfg = Release|Any CPU

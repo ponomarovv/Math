@@ -1,6 +1,4 @@
-﻿using Entities;
-
-namespace Entities;
+﻿namespace Entities;
 
 public class Question
 {

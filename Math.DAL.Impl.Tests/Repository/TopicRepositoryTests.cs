@@ -1,10 +1,5 @@
-﻿using Moq;
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
 using Entities;
-using Math.DAL.Abstract.Repository;
 using Math.DAL.Context;
 using Math.DAL.Repository;
 using Microsoft.EntityFrameworkCore;
