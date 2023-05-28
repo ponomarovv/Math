@@ -28,17 +28,17 @@ namespace Math.WEB.Controllers
         [HttpGet]
         [Authorize]
         // GET : /api/UserProfile
-        public async Task<object> GetUserProfile()
+        public async Task<ConfirmationModel> GetUserProfile()
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = _userManager.FindByIdAsync(userId).Result;
-            return new
+            return new ConfirmationModel()
             {
-                user.Id,
-                user.FullName,
-                user.Email,
-                user.UserName,
-                user.PasswordHash
+                Id = user.Id,
+                FullName = user.FullName,
+                Email = user.Email,
+                UserName = user.UserName,
+                PasswordHash = user.PasswordHash
             };
         }
     }
