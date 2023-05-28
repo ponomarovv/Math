@@ -35,7 +35,7 @@ namespace Math.DAL.Impl.Tests.Repository.Base
         public async Task AddAsync_Should_Add_Entity_To_Database()
         {
             // Arrange
-            var product = new Question { Id = 1, Text = "TestProduct" };
+            var product = new Question {  Text = "TestProduct" };
 
             // Act
             var addedProduct = await _repository.AddAsync(product);
