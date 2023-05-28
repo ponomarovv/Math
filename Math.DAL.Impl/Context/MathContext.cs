@@ -5,10 +5,15 @@ using Microsoft.Extensions.Configuration;
 
 namespace Math.DAL.Context;
 
-public class MathContext : IdentityDbContext 
+public class MathContext : IdentityDbContext
 {
     private readonly IConfiguration _config;
 
+    public MathContext()
+    {
+        
+    }
+    
     public MathContext(IConfiguration config, DbContextOptions options) : base(options)
     {
         _config = config;

@@ -1,20 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.CLI", "Math.CLI\Math.CLI.csproj", "{C593CF91-D99E-4371-AC94-4E3A77B4103D}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.CLI", "Math.CLI\Math.CLI.csproj", "{C593CF91-D99E-4371-AC94-4E3A77B4103D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.DAL.Impl", "Math.DAL.Impl\Math.DAL.Impl.csproj", "{AB316887-B751-4D61-816C-48C45BE6F26E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.DAL.Impl", "Math.DAL.Impl\Math.DAL.Impl.csproj", "{AB316887-B751-4D61-816C-48C45BE6F26E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.BLL.Impl", "Math.BLL.Impl\Math.BLL.Impl.csproj", "{73C125A5-12AB-4B38-97CF-AE7A2048CC64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.BLL.Impl", "Math.BLL.Impl\Math.BLL.Impl.csproj", "{73C125A5-12AB-4B38-97CF-AE7A2048CC64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.WEB", "Math.WEB\Math.WEB.csproj", "{267E314A-CE19-4326-B5B2-F669D27376CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.WEB", "Math.WEB\Math.WEB.csproj", "{267E314A-CE19-4326-B5B2-F669D27376CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.DAL.Abstract", "Math.DAL.Abstract\Math.DAL.Abstract.csproj", "{61E2B69D-3AAD-4F62-B05C-A117705503D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.DAL.Abstract", "Math.DAL.Abstract\Math.DAL.Abstract.csproj", "{61E2B69D-3AAD-4F62-B05C-A117705503D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.BLL.Abstract", "Math.BLL.Abstract\Math.BLL.Abstract.csproj", "{90ECE544-68F6-481B-B7EA-553F11C5C07C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.BLL.Abstract", "Math.BLL.Abstract\Math.BLL.Abstract.csproj", "{90ECE544-68F6-481B-B7EA-553F11C5C07C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.Entities", "Math.Entities\Math.Entities.csproj", "{4DE2B20B-CD0C-4956-A796-BBB8E143D69B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.Entities", "Math.Entities\Math.Entities.csproj", "{4DE2B20B-CD0C-4956-A796-BBB8E143D69B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.Models", "Math.Models\Math.Models.csproj", "{9574C16A-B79D-44AA-8F4E-0C7FA1A11DBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.Models", "Math.Models\Math.Models.csproj", "{9574C16A-B79D-44AA-8F4E-0C7FA1A11DBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C6EFDDED-0C7F-48EB-9F1F-7FF6FB9967C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.WEB.Tests", "Math.WEB.Tests\Math.WEB.Tests.csproj", "{A4DF7BE9-2854-43B7-B3A7-491B39E28866}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.BLL.Impl.Tests", "Math.BLL.Impl.Tests\Math.BLL.Impl.Tests.csproj", "{FA80027A-05A0-42C1-A08F-5CA48CA9F874}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.DAL.Impl.Tests", "Math.DAL.Impl.Tests\Math.DAL.Impl.Tests.csproj", "{C930AD56-939C-453F-B7D4-40D82F547372}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,5 +65,28 @@ Global
 		{9574C16A-B79D-44AA-8F4E-0C7FA1A11DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9574C16A-B79D-44AA-8F4E-0C7FA1A11DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9574C16A-B79D-44AA-8F4E-0C7FA1A11DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4DF7BE9-2854-43B7-B3A7-491B39E28866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4DF7BE9-2854-43B7-B3A7-491B39E28866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4DF7BE9-2854-43B7-B3A7-491B39E28866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4DF7BE9-2854-43B7-B3A7-491B39E28866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA80027A-05A0-42C1-A08F-5CA48CA9F874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA80027A-05A0-42C1-A08F-5CA48CA9F874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA80027A-05A0-42C1-A08F-5CA48CA9F874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA80027A-05A0-42C1-A08F-5CA48CA9F874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C930AD56-939C-453F-B7D4-40D82F547372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C930AD56-939C-453F-B7D4-40D82F547372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C930AD56-939C-453F-B7D4-40D82F547372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C930AD56-939C-453F-B7D4-40D82F547372}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A4DF7BE9-2854-43B7-B3A7-491B39E28866} = {C6EFDDED-0C7F-48EB-9F1F-7FF6FB9967C5}
+		{FA80027A-05A0-42C1-A08F-5CA48CA9F874} = {C6EFDDED-0C7F-48EB-9F1F-7FF6FB9967C5}
+		{C930AD56-939C-453F-B7D4-40D82F547372} = {C6EFDDED-0C7F-48EB-9F1F-7FF6FB9967C5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1421BDBD-6128-4CE7-A7AA-FD9607342E9E}
 	EndGlobalSection
 EndGlobal

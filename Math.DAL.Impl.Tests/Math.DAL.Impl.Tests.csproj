@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Fakes\" />
+    <Folder Include="Repository\Base\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.16" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+    <PackageReference Include="Moq" Version="4.18.4" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Math.BLL.Abstract\Math.BLL.Abstract.csproj" />
+    <ProjectReference Include="..\Math.BLL.Impl\Math.BLL.Impl.csproj" />
+    <ProjectReference Include="..\Math.DAL.Abstract\Math.DAL.Abstract.csproj" />
+    <ProjectReference Include="..\Math.DAL.Impl\Math.DAL.Impl.csproj" />
+    <ProjectReference Include="..\Math.Entities\Math.Entities.csproj" />
+    <ProjectReference Include="..\Math.Models\Math.Models.csproj" />
+  </ItemGroup>
+
+</Project>

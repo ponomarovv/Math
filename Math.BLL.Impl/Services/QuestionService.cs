@@ -32,11 +32,11 @@ public class QuestionService : IQuestionService
 
     public async Task<ICollection<QuestionModel>> GetQuestionsByTopic(string topic)
     {
-        int n = 10;
+        int takeN = 10;
         var allQuestions = _unitOfWork.QuestionRepository.GetAllAsync(x => x.Topic.Text == topic).Result;
         int count = allQuestions.Count;
-        if (count < n) n = count;
-        var tenQuestions =  allQuestions.OrderBy(y => Guid.NewGuid()).Take(n);
+        if (count < takeN) takeN = count;
+        var tenQuestions =  allQuestions.OrderBy(y => Guid.NewGuid()).Take(takeN);
         var questionModels =  tenQuestions.Select(_mapper.Map<QuestionModel>).ToList();
 
         return questionModels;
@@ -64,7 +64,6 @@ public class QuestionService : IQuestionService
 
         Console.WriteLine(q.TopicModel.Text);
         //
-        // // TODO I don't get answers with the question. I have to use Include somewhere. but where
 
         Console.WriteLine("Options: ");
         foreach (var item in q.AnswerModels)

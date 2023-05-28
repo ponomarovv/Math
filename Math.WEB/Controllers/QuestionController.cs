@@ -43,21 +43,21 @@ public class QuestionController : ControllerBase
     //     }
     // }
 
-    [HttpGet("{word}")]
-    public async Task<ActionResult<ICollection<QuestionModel>>> GetQuestionsByWord(string word)
+    [HttpGet("{topic}")]
+    public async Task<ActionResult<ICollection<QuestionModel>>> GetQuestionsByWord(string topic)
     {
         try
         {
             ICollection<QuestionModel> questions;
             // var word = "Arithmetic";
             // Call a service method based on the specified word
-            if (word == "random")
+            if (topic == "random")
             {
                 questions = await _questionService.Get10RandomQuestions();
             }
             else
             {
-                questions = await _questionService.GetQuestionsByTopic(word);
+                questions = await _questionService.GetQuestionsByTopic(topic);
             }
 
             if (questions == null || questions.Count == 0)
