@@ -50,9 +50,8 @@ namespace Math.BLL.Impl.Tests.Services
             // Assert
             Assert.AreEqual(addedEntity.Text, result.Text);
             _mockUnitOfWork.Verify(uow => uow.AnswerRepository.AddAsync(It.IsAny<Answer>()), Times.Once);
-            // _mockUnitOfWork.Verify(uow => uow.SaveChangesAsync(), Times.Once);
-            
-            
+            _mockUnitOfWork.Verify(uow => uow.SaveChangesAsync(), Times.Once);
+
         }
 
         [Test]
@@ -96,6 +95,27 @@ namespace Math.BLL.Impl.Tests.Services
             // Assert
             Assert.AreEqual(expected.Text, result.Text);
             _mockUnitOfWork.Verify(uow => uow.AnswerRepository.GetByIdAsync(id), Times.Once);
+        }
+
+        [Test]
+        public async Task GetByIdAsync_Should_Return_Null()
+        {
+            // Arrange
+            var id = 1;
+            var entity = new Answer { Id = id, Text = "Test Answer" };
+            var expected = _mapper.Map<AnswerModel>(entity);
+
+            var findId = -1;
+
+            _mockUnitOfWork.Setup(uow => uow.AnswerRepository.GetByIdAsync(id))
+                .ReturnsAsync(entity);
+
+            // Act
+            var result = await _answerService.GetByIdAsync(findId);
+
+            // Assert
+            Assert.IsNull(result);
+           
         }
 
         [Test]

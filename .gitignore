@@ -940,3 +940,6 @@ Desktop.ini
 
 /.idea/.idea.Math/.idea/sonarlint/issuestore/index.pb
 /.idea/.idea.Math/.idea/sonarlint/issuestore/index.pb
+
+# sonar qube
+.sonarqube/
