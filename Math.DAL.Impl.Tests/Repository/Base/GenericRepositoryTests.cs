@@ -137,11 +137,4 @@ namespace Math.DAL.Impl.Tests.Repository.Base
             Assert.AreEqual(product.Text, result.Text);
         }
     }
-
-    public class ProductRepository : GenericRepository<int, Question>
-    {
-        public ProductRepository(MathContext dbContext) : base(dbContext)
-        {
-        }
-    }
 }
