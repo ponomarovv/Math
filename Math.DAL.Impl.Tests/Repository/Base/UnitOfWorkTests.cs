@@ -10,14 +10,13 @@ namespace Math.DAL.Impl.Tests.Repository.Base
     [TestFixture]
     public class UnitOfWorkTests
     {
-    
         private Mock<IAnswerRepository> _mockAnswerRepository;
         private Mock<IQuestionRepository> _mockQuestionRepository;
         private Mock<ITopicRepository> _mockTopicRepository;
         private Mock<IQuizRepository> _mockQuizRepository;
 
         private UnitOfWork _unitOfWork;
-        
+
         private DbContextOptions<MathContext> _options;
 
         private MathContext _context;
@@ -28,12 +27,12 @@ namespace Math.DAL.Impl.Tests.Repository.Base
             _options = new DbContextOptionsBuilder<MathContext>()
                 .UseInMemoryDatabase(databaseName: "TestDatabase")
                 .Options;
-            
+
             _context = new MathContext(_options);
             // context.Database.Migrate();
             _context.Database.EnsureCreatedAsync();
-            
-       
+
+
             _mockAnswerRepository = new Mock<IAnswerRepository>();
             _mockQuestionRepository = new Mock<IQuestionRepository>();
             _mockTopicRepository = new Mock<ITopicRepository>();
@@ -56,8 +55,9 @@ namespace Math.DAL.Impl.Tests.Repository.Base
             await _unitOfWork.SaveChangesAsync();
 
             // Assert
-            using (var context = new MathContext(_options));
-            // _context.Verify(c => c.SaveChangesAsync(), Times.Once);
+            using var context = new MathContext(_options);
+
+            // Mock.Get(context).Verify(c => c.SaveChangesAsync(), Times.Once);
         }
 
         [Test]

@@ -6,38 +6,11 @@ namespace Math.DAL.Context;
 
 public class MathContext : IdentityDbContext
 {
-
-
-
-    
-    // public MathContext(IConfiguration config, DbContextOptions options) : base(options)
-    // {
-    //     _config = config;
-    // }
-    
     public MathContext(DbContextOptions<MathContext> options) : base(options)
     {
        
     }
     
-    // public MathContext(DbContextOptions<MathContext> options) : base(options)
-    // {
-    //     //Database.EnsureCreated();
-    // }
-
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-        base.OnModelCreating(builder);
-    }
-
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    // {
-    //    string? connectionString = _config.GetConnectionString("DefaultConnection");
-    //
-    //     optionsBuilder.UseSqlServer(connectionString);
-    // }
-
-
     public DbSet<Topic> Topics { get; set; }
     public DbSet<Question> Questions { get; set; }
     public DbSet<Answer> Answers { get; set; }
