@@ -278,3 +278,43 @@ INSERT INTO [dbo].[Answers] ([Text], [IsCorrect], [QuestionId])
 
 
 --http://zno.academia.in.ua/mod/glossary/view.php?id=1063&mode=letter&hook=%D0%90&sortkey=&sortorder=
+
+--
+-- books
+
+USE [MathDB]
+GO
+
+INSERT INTO [dbo].[Books]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'Весела арифметика — Ольга Конобевська, Тамара Маршалова, Наталія Латушко',1)
+GO
+
+INSERT INTO [dbo].[Books]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'Big Book of Math Practice Problems Addition and Subtraction, Grades 1-3 - Stacy Otillio, Frank Otillio',1)
+GO
+
+
+--
+USE [MathDB]
+GO
+
+INSERT INTO [dbo].[Books]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'Humble Math Area, Perimeter, Volume, & Surface Area: Geometry for Beginners - Workbook with Answer Key Elementary, Middle School, High School Math – Geometry for Kids',2)
+GO
+
+INSERT INTO [dbo].[Books]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'Geometry Seeing, Doing, Understanding - Harold R. Jacobs',2)
+GO
+

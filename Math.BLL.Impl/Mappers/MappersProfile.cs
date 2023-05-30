@@ -20,12 +20,18 @@ public class MappersProfile : AutoMapper.Profile
 
         CreateMap<Topic, TopicModel>()
             .ForMember(dest => dest.QuestionModels, opt => opt.MapFrom(src => src.Questions))
+            .ForMember(dest => dest.BookModels, opt => opt.MapFrom(src => src.Books))
             .PreserveReferences()
             .ReverseMap();
 
         CreateMap<Quiz, QuizModel>()
             .ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics))
             .ForMember(dest => dest.ApplicationUser, opt => opt.MapFrom(src => src.ApplicationUser))
+            .PreserveReferences()
+            .ReverseMap();
+        
+        
+        CreateMap<Book, BookModel>()
             .PreserveReferences()
             .ReverseMap();
     }

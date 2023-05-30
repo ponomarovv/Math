@@ -10,5 +10,9 @@ public class Quiz
 
     public ApplicationUser? ApplicationUser { get; set; }
 
+    // M:N
     public virtual ICollection<Topic> Topics { get; set; }
+    
+    // Main Topic
+    // public Topic? Topic { get; set; }
 }

@@ -17,7 +17,7 @@ public class QuestionRepository : GenericRepository<int, Question>, IQuestionRep
 
     public override async Task<List<Question>> GetAllAsync(Func<Question, bool> predicate)
     {
-        List<Question> items = _dbContext.Questions.Include(x => x.Answers).Include(x=>x.Topic).Where(predicate).ToList();
+        List<Question> items = _dbContext.Questions.Include(x => x.Answers).Include(x=>x.Topic).ThenInclude(x=>x.Books).Where(predicate).ToList();
         // List<Question> items = _dbContext.Questions.Where(predicate).ToList();
         return items;
     }
