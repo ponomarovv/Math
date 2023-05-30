@@ -9,4 +9,5 @@ public class Topic
     public virtual ICollection<Question> Questions { get; set; }
 
     public virtual ICollection<Quiz> Quizzes { get; set; }
+    public virtual ICollection<Book> Books { get; set; }
 }
