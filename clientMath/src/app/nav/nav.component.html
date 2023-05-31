@@ -14,9 +14,9 @@
             Pick Quiz
           </button>
           <ul class="dropdown-menu" *dropdownMenu>
-            <li><a class="dropdown-item"  routerLink="quiz" (click)="getValue('global')" >Quiz Global</a></li>
-            <li><a class="dropdown-item" routerLink="quiz" (click)="getValue('Arithmetic')" >Quiz Arithmetic</a></li>
-            <li><a class="dropdown-item" routerLink="quiz" (click)="getValue('Geometry')">Quiz Geometry</a></li>
+            <li *ngFor="let topic of topics">
+              <a class="dropdown-item" routerLink="quiz" (click)="getValue(topic?.text!)">{{ topic?.text! }}</a>
+            </li>
           </ul>
         </div>
       </div>

@@ -29,7 +29,7 @@ export class QuestionService implements OnInit{
   }
 
   getQuestionsByTopic(topic: string): Observable<QuestionModel[]> {
-    if (topic == 'global') topic='random';
+    if (topic == 'Global Quiz') topic='random';
     let route: string = this.baseUrl + '/' + topic;
     console.log(route)
     return this.http.get<QuestionModel[]>(route);

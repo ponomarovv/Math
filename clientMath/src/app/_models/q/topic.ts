@@ -6,4 +6,8 @@ export class TopicModel {
   text: string | null = null;
   questionModels: QuestionModel[] | null = null;
   bookModels: BookModel[] | null = null;
+
+  constructor(text: string) {
+    this.text = text;
+  }
 }

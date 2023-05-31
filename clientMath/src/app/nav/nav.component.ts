@@ -5,6 +5,8 @@ import {UserService} from '../_services/user.service';
 import {SharedService} from '../_services/shared.service';
 import {TopicService} from "../_services/topic.service";
 import {TopicModel} from "../_models/q/topic";
+import {QuestionModel} from "../_models/q/question";
+import {QuestionService} from "../_services/question.service";
 
 @Component({
   selector: 'app-nav',
@@ -20,28 +22,21 @@ export class NavComponent implements OnInit {
 
   pickedTopic: string = '';
 
-  topics: TopicModel[] = [];
+  topics: TopicModel[] = [new TopicModel('Global Quiz')];
+  // topics: TopicModel[] = [];
 
   constructor(
     private router: Router,
     private toastr: ToastrService,
     private userService: UserService,
     private sharedService: SharedService,
-    private topicService: TopicService
+    private topicService: TopicService,
+    private questionService: QuestionService
   ) {
   }
 
   ngOnInit(): void {
-    this.topicService.getTopics().subscribe(
-      topics => {
-        this.topics = topics;
-      },
-      error => {
-        // Handle the error, such as displaying an error message
-        console.error('Failed to fetch topics:', error);
-      }
-    );
-
+    this.getTopics();
 
     this.userService.fullName$.subscribe(fullName => {
       this.fullName = fullName;
@@ -98,7 +93,23 @@ export class NavComponent implements OnInit {
     this.sharedService.updateData(topic);
   }
 
-  showMe(){
+  showMe() {
     console.log(this.topics);
   }
+
+  getTopics() {
+    this.topicService.getTopics().subscribe(
+      (topics: TopicModel[]) => {
+        for (const topic of topics) {
+          this.topics.push(topic);
+        }
+
+
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
 }
