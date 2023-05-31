@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit{
         console.log('logged in');
         this.toastr.success('Login Successful', 'Login');
         this.userService.setLoggedIn(true);
-        this.userService.setFullName(res.fullName); // Установите полное имя в UserService
+        this.userService.setFullName(res.fullName);
         this.userService.setUserId(res.userId);
       },
       err => {

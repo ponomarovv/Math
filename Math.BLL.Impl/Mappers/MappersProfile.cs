@@ -34,5 +34,10 @@ public class MappersProfile : AutoMapper.Profile
         CreateMap<Book, BookModel>()
             .PreserveReferences()
             .ReverseMap();
+        
+                
+        CreateMap<TopicForQuiz, TopicForQuizModel>()
+            .PreserveReferences()
+            .ReverseMap();
     }
 }
