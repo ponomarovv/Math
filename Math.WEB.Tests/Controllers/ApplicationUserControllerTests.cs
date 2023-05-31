@@ -1,7 +1,4 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+﻿using System.IdentityModel.Tokens.Jwt;
 using Entities;
 using Entities.Auth.Login;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +10,6 @@ using Math.WEB.Controllers;
 using Models;
 using Moq;
 using NUnit.Framework;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
 namespace Math.WEB.Tests.Controllers

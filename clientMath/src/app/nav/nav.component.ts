@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {UserService} from '../_services/user.service';
 import {SharedService} from '../_services/shared.service';
+import {TopicService} from "../_services/topic.service";
+import {TopicModel} from "../_models/q/topic";
 
 @Component({
   selector: 'app-nav',
@@ -18,15 +20,29 @@ export class NavComponent implements OnInit {
 
   pickedTopic: string = '';
 
+  topics: TopicModel[] = [];
+
   constructor(
     private router: Router,
     private toastr: ToastrService,
     private userService: UserService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private topicService: TopicService
   ) {
   }
 
   ngOnInit(): void {
+    this.topicService.getTopics().subscribe(
+      topics => {
+        this.topics = topics;
+      },
+      error => {
+        // Handle the error, such as displaying an error message
+        console.error('Failed to fetch topics:', error);
+      }
+    );
+
+
     this.userService.fullName$.subscribe(fullName => {
       this.fullName = fullName;
     });
@@ -80,5 +96,9 @@ export class NavComponent implements OnInit {
 
   getValue(topic: string) {
     this.sharedService.updateData(topic);
+  }
+
+  showMe(){
+    console.log(this.topics);
   }
 }
