@@ -4,6 +4,8 @@ import {QuestionService} from "../../_services/question.service";
 import {AnswerModel} from "../../_models/q/answer";
 import {Router} from "@angular/router";
 import {SharedService} from "../../_services/shared.service";
+import {TopicModel} from "../../_models/q/topic";
+import {LoginComponent} from "../../user/login/login.component";
 
 @Component({
   selector: 'app-quiz',
@@ -16,7 +18,7 @@ export class QuizComponent {
   correctAnswersCount: number = 0;
   wrongAnswersCount: number = 0;
 
-  isLoadingQuestions :boolean = true;
+  isLoadingQuestions: boolean = true;
   showQuestions: boolean = true;
   dictionary: { [key: string]: number } = {};
 
@@ -26,6 +28,9 @@ export class QuizComponent {
 
   showingResults: boolean = false;
 
+  topicsInThisQuiz: TopicModel [] = [];
+  topicNamesInThisQuiz: string [] = [];
+  topicsToShowInResultOfThisQuiz: TopicModel [] = [];
 
 
   constructor(private questionService: QuestionService,
@@ -46,13 +51,13 @@ export class QuizComponent {
 
   getQuiz() {
     console.log('getQuiz');
-    if (this.pickedTopic=='')return;
+    if (this.pickedTopic == '') return;
     this.questionService.getQuestionsByTopic(this.pickedTopic)
       .subscribe(
         (questions: QuestionModel[]) => {
           this.questions = questions;
           this.resetAnswersCount();
-          this.isLoadingQuestions=false;
+          this.isLoadingQuestions = false;
         },
         (error: any) => {
           console.error(error);
@@ -65,6 +70,15 @@ export class QuizComponent {
       // Mark the question as answered
       question.answered = true;
       question.answeredAnswer = selectedAnswer;
+      // console.log(question.topicModel?.text);
+
+      if (!this.topicNamesInThisQuiz.includes(question.topicModel?.text!)) {
+        // console.log('hi');
+        // console.log(question.topicModel?.text);
+        this.topicNamesInThisQuiz.push(question.topicModel?.text!);
+        this.topicsInThisQuiz.push(question.topicModel!);
+      }
+
 
       // Increment the correct or wrong answers count based on the selected answer
 
@@ -87,13 +101,15 @@ export class QuizComponent {
   }
 
   showResults() {
+    console.log(this.topicsInThisQuiz);
+
     this.showQuestions = false;
     this.showingResults = true;
     this.resetAnswersCount();
 
     if (this.questions) {
       for (const question of this.questions) {
-        if(!question.answered) continue;
+        if (!question.answered) continue;
         const selectedAnswer = question.answeredAnswer;
         if (selectedAnswer?.isCorrect) {
           this.correctAnswersCount++;
@@ -127,6 +143,16 @@ export class QuizComponent {
       }
     }
     this.maxKeys?.sort();
+
+    for (const topic of this.maxKeys) {
+      for (const topicElement of this.topicsInThisQuiz) {
+        if (topicElement.text == topic) {
+          this.topicsToShowInResultOfThisQuiz.push(topicElement);
+        }
+      }
+    }
+
+    console.log(this.topicsToShowInResultOfThisQuiz);
   }
 
   resetAnswersCount() {

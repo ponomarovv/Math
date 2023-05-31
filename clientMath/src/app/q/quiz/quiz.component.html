@@ -4,26 +4,27 @@
       <h2>Quiz Questions</h2>
     </div>
     <div class="card card-body">
-    <ol>
-      <li *ngFor="let question of questions">
-        <div class="card mb-2">
-          <!--        <h3>{{ question?.topicModel?.text }}</h3>-->
-          <h2>{{ question?.text }} (Topic: {{question?.topicModel?.text}})</h2>
-          <ul style="list-style-type: none;">
-            <li *ngFor="let answer of question?.answerModels">
-              <label>
-                <input type="radio" [name]="question?.id" [value]="answer?.id" (change)="checkAnswer(question, answer)">
-                {{ answer?.text }}
-              </label>
-            </li>
-          </ul>
-          <p *ngIf="question?.answered">
-            Your answer is {{ question?.answeredAnswer?.text }}. It
-            is {{ question?.answeredAnswer?.isCorrect ? 'correct' : 'incorrect' }}.
-          </p>
-        </div>
-      </li>
-    </ol>
+      <ol>
+        <li *ngFor="let question of questions">
+          <div class="card mb-2">
+            <!--        <h3>{{ question?.topicModel?.text }}</h3>-->
+            <h2>{{ question?.text }} (Topic: {{question?.topicModel?.text}})</h2>
+            <ul style="list-style-type: none;">
+              <li *ngFor="let answer of question?.answerModels">
+                <label>
+                  <input type="radio" [name]="question?.id" [value]="answer?.id"
+                         (change)="checkAnswer(question, answer)">
+                  {{ answer?.text }}
+                </label>
+              </li>
+            </ul>
+            <p *ngIf="question?.answered">
+              Your answer is {{ question?.answeredAnswer?.text }}. It
+              is {{ question?.answeredAnswer?.isCorrect ? 'correct' : 'incorrect' }}.
+            </p>
+          </div>
+        </li>
+      </ol>
     </div>
   </div>
 
@@ -31,20 +32,31 @@
     <p>Loading questions...</p>
   </div>
 
-<!--  <div class="text-end mb-4" *ngIf="showQuestions">-->
+  <!--  <div class="text-end mb-4" *ngIf="showQuestions">-->
   <div class="text-end mb-4" *ngIf="questions">
     <!--  [disabled]="hasUnansweredQuestions()"-->
-<!--    <button class="btn btn-primary" (click)="showResults()" [disabled]="hasUnansweredQuestions()">Show Results</button>-->
-    <button class="btn btn-primary" (click)="showResults()" >Show Results</button>
+    <!--    <button class="btn btn-primary" (click)="showResults()" [disabled]="hasUnansweredQuestions()">Show Results</button>-->
+    <button class="btn btn-primary" (click)="showResults()">Show Results</button>
 
   </div>
 </div>
 
 <div *ngIf="!showQuestions" class="card-body card">
   <p>Correct Answers: {{ correctAnswersCount }}/{{questions?.length ? questions?.length : 0}}</p>
-  <p>Recommended quiz/quizzes: <span *ngIf="wrongAnswersCount==0">You have no mistakes. Wanna try this quiz again?</span>
+  <p>Recommended quiz/quizzes: <span
+    *ngIf="wrongAnswersCount==0">You have no mistakes. Wanna try this quiz again?</span>
 
-  <ul>
-    <li *ngFor="let key of maxKeys">{{key}}    </li>
-  </ul>
+  <ol>
+    <div >
+      <li *ngFor="let topic of topicsToShowInResultOfThisQuiz">
+        <div class="mb-2">
+          {{topic.text}}
+          <div>Recommended books:</div>
+          <ul>
+            <li *ngFor="let book of topic.bookModels">{{book.text}}</li>
+          </ul>
+        </div>
+      </li>
+    </div>
+  </ol>
 </div>
