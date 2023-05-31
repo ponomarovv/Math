@@ -17,4 +17,5 @@ public class MathContext : IdentityDbContext
     
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     public DbSet<Quiz> Quizzes { get; set; }
+    public DbSet<TopicForQuiz> TopicsForQuizzes { get; set; }
 }

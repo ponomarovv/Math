@@ -10,5 +10,5 @@ public class Topic
 
     public virtual ICollection<Quiz> Quizzes { get; set; }
     public virtual ICollection<Book> Books { get; set; }
-    public Topic AnotherTopic { get; set; }
+    public int  TopicId { get; set; }
 }
