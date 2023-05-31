@@ -9,4 +9,5 @@ public class TopicModel
     public virtual ICollection<BookModel> BookModels { get; set; }
     
     public int  TopicId { get; set; }
+    public TopicModel AnotherTopic { get; set; }
 }

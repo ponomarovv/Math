@@ -5,6 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>Math.DAL</RootNamespace>
+        <UserSecretsId>fd045181-7cac-4f3a-ac55-781cdf0bd692</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>

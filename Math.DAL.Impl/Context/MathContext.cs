@@ -8,13 +8,19 @@ public class MathContext : IdentityDbContext
 {
     public MathContext(DbContextOptions<MathContext> options) : base(options)
     {
-       
     }
-    
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        
+        builder.ApplyConfiguration(new TopicConfiguration());
+    }
+
     public DbSet<Topic> Topics { get; set; }
     public DbSet<Question> Questions { get; set; }
     public DbSet<Answer> Answers { get; set; }
-    
+
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     public DbSet<Quiz> Quizzes { get; set; }
     public DbSet<TopicForQuiz> TopicsForQuizzes { get; set; }
