@@ -38,14 +38,8 @@ export class LoginComponent implements OnInit{
         this.userService.setUserId(res.userId);
       },
       err => {
-        if (err.status == 400) {
-          // this.toastr.error('400', 'Authentication failed');
           console.log(err);
           this.toastr.error('Login Failed',  'Login');
-        } else{
-          console.log(err);
-          this.toastr.error('Login Failed',  'Login');
-        }
       }
     );
   }

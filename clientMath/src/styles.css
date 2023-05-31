@@ -49,7 +49,7 @@ div.form-group.required>label:first-child:after{
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #2e3137;
-  padding: 30px;
+  /*padding: 30px;*/
   width: 90%;
   max-width: 450px;
   position: relative;

@@ -30,6 +30,7 @@ export class EditUserComponent implements OnInit {
         this.user.email = res.email;
         this.user.fullName = res.fullName;
 
+
         console.log('got user data');
       },
       (error: any) => {
