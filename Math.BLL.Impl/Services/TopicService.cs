@@ -12,7 +12,7 @@ public class TopicService : ITopicService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    private Dictionary<int, List<int>> tree;
+    private Dictionary<int, List<int>> tree = new();
 
 
     public TopicService(IUnitOfWork unitOfWork, IMapper mapper)
@@ -20,19 +20,29 @@ public class TopicService : ITopicService
         _unitOfWork = unitOfWork;
         _mapper = mapper;
 
-        InitializeTree();
+        tree = LoadTreeFromJson();
+
+        // CreateTree();
     }
 
-    private void InitializeTree()
+    private void CreateTree()
     {
-        tree = new Dictionary<int, List<int>>();
-        tree.Add(3, new List<int> { 2, 4 });
-        tree.Add(4, new List<int> { 5 });
-        tree.Add(5, new List<int> { 1 });
-        tree.Add(2, new List<int>());
-        tree.Add(1, new List<int>());
-
+        InitializeTree();
         SaveTreeToJson();
+    }
+    private async void InitializeTree()
+    {
+        var topics = await GetAllAsync();
+        foreach (var topic in topics)
+        {
+            var childrenIds = new List<int>();
+            foreach (var child in topic.ChildTopics)
+            {
+                childrenIds.Add(child.Id);
+            }
+
+            tree.Add(topic.Id, childrenIds);
+        }
     }
 
     private void SaveTreeToJson()
@@ -43,9 +53,20 @@ public class TopicService : ITopicService
         });
 
         File.WriteAllText("../tree.json", jsonString);
-        Console.WriteLine("JSON was saved");
-        Console.WriteLine();
     }
+
+    private Dictionary<int, List<int>> LoadTreeFromJson()
+    {
+        string jsonString = File.ReadAllText("../tree.json");
+
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
+        return JsonSerializer.Deserialize<Dictionary<int, List<int>>>(jsonString, options);
+    }
+
     List<int> GetAllTopicIdsRecursive(int id)
     {
         List<int> result = new List<int>();
