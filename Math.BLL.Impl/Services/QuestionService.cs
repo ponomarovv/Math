@@ -33,16 +33,23 @@ public class QuestionService : IQuestionService
 
     public async Task<ICollection<QuestionModel>> GetQuestionsByTopic(string topic)
     {
+        var list = await _topicService.GetTopicIdByTopicText(topic);
+
+
+        // var names = new string[]{"one", "two"};
+
+
         int taken = 10;
-        var allQuestions = _unitOfWork.QuestionRepository.GetAllAsync(x => x.Topic.Text == topic).Result;
+        // old 
+        // var allQuestions =  await _unitOfWork.QuestionRepository.GetAllAsync(x => x.Topic.Text == topic);
+        var allQuestions = await _unitOfWork.QuestionRepository.GetAllAsync(x => list.Contains(x.Topic.Text));
         int count = allQuestions.Count;
         if (count < taken) taken = count;
-        var tenQuestions =  allQuestions.OrderBy(y => Guid.NewGuid()).Take(taken);
-        var questionModels =  tenQuestions.Select(_mapper.Map<QuestionModel>).ToList();
+        var tenQuestions = allQuestions.OrderBy(y => Guid.NewGuid()).Take(taken);
+        var questionModels = tenQuestions.Select(_mapper.Map<QuestionModel>).ToList();
 
         return questionModels;
     }
-
 
 
     public async Task<QuestionModel> CreateAsync(QuestionModel model)

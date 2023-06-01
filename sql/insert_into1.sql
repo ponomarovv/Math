@@ -374,3 +374,144 @@ INSERT INTO [dbo].[Books]
      VALUES
            (N'Algebra Essentials Practice Workbook with Answers: Linear & Quadratic Equations, Cross Multiplying, and Systems of Equations: Improve Your Math Fluency Series',5)
 GO
+
+--
+-- questions for quadratic equations
+
+USE [MathDB]
+GO
+
+INSERT INTO [dbo].[Questions]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'x*x - 10x + 25 = 0. x-?', 5)
+GO
+
+
+INSERT INTO [dbo].[Questions]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'x*x - 12x + 36 = 0. x-?', 5)
+GO
+
+INSERT INTO [dbo].[Questions]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'x*x - 14x + 49 = 0. x-?', 5)
+GO
+
+
+
+USE [MathDB]
+GO
+
+-- answers21
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (1, 0, 21)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (2, 0, 21)
+GO
+
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (3, 0, 21)
+GO
+
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (5, 1, 21)
+GO
+
+--
+
+-- answers22
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (1, 0, 22)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (2, 0, 22)
+GO
+
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (3, 0, 22)
+GO
+
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (6, 1, 22)
+GO
+
+-- answers 23
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (1, 0, 23)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (2, 0, 23)
+GO
+
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (3, 0, 23)
+GO
+
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (7, 1, 23)
+GO
+

@@ -1,5 +1,4 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
-using Entities;
 using Entities.Auth;
 using Entities.Auth.Login;
 using Microsoft.AspNetCore.Identity;
@@ -8,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Math.WEB.Controllers;
-using Models;
 using Moq;
 using NUnit.Framework;
 using Microsoft.AspNetCore.Http;

@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Entities;
 using Entities.TopicEntity;
 using Math.BLL.Abstract.Services;
 using Math.DAL.Abstract.Repository.Base;
-using Models;
 using Models.TopicModel;
 
 namespace Math.BLL.Services;
@@ -20,7 +18,7 @@ public class TopicService : ITopicService
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
-        
+
         InitializeTree();
     }
 
@@ -33,6 +31,41 @@ public class TopicService : ITopicService
         tree.Add(2, new List<int>());
         tree.Add(1, new List<int>());
     }
+
+
+    List<int> GetAllTopicIdsRecursive(int id)
+    {
+        List<int> result = new List<int>();
+
+
+        if (tree.ContainsKey(id) && tree[id].Count != 0)
+        {
+            var children = tree[id];
+
+            foreach (var child in children)
+            {
+                result.Add(child);
+                result.AddRange(GetAllTopicIdsRecursive(child));
+            }
+        }
+
+        return result;
+    }
+
+
+    public async Task<List<string>> GetTopicIdByTopicText(string text)
+    {
+        var allTopics = await GetAllAsync();
+        var topic = allTopics.FirstOrDefault(t => t.Text == text);
+
+        var ids = GetAllTopicIdsRecursive(topic.Id);
+        ids.Add(topic.Id);
+
+        var result = GetAllAsync().Result.Where(x => ids.Contains(x.Id)).Select(x => x.Text);
+
+        return result.ToList();
+    }
+
 
     public async Task<TopicModel> CreateAsync(TopicModel model)
     {

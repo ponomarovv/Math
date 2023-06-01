@@ -1,5 +1,4 @@
-﻿using Entities;
-using Entities.Auth;
+﻿using Entities.Auth;
 
 namespace Models;
 

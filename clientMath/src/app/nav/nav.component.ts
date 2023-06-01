@@ -101,10 +101,9 @@ export class NavComponent implements OnInit {
     this.topicService.getTopics().subscribe(
       (topics: TopicModel[]) => {
         for (const topic of topics) {
+          if(topic.text == "Math") continue;
           this.topics.push(topic);
         }
-
-
       },
       (error: any) => {
         console.log(error);
