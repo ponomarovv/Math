@@ -11,5 +11,5 @@ public class TopicModel
     
     public int? ParentTopicId { get; set; }
     public virtual TopicModel ParentTopic { get; set; }
-    public virtual ICollection<TopicModel> ChildTopics { get; set; }
+    public virtual ICollection<TopicModel> ChildTopics { get; set; } 
 }

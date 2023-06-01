@@ -4,14 +4,41 @@ GO
 -----------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------
 -- topics
-
-INSERT INTO [dbo].[Topics] ([Text])
-VALUES ('Arithmetic');
-
-INSERT INTO [dbo].[Topics] ([Text])
-VALUES ('Geometry')
-
+USE [MathDB]
 GO
+
+INSERT INTO [dbo].[Topics] ([Text],[ParentTopicId])
+VALUES ('Arithmetic', 5);
+
+INSERT INTO [dbo].[Topics] ([Text],[ParentTopicId])
+VALUES ('Geometry', 3)
+
+
+-- math
+INSERT INTO [dbo].[Topics]
+           ([Text]
+           ,[ParentTopicId])
+     VALUES
+           (N'Math', null)
+GO
+
+--algebra 4
+INSERT INTO [dbo].[Topics]
+           ([Text]
+           ,[ParentTopicId])
+     VALUES
+           (N'Algebra', 3)
+GO
+
+--Quadratic equations 5
+INSERT INTO [dbo].[Topics]
+           ([Text]
+           ,[ParentTopicId])
+     VALUES
+           (N'Quadratic equations', 4)
+GO
+
+
 
 -----------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------
@@ -282,6 +309,7 @@ INSERT INTO [dbo].[Answers] ([Text], [IsCorrect], [QuestionId])
 --
 -- books
 
+-- arithmetic books
 USE [MathDB]
 GO
 
@@ -300,7 +328,7 @@ INSERT INTO [dbo].[Books]
 GO
 
 
---
+-- geometry books
 USE [MathDB]
 GO
 
@@ -318,3 +346,29 @@ INSERT INTO [dbo].[Books]
            (N'Geometry Seeing, Doing, Understanding - Harold R. Jacobs',2)
 GO
 
+-- algebra books
+
+
+-- Quadratic equations books
+
+INSERT INTO [dbo].[Books]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'Summit Math Algebra 1 Book 5: Factoring Polynomials and Solving Quadratic Equations (Guided Discovery Algebra 1 Series - 2nd Edition)',5)
+GO
+
+INSERT INTO [dbo].[Books]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'Summit Math Algebra 2 Book 3: Quadratic Equations and Parabolas (Guided Discovery Algebra 2 Series - 2nd Edition)',5)
+GO
+
+
+INSERT INTO [dbo].[Books]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'Algebra Essentials Practice Workbook with Answers: Linear & Quadratic Equations, Cross Multiplying, and Systems of Equations: Improve Your Math Fluency Series',5)
+GO
