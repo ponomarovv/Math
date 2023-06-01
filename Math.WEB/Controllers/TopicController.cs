@@ -1,6 +1,7 @@
 using Math.BLL.Abstract.Services;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Models.TopicModel;
 
 namespace Math.WEB.Controllers
 {

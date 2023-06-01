@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.Auth;
 
 namespace Models;
 
@@ -9,6 +10,6 @@ public class QuizModel
 
     public ApplicationUser? ApplicationUser { get; set; }
 
-    public virtual ICollection<TopicModel> Topics { get; set; }
+    public virtual ICollection<TopicModel.TopicModel> Topics { get; set; }
 }
 

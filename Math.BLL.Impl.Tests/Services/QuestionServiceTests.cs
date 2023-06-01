@@ -4,6 +4,7 @@ using Math.BLL.Mappers;
 using Math.BLL.Services;
 using Math.DAL.Abstract.Repository.Base;
 using Models;
+using Models.TopicModel;
 using Moq;
 using NUnit.Framework;
 
@@ -13,6 +14,7 @@ namespace Math.BLL.Impl.Tests.Services
     public class QuestionServiceTests
     {
         private QuestionService _questionService;
+        private TopicService _topicService;
         private Mock<IUnitOfWork> _mockUnitOfWork;
         private IMapper _mapper;
 
@@ -25,8 +27,9 @@ namespace Math.BLL.Impl.Tests.Services
             var config = new MapperConfiguration(mc => { mc.AddProfile(new MappersProfile()); });
             _mapper = config.CreateMapper();
 
+            _topicService = new TopicService(_mockUnitOfWork.Object, _mapper);
 
-            _questionService = new QuestionService(_mockUnitOfWork.Object, _mapper);
+            _questionService = new QuestionService(_mockUnitOfWork.Object, _mapper, _topicService);
         }
 
         [Test]

@@ -1,4 +1,4 @@
-﻿namespace Models;
+﻿namespace Models.TopicModel;
 
 public class TopicModel
 {

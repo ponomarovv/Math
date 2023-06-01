@@ -3,6 +3,7 @@ using Math.WEB.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Models;
+using Models.TopicModel;
 using Moq;
 using NUnit.Framework;
 

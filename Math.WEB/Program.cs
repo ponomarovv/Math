@@ -1,5 +1,6 @@
 using System.Text;
 using Entities;
+using Entities.Auth;
 using Entities.Auth.Login;
 using Math.BLL;
 using Math.DAL;

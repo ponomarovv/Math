@@ -1,20 +1,37 @@
 ﻿using AutoMapper;
 using Entities;
+using Entities.TopicEntity;
 using Math.BLL.Abstract.Services;
 using Math.DAL.Abstract.Repository.Base;
 using Models;
+using Models.TopicModel;
 
 namespace Math.BLL.Services;
 
-public class TopicService  : ITopicService
+public class TopicService : ITopicService
 {
     private readonly IUnitOfWork _unitOfWork;
-    protected readonly IMapper _mapper;
+    private readonly IMapper _mapper;
+
+    private Dictionary<int, List<int>> tree;
+
 
     public TopicService(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        
+        InitializeTree();
+    }
+
+    private void InitializeTree()
+    {
+        tree = new Dictionary<int, List<int>>();
+        tree.Add(3, new List<int> { 2, 4 });
+        tree.Add(4, new List<int> { 5 });
+        tree.Add(5, new List<int> { 1 });
+        tree.Add(2, new List<int>());
+        tree.Add(1, new List<int>());
     }
 
     public async Task<TopicModel> CreateAsync(TopicModel model)
@@ -61,6 +78,6 @@ public class TopicService  : ITopicService
         var result = await _unitOfWork.TopicRepository.DeleteAsync(id);
         await _unitOfWork.SaveChangesAsync();
 
-        return  result;
+        return result;
     }
 }

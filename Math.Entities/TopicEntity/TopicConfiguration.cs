@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Entities;
+namespace Entities.TopicEntity;
 
 public class TopicConfiguration : IEntityTypeConfiguration<Topic>
 {

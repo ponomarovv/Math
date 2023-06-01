@@ -1,4 +1,6 @@
 ﻿using Entities;
+using Entities.Auth;
+using Entities.TopicEntity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

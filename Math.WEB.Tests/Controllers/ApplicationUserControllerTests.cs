@@ -1,5 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using Entities;
+using Entities.Auth;
 using Entities.Auth.Login;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using Models;
 using Moq;
 using NUnit.Framework;
 using Microsoft.AspNetCore.Http;
+using Models.User;
 
 namespace Math.WEB.Tests.Controllers
 {

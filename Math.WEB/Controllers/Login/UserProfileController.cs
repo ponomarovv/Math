@@ -1,11 +1,11 @@
-﻿using Entities;
+﻿using Entities.Auth;
 using Entities.Auth.Login;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-namespace Math.WEB.Controllers
+namespace Math.WEB.Controllers.Login
 {
     [Route("api/[controller]")]
     [ApiController]

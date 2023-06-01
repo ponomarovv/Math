@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Entities;
+using Entities.TopicEntity;
 using Math.DAL.Context;
 using Math.DAL.Repository;
 using Microsoft.EntityFrameworkCore;

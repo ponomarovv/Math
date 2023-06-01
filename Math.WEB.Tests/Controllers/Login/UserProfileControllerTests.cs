@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
-using Entities;
+using Entities.Auth;
 using Entities.Auth.Login;
-using Math.WEB.Controllers;
+using Math.WEB.Controllers.Login;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 using Moq;
 using NUnit.Framework;
 
-namespace Math.WEB.Tests.Controllers
+namespace Math.WEB.Tests.Controllers.Login
 {
     [TestFixture]
     public class UserProfileControllerTests

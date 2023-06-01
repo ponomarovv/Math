@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.TopicEntity;
 using Math.DAL.Abstract.Repository.Base;
 
 namespace Math.DAL.Abstract.Repository;

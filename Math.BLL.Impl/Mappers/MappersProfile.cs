@@ -1,5 +1,7 @@
 ﻿using Entities;
+using Entities.TopicEntity;
 using Models;
+using Models.TopicModel;
 
 namespace Math.BLL.Mappers;
 

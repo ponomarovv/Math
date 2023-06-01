@@ -6,8 +6,6 @@ public interface IQuestionService : IService<QuestionModel>
 {
     Task<ICollection<QuestionModel>> Get10RandomQuestions();
     Task<ICollection<QuestionModel>> GetQuestionsByTopic(string topic);
-    Task<ICollection<QuestionModel>> Get10RandomArithmeticQuestions();
-    Task<ICollection<QuestionModel>> Get10RandomGeometryQuestions();
 
     Task<QuestionModel> CreateAsync(QuestionModel model);
     Task<List<QuestionModel>> GetAllAsync();

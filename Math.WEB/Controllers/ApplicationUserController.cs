@@ -2,12 +2,14 @@
 using System.Security.Claims;
 using System.Text;
 using Entities;
+using Entities.Auth;
 using Entities.Auth.Login;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Models;
+using Models.User;
 
 namespace Math.WEB.Controllers;
 

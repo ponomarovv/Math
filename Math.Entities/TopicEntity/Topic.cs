@@ -1,4 +1,4 @@
-﻿namespace Entities;
+﻿namespace Entities.TopicEntity;
 
 public class Topic
 {

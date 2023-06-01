@@ -1,4 +1,6 @@
-﻿namespace Entities;
+﻿using Entities.TopicEntity;
+
+namespace Entities;
 
 public class TopicForQuiz
 {

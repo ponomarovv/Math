@@ -10,11 +10,13 @@ public class QuestionService : IQuestionService
 {
     private readonly IUnitOfWork _unitOfWork;
     protected readonly IMapper _mapper;
+    private readonly ITopicService _topicService;
 
-    public QuestionService(IUnitOfWork unitOfWork, IMapper mapper)
+    public QuestionService(IUnitOfWork unitOfWork, IMapper mapper, ITopicService topicService)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _topicService = topicService;
     }
 
     public async Task<ICollection<QuestionModel>> Get10RandomQuestions()
@@ -31,25 +33,17 @@ public class QuestionService : IQuestionService
 
     public async Task<ICollection<QuestionModel>> GetQuestionsByTopic(string topic)
     {
-        int takeN = 10;
+        int taken = 10;
         var allQuestions = _unitOfWork.QuestionRepository.GetAllAsync(x => x.Topic.Text == topic).Result;
         int count = allQuestions.Count;
-        if (count < takeN) takeN = count;
-        var tenQuestions =  allQuestions.OrderBy(y => Guid.NewGuid()).Take(takeN);
+        if (count < taken) taken = count;
+        var tenQuestions =  allQuestions.OrderBy(y => Guid.NewGuid()).Take(taken);
         var questionModels =  tenQuestions.Select(_mapper.Map<QuestionModel>).ToList();
 
         return questionModels;
     }
 
-    public Task<ICollection<QuestionModel>> Get10RandomArithmeticQuestions()
-    {
-        throw new NotImplementedException(); 
-    }
 
-    public Task<ICollection<QuestionModel>> Get10RandomGeometryQuestions()
-    {
-        throw new NotImplementedException();
-    }
 
     public async Task<QuestionModel> CreateAsync(QuestionModel model)
     {

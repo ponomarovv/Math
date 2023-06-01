@@ -6,7 +6,7 @@ public class QuestionModel
     public string? Text { get; set; }
     
     
-    public TopicModel? TopicModel { get; set; }
+    public TopicModel.TopicModel? TopicModel { get; set; }
     
     public virtual ICollection<AnswerModel> AnswerModels { get; set; }
 }

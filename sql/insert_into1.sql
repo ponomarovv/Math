@@ -7,11 +7,13 @@ GO
 USE [MathDB]
 GO
 
+-- from 5
 INSERT INTO [dbo].[Topics] ([Text],[ParentTopicId])
-VALUES ('Arithmetic', 5);
+VALUES ('Arithmetic', null);
 
+-- from 3
 INSERT INTO [dbo].[Topics] ([Text],[ParentTopicId])
-VALUES ('Geometry', 3)
+VALUES ('Geometry', null)
 
 
 -- math

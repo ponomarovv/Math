@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Entities.Auth;
+using Entities.TopicEntity;
 
 namespace Entities;
 
