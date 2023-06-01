@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Text.Json;
+using AutoMapper;
 using Entities.TopicEntity;
 using Math.BLL.Abstract.Services;
 using Math.DAL.Abstract.Repository.Base;
@@ -30,9 +31,21 @@ public class TopicService : ITopicService
         tree.Add(5, new List<int> { 1 });
         tree.Add(2, new List<int>());
         tree.Add(1, new List<int>());
+
+        SaveTreeToJson();
     }
 
+    private void SaveTreeToJson()
+    {
+        string jsonString = JsonSerializer.Serialize(tree, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
 
+        File.WriteAllText("../tree.json", jsonString);
+        Console.WriteLine("JSON was saved");
+        Console.WriteLine();
+    }
     List<int> GetAllTopicIdsRecursive(int id)
     {
         List<int> result = new List<int>();

@@ -949,3 +949,5 @@ Desktop.ini
 sonar-project.properties
 
 */.scannerwork/
+
+dotCover.Output.json
