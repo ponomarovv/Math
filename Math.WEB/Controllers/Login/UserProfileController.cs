@@ -12,17 +12,12 @@ namespace Math.WEB.Controllers.Login
     public class UserProfileController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IConfiguration _configuration;
-        private readonly IOptions<ApplicationSettings> _appSettings;
 
-        public UserProfileController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager, IConfiguration configuration, IOptions<ApplicationSettings> appSettings)
+
+        public UserProfileController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
-            _configuration = configuration;
-            _appSettings = appSettings;
+
         }
         
         [HttpGet]

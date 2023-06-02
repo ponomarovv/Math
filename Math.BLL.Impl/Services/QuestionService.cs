@@ -35,13 +35,7 @@ public class QuestionService : IQuestionService
     {
         var list = await _topicService.GetTopicIdByTopicText(topic);
 
-
-        // var names = new string[]{"one", "two"};
-
-
         int taken = 10;
-        // old 
-        // var allQuestions =  await _unitOfWork.QuestionRepository.GetAllAsync(x => x.Topic.Text == topic);
         var allQuestions = await _unitOfWork.QuestionRepository.GetAllAsync(x => list.Contains(x.Topic.Text));
         int count = allQuestions.Count;
         if (count < taken) taken = count;

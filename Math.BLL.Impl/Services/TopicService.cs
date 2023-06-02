@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Collections;
+using System.Text.Json;
 using AutoMapper;
 using Entities.TopicEntity;
 using Math.BLL.Abstract.Services;
@@ -30,7 +31,7 @@ public class TopicService : ITopicService
         InitializeTree();
         SaveTreeToJson();
     }
-    private async void InitializeTree()
+    private async Task InitializeTree()
     {
         var topics = await GetAllAsync();
         foreach (var topic in topics)
@@ -89,15 +90,20 @@ public class TopicService : ITopicService
 
     public async Task<List<string>> GetTopicIdByTopicText(string text)
     {
+        var result = new List<string>();
         var allTopics = await GetAllAsync();
         var topic = allTopics.FirstOrDefault(t => t.Text == text);
 
-        var ids = GetAllTopicIdsRecursive(topic.Id);
-        ids.Add(topic.Id);
+        if (topic != null)
+        {
+            var ids = GetAllTopicIdsRecursive(topic.Id);
+            ids.Add(topic.Id);
 
-        var result = GetAllAsync().Result.Where(x => ids.Contains(x.Id)).Select(x => x.Text);
+             result = GetAllAsync().Result.Where(x => ids.Contains(x.Id)).Select(x => x.Text).ToList();
 
-        return result.ToList();
+           
+        }
+        return result;
     }
 
 

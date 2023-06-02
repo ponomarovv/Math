@@ -44,8 +44,7 @@ public class QuestionController : ControllerBase
         try
         {
             ICollection<QuestionModel> questions;
-            // var word = "Arithmetic";
-            // Call a service method based on the specified word
+ 
             if (topic == "random")
             {
                 questions = await _questionService.Get10RandomQuestions();
@@ -69,28 +68,7 @@ public class QuestionController : ControllerBase
     }
 
 
-    // [HttpGet]
-    // [Route("GetQuestion")]
-    // public async Task<IActionResult> GetQuestion()
-    // {
-    //     using var client = new HttpClient();
-    //
-    //     QuestionModel question = _questionService.GetByIdAsync(1).Result;
-    //
-    //     // Serialize the object using JsonConvert with the PreserveReferencesHandling setting
-    //     var serializedQuestion = JsonConvert.SerializeObject(question, new JsonSerializerSettings
-    //     {
-    //         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-    //     });
-    //
-    //     // Serialize the object using JsonSerializer with the specified JsonSerializerOptions
-    //     var parsedJson = JToken.Parse(serializedQuestion);
-    //
-    //     // Format the parsed JSON with indented formatting
-    //     var prettierJson = parsedJson.ToString(Formatting.Indented);
-    //
-    //     return Ok(prettierJson);
-    // }
+  
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<QuestionModel>> GetById(int id)

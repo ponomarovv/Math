@@ -3,7 +3,6 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {SharedService} from "./shared.service";
 import {Observable} from "rxjs";
-import {QuestionModel} from "../_models/q/question";
 import {TopicModel} from "../_models/q/topic";
 
 @Injectable({

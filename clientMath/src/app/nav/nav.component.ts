@@ -42,7 +42,6 @@ export class NavComponent implements OnInit {
       this.fullName = fullName;
     });
 
-
     this.sharedService.fullName$.subscribe(fullName => {
       this.fullName = fullName;
     });

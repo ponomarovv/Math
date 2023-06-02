@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {map, Observable} from 'rxjs';
 
 import {ToastrService} from "ngx-toastr";
 
@@ -12,7 +11,6 @@ export class AuthGuard implements CanActivate {
   constructor(private toastr: ToastrService, private router: Router) {
   }
 
-
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
@@ -21,5 +19,4 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['/user/login']);
     return false;
   }
-
 }

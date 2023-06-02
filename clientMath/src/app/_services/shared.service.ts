@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {FormBuilder} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +10,8 @@ export class SharedService {
 
   pickedTopic$: BehaviorSubject<string> = new BehaviorSubject<string>('')
 
-
-
   constructor() {
-
   }
-
 
   setFullName(fullName: string) {
     this.fullName$.next(fullName);
