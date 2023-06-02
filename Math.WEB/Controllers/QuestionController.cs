@@ -1,6 +1,5 @@
 ﻿using Math.BLL.Abstract.Services;
 using Microsoft.AspNetCore.Mvc;
-// using System.Text.Json;
 using Models;
 
 namespace Math.WEB.Controllers;
@@ -24,27 +23,13 @@ public class QuestionController : ControllerBase
         _answerService = answerService;
     }
 
-    // [HttpGet("Random")]
-    // public async Task<ActionResult<ICollection<QuestionModel>>> Get10RandomQuestions()
-    // {
-    //     try
-    //     {
-    //         ICollection<QuestionModel> randomQuestions = await _questionService.Get10RandomQuestions();
-    //         return Ok(randomQuestions);
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         return StatusCode(500, ex.Message);
-    //     }
-    // }
-
     [HttpGet("{topic}")]
     public async Task<ActionResult<ICollection<QuestionModel>>> GetQuestionsByWord(string topic)
     {
         try
         {
             ICollection<QuestionModel> questions;
- 
+
             if (topic == "random")
             {
                 questions = await _questionService.Get10RandomQuestions();
@@ -66,9 +51,6 @@ public class QuestionController : ControllerBase
             return StatusCode(500, ex.Message);
         }
     }
-
-
-  
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<QuestionModel>> GetById(int id)

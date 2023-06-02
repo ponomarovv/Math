@@ -5,7 +5,6 @@ import {AnswerModel} from "../../_models/q/answer";
 import {Router} from "@angular/router";
 import {SharedService} from "../../_services/shared.service";
 import {TopicModel} from "../../_models/q/topic";
-import {LoginComponent} from "../../user/login/login.component";
 
 @Component({
   selector: 'app-quiz',
@@ -78,24 +77,6 @@ export class QuizComponent {
         this.topicNamesInThisQuiz.push(question.topicModel?.text!);
         this.topicsInThisQuiz.push(question.topicModel!);
       }
-
-
-      // Increment the correct or wrong answers count based on the selected answer
-
-      // if (selectedAnswer.isCorrect) {
-      //   this.correctAnswersCount++;
-      // } else {
-      //   this.wrongAnswersCount++;
-      //   // Add the question topic to the wrong answer topics list
-      //   const topic = question.topicModel?.text;
-      //   if (topic) {
-      //     if (this.dictionary.hasOwnProperty(topic)) {
-      //       this.dictionary[topic] += 1;
-      //     } else {
-      //       this.dictionary[topic] = 1;
-      //     }
-      //   }
-      // }
 
     }
   }

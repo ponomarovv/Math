@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Text.Json;
+﻿using System.Text.Json;
 using AutoMapper;
 using Entities.TopicEntity;
 using Math.BLL.Abstract.Services;

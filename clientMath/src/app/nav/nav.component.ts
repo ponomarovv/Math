@@ -23,7 +23,6 @@ export class NavComponent implements OnInit {
   pickedTopic: string = '';
 
   topics: TopicModel[] = [new TopicModel('Global Quiz')];
-  // topics: TopicModel[] = [];
 
   constructor(
     private router: Router,

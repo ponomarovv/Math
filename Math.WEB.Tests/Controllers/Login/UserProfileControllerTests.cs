@@ -31,10 +31,7 @@ namespace Math.WEB.Tests.Controllers.Login
             _mockAppSettings = new Mock<IOptions<ApplicationSettings>>();
             
             _userProfileController = new UserProfileController(
-                _mockUserManager.Object,
-                null, // You can mock the SignInManager if needed
-                _mockConfiguration.Object,
-                _mockAppSettings.Object
+                _mockUserManager.Object
             );
         }
 

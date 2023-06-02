@@ -94,35 +94,20 @@ internal class Program
         });
 
 
-        
-
-       
-
-      
-
 
         builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-        // builder.Services.AddDbContext<MathContext>();
 
 
         var app = builder.Build();
 
-// Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
-        
-        //
-        // app.UseCors(b => b.WithOrigins(client_url)
-        //     .AllowAnyHeader()
-        //     .AllowAnyMethod());
-        //
+      
         app.UseCors("AllowSpecificOrigin");
 
         app.UseHttpsRedirection();
