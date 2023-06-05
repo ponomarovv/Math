@@ -51,11 +51,11 @@ internal class Program
 
         builder.Services.Configure<IdentityOptions>(options =>
         {
-            options.Password.RequireDigit = false;
-            options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireLowercase = false;
-            options.Password.RequireUppercase = false;
-            options.Password.RequiredLength = 4;
+            options.Password.RequireDigit = true;
+            options.Password.RequireNonAlphanumeric = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireUppercase = true;
+            options.Password.RequiredLength = 7;
         });
         
         var client_url = builder.Configuration["ApplicationSettings:Client_URL"];
