@@ -20,6 +20,7 @@ public class MathContext : IdentityDbContext
     }
 
     public DbSet<Topic> Topics { get; set; }
+    public DbSet<ChildrenTopic> ChildrenTopics { get; set; }
     public DbSet<Question> Questions { get; set; }
     public DbSet<Answer> Answers { get; set; }
 
