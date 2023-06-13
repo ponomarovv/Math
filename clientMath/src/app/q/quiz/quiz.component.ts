@@ -5,6 +5,7 @@ import {AnswerModel} from "../../_models/q/answer";
 import {Router} from "@angular/router";
 import {SharedService} from "../../_services/shared.service";
 import {TopicModel} from "../../_models/q/topic";
+import {UserService} from "../../_services/user.service";
 
 @Component({
   selector: 'app-quiz',
@@ -31,15 +32,29 @@ export class QuizComponent {
   topicNamesInThisQuiz: string [] = [];
   topicsToShowInResultOfThisQuiz: TopicModel [] = [];
 
+  userProfile: any;
 
   constructor(private questionService: QuestionService,
               private router: Router,
-              private sharedService: SharedService) {
+              private sharedService: SharedService,
+              private userService: UserService
+  ) {
   }
 
   ngOnInit(): void {
     console.log('quiz component on init')
 
+    this.userService.getUserProfile().subscribe(
+      (res: any) => {
+        this.userProfile = res;
+        console.log('got user data');
+        console.log(this.userProfile.id);
+        console.log(this.userProfile);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
 
     this.sharedService.pickedTopic$.subscribe((topic: string) => {
       this.pickedTopic = topic;

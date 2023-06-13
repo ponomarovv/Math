@@ -9,6 +9,9 @@ public class QuizModel
 
     public ApplicationUser? ApplicationUser { get; set; }
 
-    public virtual ICollection<TopicModel.TopicModel> Topics { get; set; }
+    public ICollection<TopicForQuizModel> TopicQuizzes { get; set; }
+    
+    public int MainTopicId { get; set; }
+    public TopicModel.TopicModel MainTopic { get; set; }
 }
 

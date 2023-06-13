@@ -18,6 +18,8 @@ export class ShowUserProfileComponent implements OnInit{
       (res: any) => {
         this.userProfile = res;
         console.log('got user data');
+        console.log(this.userProfile.id);
+        console.log(this.userProfile);
       },
       (error: any) => {
         console.log(error);
