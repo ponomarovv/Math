@@ -20,14 +20,25 @@ public class TopicService : ITopicService
         _unitOfWork = unitOfWork;
         _mapper = mapper;
 
-        // tree = LoadTreeFromJson();
+        _tree = LoadTreeFromJson();
 
-        CreateTree();
+        Console.WriteLine();
+
+        // _tree = new Dictionary<int, TopicNode>()
+        // {
+        //     {1, new TopicNode(){Children = {2,3}}},
+        //     {2, new TopicNode(){Children = {4,6}, Parents = {1}}},
+        //     {3, new TopicNode(){Children = {6}, Parents = {1}}},
+        //     {4, new TopicNode(){Children = {5}, Parents = {2}}},
+        //     {6, new TopicNode(){Children = {5,7}, Parents = {2,3}}}
+        // };
+
+        // CreateTree();
     }
 
     private void CreateTree()
     {
-        InitializeTree();
+        // InitializeTree();
         SaveTreeToJson();
     }
 
@@ -84,7 +95,7 @@ public class TopicService : ITopicService
         File.WriteAllText("../tree.json", jsonString);
     }
 
-    private Dictionary<int, List<int>> LoadTreeFromJson()
+    private Dictionary<int, TopicNode> LoadTreeFromJson()
     {
         string jsonString = File.ReadAllText("../tree.json");
 
@@ -93,7 +104,7 @@ public class TopicService : ITopicService
             PropertyNameCaseInsensitive = true
         };
 
-        return JsonSerializer.Deserialize<Dictionary<int, List<int>>>(jsonString, options);
+        return JsonSerializer.Deserialize<Dictionary<int,TopicNode>>(jsonString, options);
     }
 
     List<int> GetAllTopicIdsRecursive(int id)

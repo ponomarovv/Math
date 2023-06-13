@@ -13,9 +13,9 @@ public class TopicRepository : GenericRepository<int, Topic>, ITopicRepository
     {
     }
     
-    public override async Task<List<Topic>> GetAllAsync(Func<Topic, bool> predicate)
-    {
-        List<Topic> items = _dbContext.Topics.ToList();
-        return items;
-    }
+    // public override async Task<List<Topic>> GetAllAsync(Func<Topic, bool> predicate)
+    // {
+    //     List<Topic> items = _dbContext.Topics.ToList();
+    //     return items;
+    // }
 }

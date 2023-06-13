@@ -13,10 +13,10 @@ public class ChildrenTopicRepository: GenericRepository<int, ChildrenTopic>, ICh
     {
     }
     
-    public override async Task<List<ChildrenTopic>> GetAllAsync(Func<ChildrenTopic, bool> predicate)
-    {
-        List<ChildrenTopic> items = _dbContext.ChildrenTopics.Include(x => x.Topics)
-            .Where(predicate).ToList();
-        return items;
-    }
+    // public override async Task<List<ChildrenTopic>> GetAllAsync(Func<ChildrenTopic, bool> predicate)
+    // {
+    //     List<ChildrenTopic> items = _dbContext.ChildrenTopics.Include(x => x.Topics)
+    //         .Where(predicate).ToList();
+    //     return items;
+    // }
 }
