@@ -40,6 +40,7 @@ export class QuizComponent {
   ngOnInit(): void {
     console.log('quiz component on init')
 
+
     this.sharedService.pickedTopic$.subscribe((topic: string) => {
       this.pickedTopic = topic;
     });
