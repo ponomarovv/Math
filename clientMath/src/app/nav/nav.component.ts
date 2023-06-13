@@ -71,7 +71,7 @@ export class NavComponent implements OnInit {
   private updateButtonVisibility() {
     const windowWidth = window.innerWidth;
     if (windowWidth <= 768) {
-      this.isProfileButtonsVisible = !this.isBurgerMenuOpen;
+      this.isProfileButtonsVisible = this.isBurgerMenuOpen;
     } else {
       this.isProfileButtonsVisible = true;
     }
@@ -92,7 +92,10 @@ export class NavComponent implements OnInit {
   }
 
   showMe() {
-    console.log(this.topics);
+    let buttonText = document.querySelector('#userInfo');
+    console.log('showMe');
+    console.log(buttonText?.textContent);
+    // console.log(this.topics);
   }
 
   getTopics() {

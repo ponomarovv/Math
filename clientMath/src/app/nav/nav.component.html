@@ -26,13 +26,11 @@
           Welcome, {{ fullName }}
         </span>
 
-
-
-        <button type="button" class="btn btn-danger me-2" routerLink="showUserInfo"
+        <button id="userInfo" type="button" class="btn btn-danger me-2" routerLink="showUserInfo"
                 *ngIf="isLoggedIn
-&& isProfileButtonsVisible">
-          Show Profile
+&& isProfileButtonsVisible">Show Profile
         </button>
+
         <button type="button" class="btn btn-danger me-2" routerLink="editUser"
                 *ngIf="isLoggedIn && isProfileButtonsVisible">
           Edit Profile
