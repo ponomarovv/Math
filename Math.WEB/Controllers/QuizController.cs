@@ -1,4 +1,6 @@
+using Math.BLL.Abstract.Services;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace Math.WEB.Controllers
 {
@@ -6,36 +8,65 @@ namespace Math.WEB.Controllers
     [ApiController]
     public class QuizController : ControllerBase
     {
-        // GET: api/Quiz
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IQuizService _quizService;
+        
+        public QuizController(IQuizService quizService)
         {
-            return new string[] { "value1", "value2" };
+            _quizService = quizService;
         }
 
-        // GET: api/Quiz/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Quiz
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<QuizModel>> Create(QuizModel model)
         {
+            var createdQuiz = await _quizService.CreateAsync(model);
+            return Ok(createdQuiz);
         }
 
-        // PUT: api/Quiz/5
+        [HttpGet]
+        public async Task<ActionResult<List<QuizModel>>> GetAll()
+        {
+            var quizzes = await _quizService.GetAllAsync();
+            return Ok(quizzes);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<QuizModel>> GetById(int id)
+        {
+            var quiz = await _quizService.GetByIdAsync(id);
+            if (quiz == null)
+            {
+                return NotFound();
+            }
+            return Ok(quiz);
+        }
+
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Update(int id, QuizModel model)
         {
+            if (id != model.Id)
+            {
+                return BadRequest();
+            }
+
+            var updated = await _quizService.UpdateAsync(model);
+            if (!updated)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
 
-        // DELETE: api/Quiz/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var deleted = await _quizService.DeleteAsync(id);
+            if (!deleted)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
     }
 }
