@@ -11,11 +11,12 @@ public class UnitOfWork : IUnitOfWork
     public IAnswerRepository AnswerRepository { get; }
     public IQuestionRepository QuestionRepository { get; }
     public ITopicRepository TopicRepository { get; }
+    public IChildrenTopicRepository ChildrenTopicRepository { get; }
 
     public IQuizRepository QuizRepository { get; }
 
     public UnitOfWork(MathContext context, 
-        IAnswerRepository answerRepository, IQuestionRepository questionRepository, ITopicRepository topicRepository, IQuizRepository quizRepository)
+        IAnswerRepository answerRepository, IQuestionRepository questionRepository, ITopicRepository topicRepository, IQuizRepository quizRepository, IChildrenTopicRepository childrenTopicRepository)
     {
         _context = context;
 
@@ -23,6 +24,7 @@ public class UnitOfWork : IUnitOfWork
         QuestionRepository = questionRepository;
         TopicRepository = topicRepository;
         QuizRepository = quizRepository;
+        ChildrenTopicRepository = childrenTopicRepository;
     }
 
     public async Task SaveChangesAsync()

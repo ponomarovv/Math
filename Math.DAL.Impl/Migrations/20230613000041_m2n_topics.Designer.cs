@@ -4,6 +4,7 @@ using Math.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Math.DAL.Migrations
 {
     [DbContext(typeof(MathContext))]
-    partial class MathContextModelSnapshot : ModelSnapshot
+    [Migration("20230613000041_m2n_topics")]
+    partial class m2n_topics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,11 +87,16 @@ namespace Math.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("ChildrenTopicId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ChildrenTopicId");
 
                     b.ToTable("Books");
                 });
@@ -101,6 +109,9 @@ namespace Math.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("ChildrenTopicId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
@@ -108,6 +119,8 @@ namespace Math.DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ChildrenTopicId");
 
                     b.HasIndex("TopicId");
 
@@ -125,12 +138,17 @@ namespace Math.DAL.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int?>("ChildrenTopicId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("QuizDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("ChildrenTopicId");
 
                     b.ToTable("Quizzes");
                 });
@@ -463,8 +481,19 @@ namespace Math.DAL.Migrations
                     b.Navigation("Question");
                 });
 
+            modelBuilder.Entity("Entities.Book", b =>
+                {
+                    b.HasOne("Entities.TopicEntity.ChildrenTopic", null)
+                        .WithMany("Books")
+                        .HasForeignKey("ChildrenTopicId");
+                });
+
             modelBuilder.Entity("Entities.Question", b =>
                 {
+                    b.HasOne("Entities.TopicEntity.ChildrenTopic", null)
+                        .WithMany("Questions")
+                        .HasForeignKey("ChildrenTopicId");
+
                     b.HasOne("Entities.TopicEntity.Topic", "Topic")
                         .WithMany("Questions")
                         .HasForeignKey("TopicId")
@@ -479,6 +508,10 @@ namespace Math.DAL.Migrations
                     b.HasOne("Entities.Auth.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Entities.TopicEntity.ChildrenTopic", null)
+                        .WithMany("Quizzes")
+                        .HasForeignKey("ChildrenTopicId");
 
                     b.Navigation("ApplicationUser");
                 });
@@ -571,6 +604,15 @@ namespace Math.DAL.Migrations
             modelBuilder.Entity("Entities.Question", b =>
                 {
                     b.Navigation("Answers");
+                });
+
+            modelBuilder.Entity("Entities.TopicEntity.ChildrenTopic", b =>
+                {
+                    b.Navigation("Books");
+
+                    b.Navigation("Questions");
+
+                    b.Navigation("Quizzes");
                 });
 
             modelBuilder.Entity("Entities.TopicEntity.Topic", b =>

@@ -6,17 +6,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Math.DAL.Repository;
 
-public class TopicRepository : GenericRepository<int, Topic>, ITopicRepository
+public class ChildrenTopicRepository: GenericRepository<int, ChildrenTopic>, IChildrenTopicRepository
 {
     private readonly MathContext _dbContext;
-    public TopicRepository(MathContext dbContext) : base(dbContext)
+    public ChildrenTopicRepository(MathContext dbContext) : base(dbContext)
     {
         _dbContext = dbContext;
     }
     
-    public override async Task<List<Topic>> GetAllAsync(Func<Topic, bool> predicate)
+    public override async Task<List<ChildrenTopic>> GetAllAsync(Func<ChildrenTopic, bool> predicate)
     {
-        List<Topic> items = _dbContext.Topics.Include(x => x.ChildrenTopics)
+        List<ChildrenTopic> items = _dbContext.ChildrenTopics.Include(x => x.Topics)
             .Where(predicate).ToList();
         return items;
     }

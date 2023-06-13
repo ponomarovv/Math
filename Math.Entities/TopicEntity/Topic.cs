@@ -12,7 +12,5 @@ public class Topic
     public ICollection<Book> Books { get; set; }
 
 
-    public int? ParentTopicId { get; set; }
-    public Topic ParentTopic { get; set; }
-    public ICollection<Topic> ChildTopics { get; set; }
+    public ICollection<ChildrenTopic> ChildrenTopics { get; set; }
 }

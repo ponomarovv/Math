@@ -1,4 +1,5 @@
-﻿using Math.DAL.Abstract.Repository;
+﻿using Entities.TopicEntity;
+using Math.DAL.Abstract.Repository;
 using Math.DAL.Abstract.Repository.Base;
 using Math.DAL.Repository;
 using Math.DAL.Repository.Base;
@@ -13,6 +14,7 @@ public static class DalDependencyInstaller
         services.AddScoped<IAnswerRepository, AnswerRepository>();
         services.AddScoped<IQuestionRepository, QuestionRepository>();
         services.AddScoped<ITopicRepository, TopicRepository>();
+        services.AddScoped<IChildrenTopicRepository, ChildrenTopicRepository>();
         services.AddScoped<IQuizRepository, QuizRepository>();
         
         services.AddScoped<IUnitOfWork, UnitOfWork>();
