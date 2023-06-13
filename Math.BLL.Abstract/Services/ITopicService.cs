@@ -4,5 +4,5 @@ namespace Math.BLL.Abstract.Services;
 
 public interface ITopicService : IService<TopicModel>
 {
-      Task<List<string>> GetTopicIdByTopicText(string text);
+      Task<List<TopicModel>> GetTopicIdsByTopicText(string text);
 }

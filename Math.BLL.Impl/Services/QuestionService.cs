@@ -3,6 +3,7 @@ using Entities;
 using Math.BLL.Abstract.Services;
 using Math.DAL.Abstract.Repository.Base;
 using Models;
+using Models.TopicModel;
 
 namespace Math.BLL.Services;
 
@@ -33,10 +34,11 @@ public class QuestionService : IQuestionService
 
     public async Task<ICollection<QuestionModel>> GetQuestionsByTopic(string topic)
     {
-        var list = await _topicService.GetTopicIdByTopicText(topic);
+        List<TopicModel> list = await _topicService.GetTopicIdsByTopicText(topic);
+        var topicIds = list.Select(x => x.Id);
 
         int taken = 10;
-        var allQuestions = await _unitOfWork.QuestionRepository.GetAllAsync(x => list.Contains(x.Topic.Text));
+        var allQuestions = await _unitOfWork.QuestionRepository.GetAllAsync(x => topicIds.Contains(x.Topic.Id));
         int count = allQuestions.Count;
         if (count < taken) taken = count;
         var tenQuestions = allQuestions.OrderBy(y => Guid.NewGuid()).Take(taken);

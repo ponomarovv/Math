@@ -43,10 +43,6 @@ public class TopicService : ITopicService
 
     private async Task InitializeTree()
     {
-        // Dictionary<int, TopicNode> tree = new();
-
-        // TopicNode node = new();
-
         List<TopicModel> parentTopics = await GetAllAsync();
         List<ChildrenTopicModel> childrenTopics = await GetAllChildrenAsync();
 
@@ -96,21 +92,21 @@ public class TopicService : ITopicService
         return JsonSerializer.Deserialize<Dictionary<int, TopicNode>>(jsonString, options);
     }
 
-    List<int> GetAllTopicIdsRecursive(int id)
+    private List<int> GetAllTopicIdsRecursive(int id)
     {
         List<int> result = new List<int>();
 
 
-        // if (tree.ContainsKey(id) && tree[id].Count != 0)
-        // {
-        //     var children = tree[id];
-        //
-        //     foreach (var child in children)
-        //     {
-        //         result.Add(child);
-        //         result.AddRange(GetAllTopicIdsRecursive(child));
-        //     }
-        // }
+        if (_tree.ContainsKey(id) && _tree[id].Children.Count != 0)
+        {
+            var children = _tree[id].Children;
+        
+            foreach (var child in children)
+            {
+                result.Add(child);
+                result.AddRange(GetAllTopicIdsRecursive(child));
+            }
+        }
 
         return result;
     }
@@ -123,9 +119,9 @@ public class TopicService : ITopicService
         return topic;
     }
 
-    public async Task<List<string>> GetTopicIdByTopicText(string text)
+    public async Task<List<TopicModel>> GetTopicIdsByTopicText(string text)
     {
-        var result = new List<string>();
+        var result = new List<TopicModel>();
         var allTopics = await GetAllAsync();
         var topic = allTopics.FirstOrDefault(t => t.Text == text);
 
@@ -134,7 +130,7 @@ public class TopicService : ITopicService
             var ids = GetAllTopicIdsRecursive(topic.Id);
             ids.Add(topic.Id);
 
-            result = GetAllAsync().Result.Where(x => ids.Contains(x.Id)).Select(x => x.Text).ToList();
+            result = GetAllAsync().Result.Where(x => ids.Contains(x.Id)).ToList();
         }
 
         return result;
