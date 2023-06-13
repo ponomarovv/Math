@@ -12,6 +12,5 @@ public class ChildrenTopic
     public ICollection<Book> Books { get; set; }
 
 
-
     public ICollection<Topic> Topics { get; set; }
 }
