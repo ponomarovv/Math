@@ -12,7 +12,7 @@ public class TopicService : ITopicService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    private Dictionary<int, List<List<int>>> tree = new();
+    private Dictionary<int, TopicNode> tree = new();
 
 
     public TopicService(IUnitOfWork unitOfWork, IMapper mapper)
@@ -33,7 +33,8 @@ public class TopicService : ITopicService
 
     private async Task InitializeTree()
     {
-        var topics = await GetAllAsync();
+        List<TopicModel> topics = await GetAllAsync();
+        
         foreach (var topic in topics)
         {
             var childrenIds = new List<int>();
