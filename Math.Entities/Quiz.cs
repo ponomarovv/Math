@@ -14,5 +14,7 @@ public class Quiz
 
     // M:N
     public ICollection<TopicQuiz> TopicQuizzes { get; set; }
-    public Topic Topic { get; set; }
+    
+    public int MainTopicId { get; set; }
+    public Topic MainTopic { get; set; }
 }

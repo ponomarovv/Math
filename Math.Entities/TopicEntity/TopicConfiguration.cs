@@ -7,34 +7,44 @@ public class TopicConfiguration : IEntityTypeConfiguration<Topic>
 {
     public void Configure(EntityTypeBuilder<Topic> builder)
     {
-        // builder
-        //     .HasOne(t => t.ParentTopic)
-        //     .WithMany(t => t.ChildTopics)
-        //     .HasForeignKey(t => t.ParentTopicId)
-        //     .OnDelete(DeleteBehavior.Restrict);
-        //
-        // builder
-        //     .HasIndex(t => t.ParentTopicId)  // Add this line to create an index
-        //     .HasDatabaseName("IX_ParentTopicId");
-        //
-        // builder
-        //     .HasOne(t => t.ParentTopic)
-        //     .WithMany(t => t.ChildTopics)
-        //     .HasForeignKey(t => t.ParentTopicId)
-        //     .OnDelete(DeleteBehavior.Restrict)
-        //     .HasConstraintName("FK_Topics_Topics_ParentTopicId");
-        //
-        //
-        //
-        // // Drop the existing foreign key constraint
-        // builder
-        //     .HasOne(t => t.ParentTopic)
-        //     .WithMany(t => t.ChildTopics)
-        //     .HasForeignKey(t => t.ParentTopicId)
-        //     .OnDelete(DeleteBehavior.NoAction)
-        //     .HasConstraintName("FK_Topics_Topics_ParentTopicId")
-        //     .IsRequired(false);
-
-
+        builder.HasMany(t => t.TopicQuizzes)
+            .WithOne(tq => tq.Topic)
+            .HasForeignKey(tq => tq.TopicId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
+
+public class QuizConfiguration : IEntityTypeConfiguration<Quiz>
+{
+    public void Configure(EntityTypeBuilder<Quiz> builder)
+    {
+        builder.HasOne(q => q.MainTopic)
+            .WithMany(t => t.Quizzes)
+            .HasForeignKey(q => q.MainTopicId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(q => q.TopicQuizzes)
+            .WithOne(tq => tq.Quiz)
+            .HasForeignKey(tq => tq.QuizId)
+            .OnDelete(DeleteBehavior.Restrict);
+    }
+}
+
+public class TopicQuizConfiguration : IEntityTypeConfiguration<TopicQuiz>
+{
+    public void Configure(EntityTypeBuilder<TopicQuiz> builder)
+    {
+        builder.HasKey(tq => new { tq.TopicId, tq.QuizId });
+
+        builder.HasOne(tq => tq.Topic)
+            .WithMany(t => t.TopicQuizzes)
+            .HasForeignKey(tq => tq.TopicId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(tq => tq.Quiz)
+            .WithMany(q => q.TopicQuizzes)
+            .HasForeignKey(tq => tq.QuizId)
+            .OnDelete(DeleteBehavior.Restrict);
+    }
+}
+
