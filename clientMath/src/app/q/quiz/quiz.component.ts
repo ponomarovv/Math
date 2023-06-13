@@ -83,7 +83,7 @@ export class QuizComponent {
   }
 
   showResults() {
-    console.log(this.topicsInThisQuiz);
+    // console.log(this.topicsInThisQuiz);
 
     this.showQuestions = false;
     this.showingResults = true;
@@ -134,7 +134,7 @@ export class QuizComponent {
       }
     }
 
-    console.log(this.topicsToShowInResultOfThisQuiz);
+    // console.log(this.topicsToShowInResultOfThisQuiz);
   }
 
   resetAnswersCount() {

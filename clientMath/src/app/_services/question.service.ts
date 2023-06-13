@@ -51,6 +51,4 @@ export class QuestionService implements OnInit{
   deleteQuestion(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
-
-
 }

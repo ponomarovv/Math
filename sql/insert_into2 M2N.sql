@@ -453,3 +453,170 @@ INSERT INTO [dbo].[Answers]
            (7, 1, 7)
 GO
 
+-- questions for trigonometry
+
+USE [MathDB]
+GO
+
+INSERT INTO [dbo].[Questions]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'(sin x)^2 +  (cos x)^2  =', 6)
+GO
+
+INSERT INTO [dbo].[Questions]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'2( (sin x)^2 +  (cos x)^2 )  =', 6)
+GO
+
+
+INSERT INTO [dbo].[Questions]
+           ([Text]
+           ,[TopicId])
+     VALUES
+           (N'sin(2x) =', 6)
+GO
+
+
+-- answers 8 9 10 for trigonometry
+USE [MathDB]
+GO
+
+--8
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (5, 0, 8)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (6, 0, 8)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (7, 0, 8)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (1, 1, 8)
+GO
+
+--9
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (5, 0, 9)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (6, 0, 9)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (7, 0, 9)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (2, 1, 9)
+GO
+
+
+--10
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (5, 0, 10)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (6, 0, 10)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (7, 0, 10)
+GO
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (N'2 * sin(x) * cos(x)', 1, 10)
+GO
+
+
+-- trigonometry books
+USE [MathDB]
+GO
+
+INSERT INTO [dbo].[Books]
+           ([Text])
+     VALUES
+           (N'Essential Trigonometry: A Self-Teaching Guide by Tim Hill')
+GO
+
+
+USE [MathDB]
+GO
+
+INSERT INTO [dbo].[Books]
+           ([Text])
+     VALUES
+           (N'Trigonometry, 11th Edition by Ron Larson')
+GO
+
+
+-- trigonometry topic - books
+USE [MathDB]
+GO
+
+INSERT INTO [dbo].[BookTopic]([TopicsId], [BooksId])
+VALUES(6, 8)
+GO
+
+INSERT INTO [dbo].[BookTopic]([TopicsId], [BooksId])
+VALUES(6, 9)
+GO
+
+-- 

@@ -8,7 +8,8 @@
         <li *ngFor="let question of questions">
           <div class="card mb-2">
             <!--        <h3>{{ question?.topicModel?.text }}</h3>-->
-            <h2>{{ question?.text }} (Topic: {{question?.topicModel?.text}}) (Q ID: {{question?.id}})</h2>
+<!--            <h2>{{ question?.text }} (Topic: {{question?.topicModel?.text}}) (Q ID: {{question?.id}})</h2>-->
+            <h2>{{ question?.text }} (Topic: {{question?.topicModel?.text}}) </h2>
             <ul style="list-style-type: none;">
               <li *ngFor="let answer of question?.answerModels">
                 <label>

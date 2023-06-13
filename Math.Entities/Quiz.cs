@@ -16,5 +16,5 @@ public class Quiz
     public  ICollection<Topic> Topics { get; set; }
     
     // Main Topic
-    // public Topic? Topic { get; set; }
+    public TopicForQuiz? MainTopic { get; set; }
 }
