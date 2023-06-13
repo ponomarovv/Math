@@ -13,8 +13,6 @@ public class Quiz
     public ApplicationUser? ApplicationUser { get; set; }
 
     // M:N
-    public  ICollection<Topic> Topics { get; set; }
-    
-    // Main Topic
-    public TopicForQuiz? MainTopic { get; set; }
+    public ICollection<TopicQuiz> TopicQuizzes { get; set; }
+    public Topic Topic { get; set; }
 }
