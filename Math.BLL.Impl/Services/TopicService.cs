@@ -20,9 +20,8 @@ public class TopicService : ITopicService
         _unitOfWork = unitOfWork;
         _mapper = mapper;
 
-        _tree = LoadTreeFromJson();
+        // _tree = LoadTreeFromJson();
 
-        Console.WriteLine();
 
         // _tree = new Dictionary<int, TopicNode>()
         // {
@@ -33,12 +32,12 @@ public class TopicService : ITopicService
         //     {6, new TopicNode(){Children = {5,7}, Parents = {2,3}}}
         // };
 
-        // CreateTree();
+        CreateTree();
     }
 
     private void CreateTree()
     {
-        // InitializeTree();
+        InitializeTree();
         SaveTreeToJson();
     }
 
@@ -51,20 +50,16 @@ public class TopicService : ITopicService
         List<TopicModel> parentTopics = await GetAllAsync();
         List<ChildrenTopicModel> childrenTopics = await GetAllChildrenAsync();
 
-        _tree.Add(11,new TopicNode());
-        
+
         foreach (var parent in parentTopics)
         {
+            if (!_tree.ContainsKey(parent.Id))
+            {
+                _tree.Add(parent.Id, new TopicNode());
+            }
             foreach (var child in parent.ChildrenTopicModels)
             {
-                Console.WriteLine("hi");
-
-                var a = 2 + 2;
-                Console.WriteLine(a);
-                
-                _tree.Add(parent.Id, new TopicNode());
-                if (!_tree.ContainsKey(parent.Id)) _tree.Add(parent.Id, new TopicNode());
-                if (!_tree[parent.Id].Children.Contains(child.Id)) _tree[parent.Id].Children.Add(child.Id);
+                _tree[parent.Id].Children.Add(child.Id);
             }
 
             _tree[parent.Id].Children.Sort();
@@ -74,9 +69,8 @@ public class TopicService : ITopicService
         {
             foreach (var parent in child.Topics)
             {
-                Console.WriteLine("hi");
                 if (!_tree.ContainsKey(child.Id)) _tree.Add(child.Id, new TopicNode());
-                if (!_tree[child.Id].Parents.Contains(parent.Id)) _tree[child.Id].Parents.Add(parent.Id);
+                _tree[child.Id].Parents.Add(parent.Id);
             }
 
             _tree[child.Id].Parents.Sort();
@@ -104,7 +98,7 @@ public class TopicService : ITopicService
             PropertyNameCaseInsensitive = true
         };
 
-        return JsonSerializer.Deserialize<Dictionary<int,TopicNode>>(jsonString, options);
+        return JsonSerializer.Deserialize<Dictionary<int, TopicNode>>(jsonString, options);
     }
 
     List<int> GetAllTopicIdsRecursive(int id)

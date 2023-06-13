@@ -120,9 +120,12 @@ GO
 -- parent 5
 -- parent 6
 INSERT INTO [dbo].[ChildrenTopicTopic]([ChildrenTopicsId],[TopicsId])
-VALUES(7,6)
+VALUES(5,6)
 GO
 
+INSERT INTO [dbo].[ChildrenTopicTopic]([ChildrenTopicsId],[TopicsId])
+VALUES(7,6)
+GO
 
 
 -----------------------------------------------------------------------------------------------------------------------------
@@ -210,24 +213,23 @@ INSERT INTO [dbo].[Answers] ([Text], [IsCorrect], [QuestionId])
 --http://zno.academia.in.ua/mod/glossary/view.php?id=1063&mode=letter&hook=%D0%90&sortkey=&sortorder=
 
 --
--- books
+-- BOOKS
 
 -- arithmetic books
 USE [MathDB]
 GO
 
+
 INSERT INTO [dbo].[Books]
-           ([Text]
-           ,[TopicId])
+           ([Text])
      VALUES
-           (N'Весела арифметика — Ольга Конобевська, Тамара Маршалова, Наталія Латушко',1)
+           (N'Весела арифметика — Ольга Конобевська, Тамара Маршалова, Наталія Латушко')
 GO
 
 INSERT INTO [dbo].[Books]
-           ([Text]
-           ,[TopicId])
+           ([Text])
      VALUES
-           (N'Big Book of Math Practice Problems Addition and Subtraction, Grades 1-3 - Stacy Otillio, Frank Otillio',1)
+           (N'Big Book of Math Practice Problems Addition and Subtraction, Grades 1-3 - Stacy Otillio, Frank Otillio')
 GO
 
 
@@ -236,17 +238,15 @@ USE [MathDB]
 GO
 
 INSERT INTO [dbo].[Books]
-           ([Text]
-           ,[TopicId])
+           ([Text])
      VALUES
-           (N'Humble Math Area, Perimeter, Volume, & Surface Area: Geometry for Beginners - Workbook with Answer Key Elementary, Middle School, High School Math – Geometry for Kids',2)
+           (N'Humble Math Area, Perimeter, Volume, & Surface Area: Geometry for Beginners - Workbook with Answer Key Elementary, Middle School, High School Math – Geometry for Kids')
 GO
 
 INSERT INTO [dbo].[Books]
-           ([Text]
-           ,[TopicId])
+           ([Text])
      VALUES
-           (N'Geometry Seeing, Doing, Understanding - Harold R. Jacobs',2)
+           (N'Geometry Seeing, Doing, Understanding - Harold R. Jacobs')
 GO
 
 -- algebra books
@@ -255,26 +255,63 @@ GO
 -- Quadratic equations books
 
 INSERT INTO [dbo].[Books]
-           ([Text]
-           ,[TopicId])
+           ([Text])
      VALUES
-           (N'Summit Math Algebra 1 Book 5: Factoring Polynomials and Solving Quadratic Equations (Guided Discovery Algebra 1 Series - 2nd Edition)',5)
+           (N'Summit Math Algebra 1 Book 5: Factoring Polynomials and Solving Quadratic Equations (Guided Discovery Algebra 1 Series - 2nd Edition)')
 GO
 
 INSERT INTO [dbo].[Books]
-           ([Text]
-           ,[TopicId])
+            ([Text])
      VALUES
-           (N'Summit Math Algebra 2 Book 3: Quadratic Equations and Parabolas (Guided Discovery Algebra 2 Series - 2nd Edition)',5)
+           (N'Summit Math Algebra 2 Book 3: Quadratic Equations and Parabolas (Guided Discovery Algebra 2 Series - 2nd Edition)')
 GO
 
 
 INSERT INTO [dbo].[Books]
-           ([Text]
-           ,[TopicId])
+           ([Text])
      VALUES
-           (N'Algebra Essentials Practice Workbook with Answers: Linear & Quadratic Equations, Cross Multiplying, and Systems of Equations: Improve Your Math Fluency Series',5)
+           (N'Algebra Essentials Practice Workbook with Answers: Linear & Quadratic Equations, Cross Multiplying, and Systems of Equations: Improve Your Math Fluency Series')
 GO
+
+
+--- BOOK TOPIC
+USE [MathDB]
+GO
+
+INSERT INTO [dbo].[BookTopic] ([TopicsId], [BooksId])
+VALUES(5,1)
+GO
+
+INSERT INTO [dbo].[BookTopic] ([TopicsId], [BooksId])
+VALUES(5,2)
+GO
+
+INSERT INTO [dbo].[BookTopic] ([TopicsId], [BooksId])
+VALUES(7,3)
+GO
+
+INSERT INTO [dbo].[BookTopic] ([TopicsId], [BooksId])
+VALUES(7,4)
+GO
+
+INSERT INTO [dbo].[BookTopic] ([TopicsId], [BooksId])
+VALUES(4,5)
+GO
+
+INSERT INTO [dbo].[BookTopic] ([TopicsId], [BooksId])
+VALUES(4,6)
+GO
+
+INSERT INTO [dbo].[BookTopic] ([TopicsId], [BooksId])
+VALUES(4,7)
+GO
+
+
+
+
+
+
+
 
 --
 -- questions for quadratic equations
@@ -286,7 +323,7 @@ INSERT INTO [dbo].[Questions]
            ([Text]
            ,[TopicId])
      VALUES
-           (N'x*x - 10x + 25 = 0. x-?', 5)
+           (N'x*x - 10x + 25 = 0. x-?', 4)
 GO
 
 
@@ -294,17 +331,17 @@ INSERT INTO [dbo].[Questions]
            ([Text]
            ,[TopicId])
      VALUES
-           (N'x*x - 12x + 36 = 0. x-?', 5)
+           (N'x*x - 12x + 36 = 0. x-?', 4)
 GO
 
 INSERT INTO [dbo].[Questions]
            ([Text]
            ,[TopicId])
      VALUES
-           (N'x*x - 14x + 49 = 0. x-?', 5)
+           (N'x*x - 14x + 49 = 0. x-?', 4)
 GO
 
-
+-- it was 7 q
 
 USE [MathDB]
 GO
@@ -315,7 +352,7 @@ INSERT INTO [dbo].[Answers]
            ,[IsCorrect]
            ,[QuestionId])
      VALUES
-           (1, 0, 21)
+           (1, 0, 5)
 GO
 
 INSERT INTO [dbo].[Answers]
@@ -323,16 +360,7 @@ INSERT INTO [dbo].[Answers]
            ,[IsCorrect]
            ,[QuestionId])
      VALUES
-           (2, 0, 21)
-GO
-
-
-INSERT INTO [dbo].[Answers]
-           ([Text]
-           ,[IsCorrect]
-           ,[QuestionId])
-     VALUES
-           (3, 0, 21)
+           (2, 0, 5)
 GO
 
 
@@ -341,7 +369,16 @@ INSERT INTO [dbo].[Answers]
            ,[IsCorrect]
            ,[QuestionId])
      VALUES
-           (5, 1, 21)
+           (3, 0, 5)
+GO
+
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (5, 1, 5)
 GO
 
 --
@@ -352,7 +389,7 @@ INSERT INTO [dbo].[Answers]
            ,[IsCorrect]
            ,[QuestionId])
      VALUES
-           (1, 0, 22)
+           (1, 0, 6)
 GO
 
 INSERT INTO [dbo].[Answers]
@@ -360,16 +397,7 @@ INSERT INTO [dbo].[Answers]
            ,[IsCorrect]
            ,[QuestionId])
      VALUES
-           (2, 0, 22)
-GO
-
-
-INSERT INTO [dbo].[Answers]
-           ([Text]
-           ,[IsCorrect]
-           ,[QuestionId])
-     VALUES
-           (3, 0, 22)
+           (2, 0, 6)
 GO
 
 
@@ -378,7 +406,16 @@ INSERT INTO [dbo].[Answers]
            ,[IsCorrect]
            ,[QuestionId])
      VALUES
-           (6, 1, 22)
+           (3, 0, 6)
+GO
+
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (6, 1, 6)
 GO
 
 -- answers 23
@@ -387,7 +424,7 @@ INSERT INTO [dbo].[Answers]
            ,[IsCorrect]
            ,[QuestionId])
      VALUES
-           (1, 0, 23)
+           (1, 0, 7)
 GO
 
 INSERT INTO [dbo].[Answers]
@@ -395,16 +432,7 @@ INSERT INTO [dbo].[Answers]
            ,[IsCorrect]
            ,[QuestionId])
      VALUES
-           (2, 0, 23)
-GO
-
-
-INSERT INTO [dbo].[Answers]
-           ([Text]
-           ,[IsCorrect]
-           ,[QuestionId])
-     VALUES
-           (3, 0, 23)
+           (2, 0, 7)
 GO
 
 
@@ -413,6 +441,15 @@ INSERT INTO [dbo].[Answers]
            ,[IsCorrect]
            ,[QuestionId])
      VALUES
-           (7, 1, 23)
+           (3, 0, 7)
+GO
+
+
+INSERT INTO [dbo].[Answers]
+           ([Text]
+           ,[IsCorrect]
+           ,[QuestionId])
+     VALUES
+           (7, 1, 7)
 GO
 

@@ -11,11 +11,13 @@ public class TopicRepository : GenericRepository<int, Topic>, ITopicRepository
     private readonly MathContext _dbContext;
     public TopicRepository(MathContext dbContext) : base(dbContext)
     {
+        _dbContext = dbContext;
     }
     
-    // public override async Task<List<Topic>> GetAllAsync(Func<Topic, bool> predicate)
-    // {
-    //     List<Topic> items = _dbContext.Topics.ToList();
-    //     return items;
-    // }
+    public override async Task<List<Topic>> GetAllAsync(Func<Topic, bool> predicate)
+    {
+        List<Topic> items = _dbContext.Topics.Include(x => x.ChildrenTopics)
+            .Where(predicate).ToList();
+        return items;
+    }
 }
