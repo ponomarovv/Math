@@ -20,7 +20,7 @@ public class TopicService : ITopicService
         _unitOfWork = unitOfWork;
         _mapper = mapper;
 
-        // _tree = LoadTreeFromJson();
+        _tree = LoadTreeFromJson();
 
 
         // _tree = new Dictionary<int, TopicNode>()
@@ -32,7 +32,7 @@ public class TopicService : ITopicService
         //     {6, new TopicNode(){Children = {5,7}, Parents = {2,3}}}
         // };
 
-        CreateTree();
+        // CreateTree();
     }
 
     private void CreateTree()
@@ -53,10 +53,8 @@ public class TopicService : ITopicService
 
         foreach (var parent in parentTopics)
         {
-            if (!_tree.ContainsKey(parent.Id))
-            {
-                _tree.Add(parent.Id, new TopicNode());
-            }
+            _tree.Add(parent.Id, new TopicNode());
+    
             foreach (var child in parent.ChildrenTopicModels)
             {
                 _tree[parent.Id].Children.Add(child.Id);
@@ -69,14 +67,11 @@ public class TopicService : ITopicService
         {
             foreach (var parent in child.Topics)
             {
-                if (!_tree.ContainsKey(child.Id)) _tree.Add(child.Id, new TopicNode());
                 _tree[child.Id].Parents.Add(parent.Id);
             }
 
             _tree[child.Id].Parents.Sort();
         }
-
-        Console.WriteLine("hi");
     }
 
     private void SaveTreeToJson()
