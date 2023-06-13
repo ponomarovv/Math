@@ -19,7 +19,7 @@ GO
 
 -- Geometry 3
 INSERT INTO [dbo].[Topics]([Text])
-VALUES ('Geometry', null)
+VALUES ('Geometry')
 GO
 
 --Quadratic equations 4
@@ -60,7 +60,7 @@ GO
 
 -- Geometry 3
 INSERT INTO [dbo].[ChildrenTopics]([Text])
-VALUES ('Geometry', null)
+VALUES ('Geometry')
 GO
 
 --Quadratic equations 4
@@ -82,6 +82,48 @@ GO
 INSERT INTO [dbo].[ChildrenTopics]([Text])
 VALUES ('Geometry_Definitions')
 GO
+
+-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+--topic to topic m:n
+USE [MathDB]
+GO
+
+--parent 1
+INSERT INTO [dbo].[ChildrenTopicTopic]([ChildrenTopicsId],[TopicsId])
+VALUES(2,1)
+GO
+
+INSERT INTO [dbo].[ChildrenTopicTopic]([ChildrenTopicsId],[TopicsId])
+VALUES(3,1)
+GO
+
+-- parent 2
+INSERT INTO [dbo].[ChildrenTopicTopic]([ChildrenTopicsId],[TopicsId])
+VALUES(4,2)
+GO
+
+INSERT INTO [dbo].[ChildrenTopicTopic]([ChildrenTopicsId],[TopicsId])
+VALUES(6,2)
+GO
+
+-- parent 3
+INSERT INTO [dbo].[ChildrenTopicTopic]([ChildrenTopicsId],[TopicsId])
+VALUES(6,3)
+GO
+
+-- parent 4
+INSERT INTO [dbo].[ChildrenTopicTopic]([ChildrenTopicsId],[TopicsId])
+VALUES(5,4)
+GO
+
+-- parent 5
+-- parent 6
+INSERT INTO [dbo].[ChildrenTopicTopic]([ChildrenTopicsId],[TopicsId])
+VALUES(7,6)
+GO
+
+
 
 -----------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------

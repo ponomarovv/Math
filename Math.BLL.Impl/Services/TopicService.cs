@@ -12,7 +12,7 @@ public class TopicService : ITopicService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    private Dictionary<int, TopicNode> tree = new();
+    private Dictionary<int, TopicNode> _tree = new();
 
 
     public TopicService(IUnitOfWork unitOfWork, IMapper mapper)
@@ -33,23 +33,50 @@ public class TopicService : ITopicService
 
     private async Task InitializeTree()
     {
-        List<TopicModel> topics = await GetAllAsync();
+        // Dictionary<int, TopicNode> tree = new();
+
+        // TopicNode node = new();
+
+        List<TopicModel> parentTopics = await GetAllAsync();
+        List<ChildrenTopicModel> childrenTopics = await GetAllChildrenAsync();
+
+        _tree.Add(11,new TopicNode());
         
-        foreach (var topic in topics)
+        foreach (var parent in parentTopics)
         {
-            var childrenIds = new List<int>();
-            foreach (var child in topic.ChildrenTopicModels)
+            foreach (var child in parent.ChildrenTopicModels)
             {
-                childrenIds.Add(child.Id);
+                Console.WriteLine("hi");
+
+                var a = 2 + 2;
+                Console.WriteLine(a);
+                
+                _tree.Add(parent.Id, new TopicNode());
+                if (!_tree.ContainsKey(parent.Id)) _tree.Add(parent.Id, new TopicNode());
+                if (!_tree[parent.Id].Children.Contains(child.Id)) _tree[parent.Id].Children.Add(child.Id);
             }
 
-            tree.Add(topic.Id, childrenIds);
+            _tree[parent.Id].Children.Sort();
         }
+
+        foreach (var child in childrenTopics)
+        {
+            foreach (var parent in child.Topics)
+            {
+                Console.WriteLine("hi");
+                if (!_tree.ContainsKey(child.Id)) _tree.Add(child.Id, new TopicNode());
+                if (!_tree[child.Id].Parents.Contains(parent.Id)) _tree[child.Id].Parents.Add(parent.Id);
+            }
+
+            _tree[child.Id].Parents.Sort();
+        }
+
+        Console.WriteLine("hi");
     }
 
     private void SaveTreeToJson()
     {
-        string jsonString = JsonSerializer.Serialize(tree, new JsonSerializerOptions
+        string jsonString = JsonSerializer.Serialize(_tree, new JsonSerializerOptions
         {
             WriteIndented = true
         });
@@ -74,20 +101,27 @@ public class TopicService : ITopicService
         List<int> result = new List<int>();
 
 
-        if (tree.ContainsKey(id) && tree[id].Count != 0)
-        {
-            var children = tree[id];
-
-            foreach (var child in children)
-            {
-                result.Add(child);
-                result.AddRange(GetAllTopicIdsRecursive(child));
-            }
-        }
+        // if (tree.ContainsKey(id) && tree[id].Count != 0)
+        // {
+        //     var children = tree[id];
+        //
+        //     foreach (var child in children)
+        //     {
+        //         result.Add(child);
+        //         result.AddRange(GetAllTopicIdsRecursive(child));
+        //     }
+        // }
 
         return result;
     }
 
+    public async Task<TopicModel> GetTopicByTopicText(string text)
+    {
+        var allTopics = await GetAllAsync();
+        var topic = allTopics.FirstOrDefault(t => t.Text == text);
+
+        return topic;
+    }
 
     public async Task<List<string>> GetTopicIdByTopicText(string text)
     {
@@ -120,6 +154,14 @@ public class TopicService : ITopicService
     {
         var entities = await _unitOfWork.TopicRepository.GetAllAsync(x => true);
         var result = entities.Select(_mapper.Map<TopicModel>).ToList();
+
+        return result;
+    }
+
+    public async Task<List<ChildrenTopicModel>> GetAllChildrenAsync()
+    {
+        var entities = await _unitOfWork.ChildrenTopicRepository.GetAllAsync(x => true);
+        var result = entities.Select(_mapper.Map<ChildrenTopicModel>).ToList();
 
         return result;
     }

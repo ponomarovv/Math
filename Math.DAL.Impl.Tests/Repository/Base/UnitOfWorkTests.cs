@@ -13,6 +13,7 @@ namespace Math.DAL.Impl.Tests.Repository.Base
         private Mock<IAnswerRepository> _mockAnswerRepository;
         private Mock<IQuestionRepository> _mockQuestionRepository;
         private Mock<ITopicRepository> _mockTopicRepository;
+        private Mock<IChildrenTopicRepository> _mockChildrenTopicRepository;
         private Mock<IQuizRepository> _mockQuizRepository;
 
         private UnitOfWork _unitOfWork;
@@ -36,6 +37,7 @@ namespace Math.DAL.Impl.Tests.Repository.Base
             _mockAnswerRepository = new Mock<IAnswerRepository>();
             _mockQuestionRepository = new Mock<IQuestionRepository>();
             _mockTopicRepository = new Mock<ITopicRepository>();
+            _mockChildrenTopicRepository = new Mock<IChildrenTopicRepository>();
             _mockQuizRepository = new Mock<IQuizRepository>();
 
             _unitOfWork = new UnitOfWork(
@@ -43,7 +45,9 @@ namespace Math.DAL.Impl.Tests.Repository.Base
                 _mockAnswerRepository.Object,
                 _mockQuestionRepository.Object,
                 _mockTopicRepository.Object,
-                _mockQuizRepository.Object);
+                _mockQuizRepository.Object,
+                _mockChildrenTopicRepository.Object
+                );
         }
 
         [Test]
