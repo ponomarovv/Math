@@ -12,7 +12,7 @@ public class TopicService : ITopicService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    private Dictionary<int, List<int>> tree = new();
+    private Dictionary<int, List<List<int>>> tree = new();
 
 
     public TopicService(IUnitOfWork unitOfWork, IMapper mapper)
@@ -20,9 +20,9 @@ public class TopicService : ITopicService
         _unitOfWork = unitOfWork;
         _mapper = mapper;
 
-        tree = LoadTreeFromJson();
+        // tree = LoadTreeFromJson();
 
-        // CreateTree();
+        CreateTree();
     }
 
     private void CreateTree()
@@ -30,6 +30,7 @@ public class TopicService : ITopicService
         InitializeTree();
         SaveTreeToJson();
     }
+
     private async Task InitializeTree()
     {
         var topics = await GetAllAsync();
@@ -98,10 +99,9 @@ public class TopicService : ITopicService
             var ids = GetAllTopicIdsRecursive(topic.Id);
             ids.Add(topic.Id);
 
-             result = GetAllAsync().Result.Where(x => ids.Contains(x.Id)).Select(x => x.Text).ToList();
-
-           
+            result = GetAllAsync().Result.Where(x => ids.Contains(x.Id)).Select(x => x.Text).ToList();
         }
+
         return result;
     }
 
