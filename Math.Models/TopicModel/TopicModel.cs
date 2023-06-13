@@ -9,7 +9,5 @@ public class TopicModel
     public ICollection<QuizModel> QuizModels { get; set; }
     public ICollection<BookModel> BookModels { get; set; }
 
-    public int? ParentTopicId { get; set; }
-    public TopicModel ParentTopic { get; set; }
-    public ICollection<TopicModel> ChildTopics { get; set; }
+    public ICollection<ChildrenTopicModel> ChildrenTopicModels { get; set; }
 }

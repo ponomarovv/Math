@@ -23,8 +23,11 @@ public class MappersProfile : AutoMapper.Profile
         CreateMap<Topic, TopicModel>()
             .ForMember(dest => dest.QuestionModels, opt => opt.MapFrom(src => src.Questions))
             .ForMember(dest => dest.BookModels, opt => opt.MapFrom(src => src.Books))
-            .ForMember(dest => dest.ChildTopics, opt => opt.MapFrom(src => src.ChildTopics))
-            .ForMember(dest => dest.ParentTopic, opt => opt.MapFrom(src => src.ParentTopic))
+            .ForMember(dest => dest.ChildrenTopicModels, opt => opt.MapFrom(src => src.ChildrenTopics))
+            .PreserveReferences()
+            .ReverseMap();
+
+        CreateMap<ChildrenTopic, ChildrenTopicModel>()
             .PreserveReferences()
             .ReverseMap();
 

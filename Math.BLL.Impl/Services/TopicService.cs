@@ -36,7 +36,7 @@ public class TopicService : ITopicService
         foreach (var topic in topics)
         {
             var childrenIds = new List<int>();
-            foreach (var child in topic.ChildTopics)
+            foreach (var child in topic.ChildrenTopicModels)
             {
                 childrenIds.Add(child.Id);
             }
