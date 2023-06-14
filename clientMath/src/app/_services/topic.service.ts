@@ -22,4 +22,10 @@ export class TopicService {
     return result;
   }
 
+  getTopicByTopicText(text: string): Observable<TopicModel> {
+    console.log(this.baseUrl + '/' + text);
+    let result = this.http.get<TopicModel>(this.baseUrl + '/' + text);
+    return result;
+  }
+
 }

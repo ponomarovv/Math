@@ -6,6 +6,6 @@ export class QuizModel {
   quizDate: any;
   applicationUser: UserModel | null = null;
 
-  MainTopic: TopicModel | null = null;
+  mainTopic: TopicModel | null = null;
   topicQuizzes: TopicModel[] | null = null;
 }

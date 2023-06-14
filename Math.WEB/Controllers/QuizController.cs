@@ -40,7 +40,7 @@ namespace Math.WEB.Controllers
             return Ok(quiz);
         }
 
-        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
         public async Task<IActionResult> Update(int id, QuizModel model)
         {
             if (id != model.Id)

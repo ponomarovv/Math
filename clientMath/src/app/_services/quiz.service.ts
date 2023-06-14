@@ -27,7 +27,7 @@ export class QuizService {
   }
 
   updateQuiz(id: number, quiz: QuizModel): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${id}`, quiz);
+    return this.http.patch<void>(`${this.baseUrl}/${id}`, quiz);
   }
 
   deleteQuiz(id: number): Observable<void> {

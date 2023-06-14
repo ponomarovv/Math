@@ -9,6 +9,7 @@ import {UserService} from "../../_services/user.service";
 import {QuizService} from "../../_services/quiz.service";
 import {QuizModel} from "../../_models/q/quiz";
 import {UserModel} from "../../_models/user";
+import {TopicService} from "../../_services/topic.service";
 
 @Component({
   selector: 'app-quiz',
@@ -43,7 +44,8 @@ export class QuizComponent {
               private router: Router,
               private sharedService: SharedService,
               private userService: UserService,
-              private quizService: QuizService
+              private quizService: QuizService,
+              private topicService: TopicService
   ) {
   }
 
@@ -156,15 +158,26 @@ export class QuizComponent {
     }
 
     // console.log(this.topicsToShowInResultOfThisQuiz);
-    this.saveQuizToDb();
+    // this.saveQuizToDb();
   }
 
 
   saveQuizToDb() {
+    this.topicService.getTopicByTopicText(this.pickedTopic).subscribe(
+      next=>{
+        this.newQuiz.mainTopic = next;
+        this.newQuiz.applicationUser = this.userProfile;
 
-    this.newQuiz.applicationUser = this.userProfile;
-    // @ts-ignore
-    this.newQuiz.quizDate = new Date;
+        // date.now()
+        const date: Date = new Date();
+        const dateString: string = date.toISOString();
+        this.newQuiz.quizDate = dateString;
+
+      }
+    )
+
+
+
 
 
     this.quizService.createQuiz(this.newQuiz).subscribe(

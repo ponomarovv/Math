@@ -32,6 +32,18 @@ namespace Math.WEB.Controllers
             }
             return Ok(topic);
         }
+        
+        
+        [HttpGet("{text}")]
+        public async Task<ActionResult<TopicModel>> GetTopicByTopicText(string text)
+        {
+            var topic = await _topicService.GetTopicIdsByTopicText(text);
+            if (topic == null)
+            {
+                return NotFound();
+            }
+            return Ok(topic);
+        }
 
         [HttpPost]
         public async Task<ActionResult<TopicModel>> CreateTopic(TopicModel model)

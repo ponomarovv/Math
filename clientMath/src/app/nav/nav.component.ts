@@ -92,10 +92,10 @@ export class NavComponent implements OnInit {
   }
 
   showMe() {
-    let buttonText = document.querySelector('#userInfo');
-    console.log('showMe');
-    console.log(buttonText?.textContent);
-    // console.log(this.topics);
+    const date: Date = new Date();
+    const dateString: string = date.toISOString();
+
+    console.log(dateString);
   }
 
   getTopics() {
