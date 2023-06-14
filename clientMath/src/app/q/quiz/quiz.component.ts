@@ -6,6 +6,9 @@ import {Router} from "@angular/router";
 import {SharedService} from "../../_services/shared.service";
 import {TopicModel} from "../../_models/q/topic";
 import {UserService} from "../../_services/user.service";
+import {QuizService} from "../../_services/quiz.service";
+import {QuizModel} from "../../_models/q/quiz";
+import {UserModel} from "../../_models/user";
 
 @Component({
   selector: 'app-quiz',
@@ -32,12 +35,15 @@ export class QuizComponent {
   topicNamesInThisQuiz: string [] = [];
   topicsToShowInResultOfThisQuiz: TopicModel [] = [];
 
-  userProfile: any;
+  userProfile: UserModel = new UserModel();
+
+  newQuiz: QuizModel = new QuizModel();
 
   constructor(private questionService: QuestionService,
               private router: Router,
               private sharedService: SharedService,
-              private userService: UserService
+              private userService: UserService,
+              private quizService: QuizService
   ) {
   }
 
@@ -48,7 +54,7 @@ export class QuizComponent {
       (res: any) => {
         this.userProfile = res;
         console.log('got user data');
-        console.log(this.userProfile.id);
+        console.log(this.userProfile?.id);
         console.log(this.userProfile);
       },
       (error: any) => {
@@ -150,7 +156,27 @@ export class QuizComponent {
     }
 
     // console.log(this.topicsToShowInResultOfThisQuiz);
+    this.saveQuizToDb();
   }
+
+
+  saveQuizToDb() {
+
+    this.newQuiz.applicationUser = this.userProfile;
+    // @ts-ignore
+    this.newQuiz.quizDate = new Date;
+
+
+    this.quizService.createQuiz(this.newQuiz).subscribe(
+      (createdQuiz: QuizModel) => {
+        console.log('Quiz created:', createdQuiz);
+      },
+      (error) => {
+        console.error('Failed to create quiz:', error);
+      }
+    );
+  }
+
 
   resetAnswersCount() {
     this.correctAnswersCount = 0;
