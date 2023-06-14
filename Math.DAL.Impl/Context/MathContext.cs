@@ -16,9 +16,9 @@ public class MathContext : IdentityDbContext
     {
         base.OnModelCreating(builder);
 
-        builder.ApplyConfiguration(new TopicConfiguration());
-        builder.ApplyConfiguration(new QuizConfiguration());
-        builder.ApplyConfiguration(new TopicQuizConfiguration());
+        // builder.ApplyConfiguration(new TopicConfiguration());
+        // builder.ApplyConfiguration(new QuizConfiguration());
+        // builder.ApplyConfiguration(new TopicQuizConfiguration());
     }
 
     public DbSet<Topic> Topics { get; set; }

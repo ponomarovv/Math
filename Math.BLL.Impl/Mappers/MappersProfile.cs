@@ -33,7 +33,7 @@ public class MappersProfile : AutoMapper.Profile
 
         CreateMap<Quiz, QuizModel>()
             .ForMember(dest => dest.ApplicationUser, opt => opt.MapFrom(src => src.ApplicationUser))
-            .ForMember(dest => dest.TopicQuizzes, opt => opt.MapFrom(src => src.TopicQuizzes))
+            .ForMember(dest => dest.TopicQuizzes, opt => opt.MapFrom(src => src.Topics))
             .PreserveReferences()
             .ReverseMap();
         

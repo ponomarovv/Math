@@ -13,8 +13,9 @@ public class Quiz
     public ApplicationUser? ApplicationUser { get; set; }
 
     // M:N
-    public ICollection<TopicQuiz> TopicQuizzes { get; set; }
+    public ICollection<Topic> Topics { get; set; }
     
     public int MainTopicId { get; set; }
-    public Topic MainTopic { get; set; }
+    public string MainTopicText { get; set; }
+    // public Topic MainTopic { get; set; }
 }
