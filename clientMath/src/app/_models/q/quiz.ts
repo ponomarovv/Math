@@ -4,7 +4,7 @@ import {UserModel} from "../user";
 export class QuizModel {
   id: number | null = null;
   quizDate: any;
-  applicationUser: UserModel | null = null;
+  applicationUser: any | null = null;
 
   mainTopicId: number | null = null;
   mainTopicText: string | null = null;

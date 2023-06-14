@@ -1,7 +1,7 @@
 ﻿using Entities;
 using Entities.TopicEntity;
 using Models;
-using Models.TopicModelFolder;
+using Models.TopicModel;
 
 namespace Math.BLL.Mappers;
 

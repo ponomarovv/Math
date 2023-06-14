@@ -36,7 +36,7 @@ export class QuizComponent {
   topicNamesInThisQuiz: string [] = [];
   topicsToShowInResultOfThisQuiz: TopicModel [] = [];
 
-  userProfile: UserModel = new UserModel();
+  userProfile: any;
 
   newQuiz: QuizModel = new QuizModel();
 
@@ -158,26 +158,33 @@ export class QuizComponent {
     }
 
     // console.log(this.topicsToShowInResultOfThisQuiz);
-    this.saveQuizToDb();
+    // this.saveQuizToDb();
   }
 
 
   saveQuizToDb() {
+    console.log('inside saveQuizToDb');
+    console.log(this.pickedTopic);
     this.topicService.getTopicByTopicText(this.pickedTopic).subscribe(
       next => {
+        console.log('inside getTopicByTopicText(this.pickedTopic).subscribe')
         this.newQuiz.mainTopicId = next.id;
         this.newQuiz.mainTopicText = next.text;
+
+        console.log('before app user');
         this.newQuiz.applicationUser = this.userProfile;
+        console.log('after app user');
 
         // date.now()
+        console.log("before time");
         const date: Date = new Date();
         const dateString: string = date.toISOString();
         this.newQuiz.quizDate = dateString;
+        console.log("after time");
 
         // error topics
         this.newQuiz.topics = this.topicsToShowInResultOfThisQuiz;
-
-
+        console.log('error topics done');
       }
     )
 

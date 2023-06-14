@@ -1,10 +1,8 @@
-﻿using Models.TopicModelFolder;
-
-namespace Models;
+﻿namespace Models;
 
 public class TopicForQuizModel
 {
     public int Id { get; set; }
     public QuizModel QuizModel { get; set; }
-    public TopicModel TopicModel { get; set; }
+    public TopicModel.TopicModel TopicModel { get; set; }
 }

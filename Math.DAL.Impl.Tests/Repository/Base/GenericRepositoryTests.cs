@@ -112,6 +112,7 @@ namespace Math.DAL.Impl.Tests.Repository.Base
             await _context.SaveChangesAsync();
 
             // Act
+            // var tempResult = await _repository.GetAllAsync(x=>true);
             var result = await _repository.GetAllAsync(p => p.Text.StartsWith("Test"));
 
             // Assert
