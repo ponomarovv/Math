@@ -107,12 +107,12 @@ internal class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-      
-        app.UseCors("AllowSpecificOrigin");
+
 
         app.UseHttpsRedirection();
 
         app.UseAuthentication();
+        app.UseCors("AllowSpecificOrigin");
         app.UseAuthorization();
 
         app.MapControllers();

@@ -50,7 +50,7 @@ public class TopicService : ITopicService
         foreach (var parent in parentTopics)
         {
             _tree.Add(parent.Id, new TopicNode());
-    
+
             foreach (var child in parent.ChildrenTopicModels)
             {
                 _tree[parent.Id].Children.Add(child.Id);
@@ -100,7 +100,7 @@ public class TopicService : ITopicService
         if (_tree.ContainsKey(id) && _tree[id].Children.Count != 0)
         {
             var children = _tree[id].Children;
-        
+
             foreach (var child in children)
             {
                 result.Add(child);
@@ -112,6 +112,14 @@ public class TopicService : ITopicService
     }
 
     public async Task<TopicModel> GetTopicByTopicText(string text)
+    {
+        var allTopics = await GetAllAsync();
+        var topic = allTopics.FirstOrDefault(t => t.Text == text);
+
+        return topic;
+    }
+
+    public async Task<TopicModel> GetTopicModelByTopicText(string text)
     {
         var allTopics = await GetAllAsync();
         var topic = allTopics.FirstOrDefault(t => t.Text == text);

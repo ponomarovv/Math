@@ -158,6 +158,7 @@ export class QuizComponent {
     }
 
     // console.log(this.topicsToShowInResultOfThisQuiz);
+
     // this.saveQuizToDb();
   }
 
@@ -166,7 +167,7 @@ export class QuizComponent {
     console.log('inside saveQuizToDb');
     console.log(this.pickedTopic);
     this.topicService.getTopicByTopicText(this.pickedTopic).subscribe(
-      next => {
+      (next: TopicModel) => {
         console.log('inside getTopicByTopicText(this.pickedTopic).subscribe')
         this.newQuiz.mainTopicId = next.id;
         this.newQuiz.mainTopicText = next.text;

@@ -37,7 +37,7 @@ namespace Math.WEB.Controllers
         [HttpGet("{text}")]
         public async Task<ActionResult<TopicModel>> GetTopicByTopicText(string text)
         {
-            var topic = await _topicService.GetTopicIdsByTopicText(text);
+            var topic = await _topicService.GetTopicModelByTopicText(text);
             if (topic == null)
             {
                 return NotFound();

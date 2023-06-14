@@ -27,5 +27,4 @@ export class TopicService {
     let result = this.http.get<TopicModel>(this.baseUrl + '/' + text);
     return result;
   }
-
 }
