@@ -1,3 +1,3 @@
 export class UserModel {
-  id: number | null = null;
+  id: string | null = null;
 }

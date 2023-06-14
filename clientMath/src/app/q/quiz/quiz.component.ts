@@ -164,8 +164,9 @@ export class QuizComponent {
 
   saveQuizToDb() {
     this.topicService.getTopicByTopicText(this.pickedTopic).subscribe(
-      next=>{
-        this.newQuiz.mainTopic = next;
+      next => {
+        this.newQuiz.mainTopicId = next.id;
+        this.newQuiz.mainTopicText = next.text;
         this.newQuiz.applicationUser = this.userProfile;
 
         // date.now()
@@ -175,9 +176,6 @@ export class QuizComponent {
 
       }
     )
-
-
-
 
 
     this.quizService.createQuiz(this.newQuiz).subscribe(
