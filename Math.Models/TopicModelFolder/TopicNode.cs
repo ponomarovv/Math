@@ -1,4 +1,4 @@
-﻿namespace Entities.TopicEntity;
+﻿namespace Models.TopicModelFolder;
 
 public class TopicNode
 {

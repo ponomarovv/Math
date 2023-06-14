@@ -1,4 +1,4 @@
-﻿namespace Models.TopicModel;
+﻿namespace Models.TopicModelFolder;
 
 public class ChildrenTopicModel
 {

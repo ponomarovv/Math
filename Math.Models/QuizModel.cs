@@ -1,4 +1,5 @@
 ﻿using Entities.Auth;
+using Models.TopicModelFolder;
 
 namespace Models;
 
@@ -9,8 +10,8 @@ public class QuizModel
 
     public ApplicationUser? ApplicationUser { get; set; }
 
-    public ICollection<TopicForQuizModel> TopicQuizzes { get; set; }
+    public ICollection<TopicModel> Topics { get; set; }
 
     public int MainTopicId { get; set; }
-    public TopicModel.TopicModel MainTopic { get; set; }
+    public string MainTopicText  { get; set; }
 }

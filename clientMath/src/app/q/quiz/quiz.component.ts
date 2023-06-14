@@ -158,7 +158,7 @@ export class QuizComponent {
     }
 
     // console.log(this.topicsToShowInResultOfThisQuiz);
-    // this.saveQuizToDb();
+    this.saveQuizToDb();
   }
 
 
@@ -173,6 +173,10 @@ export class QuizComponent {
         const date: Date = new Date();
         const dateString: string = date.toISOString();
         this.newQuiz.quizDate = dateString;
+
+        // error topics
+        this.newQuiz.topics = this.topicsToShowInResultOfThisQuiz;
+
 
       }
     )

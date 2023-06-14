@@ -1,4 +1,6 @@
-﻿namespace Models;
+﻿using Models.TopicModelFolder;
+
+namespace Models;
 
 public class BookModel
 {
@@ -6,5 +8,5 @@ public class BookModel
     
     public string Text { get; set; }
     
-    public TopicModel.TopicModel TopicModel { get; set; } 
+    public TopicModel TopicModel { get; set; } 
 }

@@ -8,5 +8,5 @@ export class QuizModel {
 
   mainTopicId: number | null = null;
   mainTopicText: string | null = null;
-  topicQuizzes: TopicModel[] | null = null;
+  topics: TopicModel[] | null = null;
 }

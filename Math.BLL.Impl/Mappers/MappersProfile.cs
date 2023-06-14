@@ -1,7 +1,7 @@
 ﻿using Entities;
 using Entities.TopicEntity;
 using Models;
-using Models.TopicModel;
+using Models.TopicModelFolder;
 
 namespace Math.BLL.Mappers;
 
@@ -33,7 +33,7 @@ public class MappersProfile : AutoMapper.Profile
 
         CreateMap<Quiz, QuizModel>()
             .ForMember(dest => dest.ApplicationUser, opt => opt.MapFrom(src => src.ApplicationUser))
-            .ForMember(dest => dest.TopicQuizzes, opt => opt.MapFrom(src => src.Topics))
+            .ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics))
             .PreserveReferences()
             .ReverseMap();
         

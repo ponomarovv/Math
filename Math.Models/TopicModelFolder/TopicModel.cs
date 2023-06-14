@@ -1,4 +1,4 @@
-﻿namespace Models.TopicModel;
+﻿namespace Models.TopicModelFolder;
 
 public class TopicModel
 {
@@ -10,4 +10,6 @@ public class TopicModel
     public ICollection<BookModel> BookModels { get; set; }
 
     public ICollection<ChildrenTopicModel> ChildrenTopicModels { get; set; }
+    
+    public ICollection<QuizModel> Quizzes { get; set; }
 }
