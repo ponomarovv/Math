@@ -194,7 +194,7 @@ export class QuizComponent {
       (createdQuiz: QuizModel) => {
         console.log('Quiz created:', createdQuiz);
       },
-      (error) => {
+      (error: any) => {
         console.error('Failed to create quiz:', error);
       }
     );

@@ -1,5 +1,4 @@
 import {TopicModel} from "./topic";
-import {UserModel} from "../user";
 
 export class QuizModel {
   id: number | null = null;
